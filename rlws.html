@@ -1,0 +1,298 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>ESP32 RGB LED Web Server</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo">Introductory Project<strong> 5</strong></a>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>ESP32 RGB LED Web Server</h1>
+									</header>
+
+									<!-- Content -->
+										<h2 id="content">ABOUT THE PROJECT</h2>
+										<p>In this project, you’ll learn how to control an RGB LED remotely using an ESP32 web server that includes a color picker. Here’s a breakdown of how the web server works:<br>
+
+&emsp;&emsp;&emsp;<strong>• Color Picker Interface:</strong> The ESP32 hosts a web server that displays a color picker in the browser.<br>
+&emsp;&emsp;&emsp;<strong>• Choosing a Color:</strong> When you select a color, the browser sends a request containing the R, G, and B parameters (Red, Green, Blue values) of the chosen color.<br>
+&emsp;&emsp;&emsp;<strong>• ESP32 Processing:</strong> The ESP32 receives the request, extracts each color parameter, and assigns the corresponding value to each color channel.<br>
+&emsp;&emsp;&emsp;<strong>• PWM Signal Output:</strong> The ESP32 then sends PWM signals with the specified intensities to the GPIO pins controlling the RGB LED, adjusting the brightness for each color.<br><br>
+
+<strong>How Do RGB LEDs Work?</strong><br>
+In this project, we’re using a common-cathode RGB LED, where all three LEDs (Red, Green, and Blue) share a common ground (cathode). By applying PWM signals to the Red, Green, and Blue pins of the LED, you can control the intensity of each color and produce a wide range of colors.<br><br>
+
+<strong>Creating Different Colors</strong><br>
+&emsp;&emsp;&emsp;<strong>• Primary Colors:</strong> The RGB LED can produce red, green, and blue light by setting each LED channel to high intensity individually.<br>
+&emsp;&emsp;&emsp;<strong>• Mixing Colors:</strong> By adjusting the intensity of each color, you can create different colors.<br>
+&emsp;&emsp;&emsp;<strong>• Blue Light:</strong> Set only the blue LED to the highest intensity while keeping red and green at their lowest.<br>
+&emsp;&emsp;&emsp;<strong>• White Light:</strong> Set all three LEDs (Red, Green, Blue) to the highest intensity.<br>
+&emsp;&emsp;&emsp;<strong>• Color Combination:</strong> The close proximity of the LEDs causes their colors to blend, so we see the combined color rather than each color individually. By using a PWM signal to control each LED’s brightness, you can create colors with various shades and intensities.</p><br>
+										<h2 id="content">PARTS NEEDED:</h2>
+										<p>• Main Board Module<br>
+										• RGB LED<br>
+										• Breadboard<br>
+										• Jumper Wires<br>
+										• 3 x 220 Ohm Resistor <br></p>
+
+						<!-- Image Section -->
+						<h2>THE BUILD</h2>
+
+						<!-- Main Image (pic11.jpg) -->
+						<span class="image fit">
+						    <a href="images/sintro5.jpg" class="image-link"><img src="images/sintro5.jpg" alt="" /></a>
+						</span>
+
+
+												<!-- Box -->
+										<h2>INSTRUCTION(s):</h2>
+													<div class="box">
+														<p>Before you begin, you'll need to set up a circuit with an LED and a pushbutton. Connect the LED to GPIO 5 and the pushbutton to GPIO 4 on the ESP32.<br>Once you've uploaded the code, test your circuit. The LED should light up whenever you press the pushbutton.
+														</p>
+													</div>
+
+<html>
+<head>
+    <title>ESP32 Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: Arial, sans-serif;}
+        .code-section { background-color: #f5f5f5;}
+        pre { white-space: pre-wrap; font-size: 0.9rem; color: #333;}
+        h2 { margin: 0 0 5px 0; font-size: 1.2rem; }
+    </style>
+    							<div class="code-section">
+							    <h2>CODE</h2>
+							    <pre><code> <!DOCTYPE HTML>
+</head>
+<body>#include &lt;WiFi.h&gt;
+
+// Replace with your network credentials
+const char* ssid = "REPLACE_WITH_YOUR_SSID";
+const char* password = "REPLACE_WITH_YOUR_PASSWORD";
+
+// RGB LED pin assignments
+const int redPin = 13;
+const int greenPin = 12;
+const int bluePin = 14;
+
+// PWM properties
+const int freq = 5000;
+const int redChannel = 0;
+const int greenChannel = 1;
+const int blueChannel = 2;
+const int resolution = 8;
+
+// Color variables
+String redString = "0";
+String greenString = "0";
+String blueString = "0";
+int pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
+WiFiServer server(80);
+
+void setup() {
+  Serial.begin(115200);
+  
+  // Set up PWM channels
+  ledcSetup(redChannel, freq, resolution);
+  ledcSetup(greenChannel, freq, resolution);
+  ledcSetup(blueChannel, freq, resolution);
+
+  // Attach PWM channels to GPIO pins
+  ledcAttachPin(redPin, redChannel);
+  ledcAttachPin(greenPin, greenChannel);
+  ledcAttachPin(bluePin, blueChannel);
+
+  // Connect to WiFi
+  WiFi.begin(ssid, password);
+  Serial.print("Connecting to WiFi");
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("\nConnected to WiFi");
+  Serial.print("IP Address: ");
+  Serial.println(WiFi.localIP());
+
+  // Start the server
+  server.begin();
+}
+
+void loop() {
+  WiFiClient client = server.available();   
+  if (!client) {
+    return;
+  }
+
+  while (!client.available()) {
+    delay(1);
+  }
+
+  String request = client.readStringUntil('\r');
+  client.flush();
+
+  if (request.indexOf("r") != -1) {
+    pos1 = request.indexOf('r');
+    pos2 = request.indexOf('g');
+    pos3 = request.indexOf('b');
+    pos4 = request.indexOf('&');
+    
+    redString = request.substring(pos1 + 1, pos2);
+    greenString = request.substring(pos2 + 1, pos3);
+    blueString = request.substring(pos3 + 1, pos4);
+
+    // Set LED colors
+    ledcWrite(redChannel, redString.toInt());
+    ledcWrite(greenChannel, greenString.toInt());
+    ledcWrite(blueChannel, blueString.toInt());
+  }
+
+  // HTML for color picker
+  String html = "&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"&gt;";
+  html += "&lt;link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\"&gt;";
+  html += "&lt;script src=\"https://cdnjs.cloudflare.com/ajax/libs/jscolor/2.0.4/jscolor.min.js\"&gt;&lt;/script&gt;&lt;/head&gt;&lt;body&gt;";
+  html += "&lt;div class='container'&gt;&lt;h1&gt;ESP32 RGB LED Control&lt;/h1&gt;";
+  html += "&lt;input class=\"jscolor {onFineChange:'update(this)'}\" id=\"rgb\"&gt;&lt;br&gt;&lt;br&gt;";
+  html += "&lt;a class='btn btn-primary btn-lg' href='#' id='change_color' role='button'&gt;Set Color&lt;/a&gt;&lt;/div&gt;";
+  html += "&lt;script&gt;function update(picker) {";
+  html += "document.getElementById('change_color').href=\"?r\" + Math.round(picker.rgb[0]) + \"g\" + Math.round(picker.rgb[1]) + \"b\" + Math.round(picker.rgb[2]) + \"&\";}&lt;/script&gt;";
+  html += "&lt;/body&gt;&lt;/html&gt;";
+
+  // Send the HTML response
+  client.println("HTTP/1.1 200 OK");
+  client.println("Content-type:text/html");
+  client.println("Connection: close");
+  client.println();
+  client.println(html);
+  
+  client.stop();
+}
+</body>
+</html>
+							</code></pre>
+							    <button id="copyButton">Copy Code</button>
+							</div>
+
+
+											</div>
+										</div>
+
+								</section>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="generic.html">The Creation</a></li>
+										<li><a href="elements.html">Module Explainer</a></li>
+										<li>
+											<span class="opener">Introductory Projects</span>
+											<ul>
+												<li><a href="io.html">Input Output</a></li>
+												<li><a href="ai.html">Analog Inputs</a></li>
+												<li><a href="pwm.html">PWM (Analog Output)</a></li>
+												<li><a href="sws.html">Switch Web Server</a></li>
+												<li><a href="rlws.html">RGB LED Web Server</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Main Projects</span>
+											<ul>
+												<li><a href="project-1.html">Project 1</a></li>
+												<li><a href="project-2.html">Project 2</a></li>
+												<li><a href="project-3.html">Project 3</a></li>
+												<li><a href="project-4.html">Project 4</a></li>
+												<li><a href="project-5.html">Project 5</a></li>
+												<li><a href="project-6.html">Project 6</a></li>
+												<li><a href="project-7.html">Project 7</a></li>
+												<li><a href="project-8.html">Project 8</a></li>
+												<li><a href="project-9.html">Project 9</a></li>
+												<li><a href="project-10.html">Project 10</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>ADVANCED IOT PROJECTS</h2>
+									</header>
+									<div class="mini-posts">
+										<article>
+											<a href="https://youtu.be/RUO44kqNP24?si=QO3qiHGQLvJSXDaD" class="image"><img src="https://i.ytimg.com/vi/RUO44kqNP24/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLD_wUN6wdxf151rPD6UWSKlwhLK7Q" alt="" /></a>
+											<p>Patient Health Monitoring System Using Raspberry Pi</p>
+										</article>
+										<article>
+											<a href="https://youtu.be/FSqYyjZtH4g?si=9BeVl6KnJ2oD9eBl" class="image"><img src="https://i.ytimg.com/vi/FSqYyjZtH4g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCztyDAtqgoFMqVVEyold-aKebbbQ" alt="" /></a>
+											<p>Women Safety Device Using Internet of Things</p>
+										</article>
+										<article>
+											<a href="https://youtu.be/EamYfGG4Wvg?si=10C8m2DArmPMSOv3" class="image"><img src="https://i.ytimg.com/vi/EamYfGG4Wvg/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH0CYAC0AWKAgwIABABGGUgTShIMA8=&rs=AOn4CLBlZoYwXKvvyn9fsfvRhCCsItaQ3g" alt="" /></a>
+											<p>A Web-Based Accident Reporting and Tracking System</p>
+										</article>
+									</div>
+									<ul class="actions">
+										<li><a href="https://youtube.com/playlist?list=PL87CgTAGz2yZ0geJ-_9HAK2u8NDMhVwFH&si=cr7ljhFT1B8GZR3-" class="button">More</a></li>
+									</ul>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="https://sscr.edu/Beta/">https://sscr.edu/Beta/</a></li>
+										<li class="icon solid fa-phone">(046) 431-9405</li>
+										<li class="icon solid fa-home">Manila-Cavite Road, Sta. Cruz,<br />
+										Cavite City, 4100, Philippines</li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; SSC-RdC IOT Development Board. <br>All rights reserved.
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/copy.js"></script>
+
+	</body>
+</html>

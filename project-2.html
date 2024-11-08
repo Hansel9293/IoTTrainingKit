@@ -1,0 +1,515 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>PROJECT 2</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo">Project<strong> 2</strong></a>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Flood Level Monitoring</h1>
+									</header>
+
+									<!-- Content -->
+										<h2 id="content">HOW IT WORKS?</h2>
+										<p>In this flood level monitoring project, a room occupancy module is utilized, which includes an ultrasonic sensor. The ultrasonic sensor emits sound waves that bounce off nearby surfaces and return to the sensor. By measuring the time it takes for the sound waves to return, the sensor determines the distance to the water surface. When the water level rises and reaches a predefined threshold, the sensor detects the change and sends a signal to the Main Board. <br><br>This system can be programmed to trigger alarms or notifications when the water level exceeds safe limits, enabling timely action to prevent flooding. The integration of the ultrasonic sensor allows for accurate and non-invasive monitoring of water levels in various environments.</p>
+										<h2 id="content">PARTS NEEDED:</h2>
+										<p>• Main Board Module<br>
+										• Motion Module<br>
+										• Connector Cable <br></p>
+
+								<section>
+									<header class="main">
+										<h2 id="content">SENSOR USED IN THE MODULE</h2></header>
+										<p><strong>HC-SR04 Ultrasonic Sensor</strong><br> This module is used in the project in such a way that it emits sound waves that travel through the air until they hit the water surface. The sensor measures the time it takes for the sound waves to bounce back, calculating the distance to the water using the speed of sound. As the water level rises, this distance decreases. <br><br>The sensor continuously monitors these changes and sends real-time data to the Main Board, triggering alarms or notifications when the water reaches a predefined threshold. This non-invasive method ensures accurate and reliable water level monitoring for flood detection.</p>
+								</section>
+
+						<!-- Image Section -->
+						<h2>THE BUILD</h2>
+
+						<!-- Main Image (pic11.jpg) -->
+						<span class="image fit">
+						    <a href="images/sflood.jpg" class="image-link"><img src="images/sflood.jpg" alt="" /></a>
+						</span>
+
+						<!-- Modal Dialog -->
+						<div id="modal" class="modal">
+						    <span class="close">&times;</span>
+						    <img class="modal-content" id="modal-image">
+						</div>
+
+						<!-- JavaScript to Show Full Image on Click -->
+						<script>
+						    // Get all elements with class "image-link"
+						    const imageLinks = document.querySelectorAll('.image-link');
+
+						    // Get the modal element
+						    const modal = document.getElementById('modal');
+
+						    // Get the image element within the modal
+						    const modalImg = document.getElementById('modal-image');
+
+						    // Loop through each image link
+						    imageLinks.forEach(link => {
+						        link.addEventListener('click', function(event) {
+						            event.preventDefault(); // Prevent default link behavior
+
+						            // Get href attribute of the clicked link (full-size image URL)
+						            const imageURL = this.getAttribute('href');
+
+						            // Display the modal
+						            modal.style.display = 'flex'; // Show the modal as flexbox for centering
+
+						            // Set the clicked image as the source of the modal image
+						            modalImg.src = imageURL;
+
+						            // Reset modal content position
+						            modal.scrollTop = 0;
+						            modal.scrollLeft = 0;
+						        });
+						    });
+
+						    // Close the modal when the close button (x) is clicked
+						    const closeBtn = document.querySelector('.close');
+						    closeBtn.addEventListener('click', function() {
+						        modal.style.display = 'none';
+						    });
+
+						    // Close the modal when clicking outside of it
+						    window.addEventListener('click', function(event) {
+						        if (event.target === modal) {
+						            modal.style.display = 'none';
+						        }
+						    });
+
+						    // Enable zoom functionality
+						    modalImg.addEventListener('click', function() {
+						        if (modalImg.classList.contains('zoomed')) {
+						            modalImg.classList.remove('zoomed');
+						        } else {
+						            modalImg.classList.add('zoomed');
+						        }
+						    });
+						</script>
+
+
+												<!-- Box -->
+										<h2>INSTRUCTION(s):</h2>
+													<div class="box">
+														<p><strong>Step 1: Assembling the System</strong><br>
+<strong>Positioning the Module:</strong><br>
+1. Take the Motion Module (enclosed in the 3D-printed box) and align it over the main board.<br>
+2. Gently press the module onto the main board's connector pins until it fits securely in place.<br>   
+3. Ensure that the module is correctly seated to avoid loose connections.<p>
+<strong>Step 2: Powering the System</strong><br>
+<strong>Connecting Power:</strong><br>
+1. Get the connecting cable and attach it into the laptop that you will use to upload the code.<br>
+2. Plug in the other end of it to the main board. The system will automatically power on.<br>
+<strong>Visual Indicator Check:</strong><br>
+Observe the LED indicators on the main board. The system should show a steady power LED to confirm it's operational.<p>
+<strong>Step 3: Connecting to Web Server:</strong><br>
+1. Once the serial monitor says "Code Uploaded", open the serial monitor of the Arduino IDE then press the <strong>EN</strong> button to show the IP address.<br>
+2. Turn on your WiFi and look for <strong>ESP32_Flood</strong>. Choose that then enter <strong>12345678</strong> as the password.<br>
+3. Go to your web browser and type the IP address shown in the serial monitor, it is usually <strong>192.168.4.1</strong>. <p>
+<strong>Step 4: Monitoring and Alerts</strong><br>
+<strong>Understanding the Alerts:</strong><br>
+1. The system is equipped with a visual (web server) alert.<br>
+2. The web server will show a visual meter reading showing the water level detected by the sensor. It should be noted that to be able to get an accurate reading, the sensor should be placed 6.45 feet above ground.<p>
+<strong>Testing the Alerts:</strong><br>
+To test the system, place you palm in front of the sensor and move it closer then away. The alerts should activate.
+														</p>
+													</div>
+
+							<!-- Preformatted Code -->
+
+<html>
+<head>
+    <title>ESP32 Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: Arial, sans-serif;}
+        .code-section { background-color: #f5f5f5;}
+        pre { white-space: pre-wrap; font-size: 0.9rem; color: #333;}
+        h2 { margin: 0 0 5px 0; font-size: 1.2rem; }
+    </style>
+    							<div class="code-section">
+							    <h2>CODE</h2>
+							    <pre><code> <!DOCTYPE HTML>
+</head>
+<body>#include &lt;WiFi.h&gt;
+#include &lt;WebServer.h&gt;
+
+// Define the Access Point credentials
+const char* ssid = "ESP32_Flood";
+const char* password = "12345678";
+
+// Define Static IP Address
+IPAddress local_IP(192, 168, 4, 1);
+IPAddress gateway(192, 168, 4, 1);
+IPAddress subnet(255, 255, 255, 0);
+
+// Ultrasonic Sensor Pins
+const int trigPin = 5;   // Trig pin for the ultrasonic sensor
+const int echoPin = 18;  // Echo pin for the ultrasonic sensor
+
+#define SOUND_SPEED 0.034
+long duration;
+float distanceCm;
+float floodLevel;
+float floodLevelFeet;
+
+// Maximum flood level in centimeters
+const float maxFloodLevel = 200.0;  // Change this to your sensor's maximum measurable distance (e.g., 200 cm)
+
+WebServer server(80); // Create a web server on port 80
+
+// Function to read the distance from the ultrasonic sensor
+float readFloodLevel() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  
+  duration = pulseIn(echoPin, HIGH);
+  distanceCm = duration * SOUND_SPEED / 2;  // Convert time to distance in cm
+
+  // Calculate flood level as a percentage (0% = no water, 100% = maximum flood level)
+  floodLevel = ((maxFloodLevel - distanceCm) / maxFloodLevel) * 100;
+  if (floodLevel &lt; 0) floodLevel = 0;  // Ensure no negative values
+  if (floodLevel &gt; 100) floodLevel = 100;  // Ensure it doesn't go beyond 100%
+
+  // Convert distance to feet
+  floodLevelFeet = (maxFloodLevel - distanceCm) / 30.48;
+  if (floodLevelFeet &lt; 0) floodLevelFeet = 0;  // Ensure no negative values
+
+  return floodLevel;
+}
+
+// Serve the web page
+void handleRoot() {
+  String html = "&lt;html&gt;&lt;head&gt;&lt;title&gt;Flood Level Monitor&lt;/title&gt;";
+  html += "&lt;meta name='viewport' content='width=device-width, initial-scale=1'&gt;";
+  html += "&lt;style&gt;";
+  html += "body { font-family: Arial, sans-serif; text-align: center; background: radial-gradient(circle, white, #00ab41); color: white; height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0; }";
+  html += ".container { width: 90%; max-width: 400px; background-color: white; padding: 20px; border-radius: 15px; box-shadow: 0 20px 40px 20px rgba(0, 0, 0, 0.3); text-align: center; }";
+  html += "h1 { font-size: 2.5rem; color: black; margin-bottom: 20px; }";
+  html += ".meter { width: 100px; height: 300px; background-color: #ddd; border-radius: 10px; position: relative; margin: 20px auto; overflow: hidden; border: 2px solid #00aaff; }";
+  html += ".meter-fill { position: absolute; bottom: 0; width: 100%; background-color: #00ab41; text-align: center; color: white; font-size: 1.2rem; line-height: 30px; height: 0%; }";
+  html += ".status-bar { background-color: #00ab41; padding: 10px; border-radius: 10px; font-size: 1.2rem; margin-top: 20px; }";
+  html += ".alert-message { font-size: 1.5rem; color: #ff3333; font-weight: bold; margin-top: 10px; }";
+  html += "&lt;/style&gt;";
+  
+  // Add JavaScript to refresh data
+  html += "&lt;script&gt;";
+  html += "setInterval(function() {";
+  html += "fetch('/flood').then(function(response) {";
+  html += "return response.json();";  // Expecting JSON data now
+  html += "}).then(function(data) {";
+  html += "document.querySelector('.meter-fill').style.height = data.floodPercentage + '%';";
+  html += "document.querySelector('#floodLevelFeet').innerText = data.floodFeet.toFixed(2) + ' feet';";
+  html += "});";
+  html += "}, 1000);";  // Update every 1 second
+  html += "&lt;/script&gt;&lt;/head&gt;&lt;body&gt;";
+  
+  html += "&lt;div class='container'&gt;";
+  html += "&lt;h1&gt;Flood Level Monitor&lt;/h1&gt;";
+  html += "&lt;div class='meter'&gt;";
+  html += "&lt;div class='meter-fill'&gt;&lt;/div&gt;";
+  html += "&lt;div class='lines'&gt;&lt;/div&gt;"; // Gas sensor-like lines
+  html += "&lt;/div&gt;";
+  
+  // Display flood level in feet
+  html += "&lt;div class='status-bar'&gt;";
+  html += "&lt;p&gt;Current Flood Level: &lt;span id='floodLevelFeet'&gt;0.00 feet&lt;/span&gt;&lt;/p&gt;"; 
+  html += "&lt;/div&gt;";
+
+  html += "&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;";
+
+  server.send(200, "text/html", html);
+}
+
+// Serve the flood level as JSON for AJAX requests
+void handleFloodLevel() {
+  readFloodLevel();  // Update the flood level
+  
+  // Send flood level as JSON
+  String json = "{ \"floodPercentage\": " + String(floodLevel, 1) + ", \"floodFeet\": " + String(floodLevelFeet, 2) + " }";
+  server.send(200, "application/json", json);
+}
+
+void setup() {
+  Serial.begin(115200);
+  
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+
+  // Start WiFi as an access point
+  WiFi.softAPConfig(local_IP, gateway, subnet);
+  WiFi.softAP(ssid, password);
+
+  Serial.println("Access Point Started");
+  Serial.println(WiFi.softAPIP());
+
+  // Start the web server
+  server.on("/", handleRoot);
+  server.on("/flood", handleFloodLevel);  // Endpoint for AJAX requests
+  server.begin();
+}
+
+void loop() {
+  server.handleClient();  // Handle web requests
+}
+</body>
+</html>
+							</code></pre>
+							    <button id="copyButton">Copy Code</button>
+							</div>
+
+<h2>CODE EXPLANATION</h2>
+<div class="box">
+    <p>The code sets up a Flood Level Monitoring System using an ultrasonic sensor and an ESP32, creating an Access Point (AP) for users to monitor water levels in real-time. This system calculates flood levels as a percentage and in feet, with data displayed on a web page. Let’s break it down.
+
+    <p><strong>Key Components and Their Roles</strong><br>
+<strong>1. Libraries Included:</strong><br>
+&emsp;&emsp;&emsp;•<strong><code>WiFi.h</code></strong>Manages the ESP32’s Wi-Fi operations, enabling it to create an Access Point for direct device connections.<br>
+&emsp;&emsp;&emsp;•<strong><code>WebServer.h</code></strong>Sets up an HTTP server on the ESP32 to host the web interface, allowing users to monitor flood levels.<p>
+
+<strong>2. WiFi Setup</strong><br>
+&emsp;&emsp;&emsp;• The ESP32 creates an Access Point with the SSID "ESP32_Flood" and password "12345678," allowing secure access for monitoring the flood levels.<br>
+&emsp;&emsp;&emsp;• A static IP address (192.168.4.1) is set up to provide consistent access for users to reach the monitoring page.<p>
+
+<strong>3. Ultrasonic Sensor Setup:</strong><br>
+&emsp;&emsp;&emsp;• The ultrasonic sensor’s Trig and Echo pins are connected to GPIO pins 5 and 18, respectively, allowing it to measure water distance.<br>
+&emsp;&emsp;&emsp;• The<strong><code>readFloodLevel()</code></strong>function calculates flood levels based on sensor data. Using the speed of sound, the sensor measures the time it takes for sound waves to return, calculating distance.<br>
+&emsp;&emsp;&emsp;• The flood level is expressed as a percentage relative to the maximum flood height, ensuring easy interpretation. Additionally, the flood level is converted to feet for added clarity.<p>
+
+<div class="button-container">
+    <!-- Button to show first image -->
+    <button id="showImageButton1" class="show-image-button">Ultrasonic Sensor Pinout</button>
+
+    <!-- Button to show second image -->
+    <button id="showImageButton2" class="show-image-button">ESP32 Pinout</button>
+</div>
+
+<!-- Hidden first image container -->
+<div id="imageContainer1" class="hidden">
+    <img src="images/ultrasonic.jpg" alt="Ultrasonic Sensor Image" style="max-width: 100%; height: auto;"><br>
+    Photo Credit: The DIY Life<p>
+</div>
+
+<!-- Hidden second image container -->
+<div id="imageContainer2" class="hidden">
+    <img src="images/esp32.jpg" alt="ESP32 Image" style="max-width: 100%; height: auto;"><br>
+    Photo Credit: Random Nerd Tutorials<p>
+</div>
+
+<!-- JavaScript to handle button clicks for each image -->
+<script>
+    const showImageButton1 = document.getElementById("showImageButton1");
+    const imageContainer1 = document.getElementById("imageContainer1");
+
+    const showImageButton2 = document.getElementById("showImageButton2");
+    const imageContainer2 = document.getElementById("imageContainer2");
+
+    // Toggle first image visibility
+    showImageButton1.addEventListener("click", function() {
+        imageContainer1.classList.toggle("hidden");
+    });
+
+    // Toggle second image visibility
+    showImageButton2.addEventListener("click", function() {
+        imageContainer2.classList.toggle("hidden");
+    });
+</script>
+
+<!-- CSS for styling -->
+<style>
+    /* Center the button container */
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    /* Style for buttons */
+    .show-image-button {
+        padding: 5px 10px;
+        background-color: transparent;
+        color: #7f888f;
+        border: 2px solid #FF6F61;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.75rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Center text inside the button */
+    .show-image-button:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #00ab41;
+    }
+
+    /* Hide initially */
+    .hidden {
+        display: none;
+    }
+
+    /* Margin for image containers */
+    #imageContainer1, #imageContainer2 {
+        margin-top: 10px;
+    }
+</style><p>
+
+<strong>4. Server Functions:</strong><br>
+&emsp;&emsp;&emsp;• The ESP32 runs a web server<strong><code>(WebServer server(80);)</code></strong>, listening on port 80.<br>
+&emsp;&emsp;&emsp;• Main server functions include:<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>handleRoot()</code></strong>Serves the main HTML page displaying flood levels as a percentage and in feet. The page includes a meter-style display that dynamically fills to represent the flood level visually.<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>handleFloodLevel()</code></strong>Provides real-time flood level data as JSON, enabling the web interface to update dynamically using AJAX.<p>
+
+<strong>5. Data Collection with<code>readFloodLevel()</code>:</strong><br> 
+&emsp;&emsp;&emsp;• The<strong><code>readFloodLevel()</code></strong>function calculates the water level using the ultrasonic sensor data.<br>
+&emsp;&emsp;&emsp;• The flood level is calculated as a percentage of the maximum sensor range (e.g., 200 cm) to provide an intuitive reading. Additionally, the flood level is converted to feet and limited to 0–100% for accuracy.<p>
+
+<strong>6. Web Interface Design:</strong><br> 
+&emsp;&emsp;&emsp;• The interface uses HTML and CSS to create a clean, visually appealing display.<br> 
+&emsp;&emsp;&emsp;• The<strong><code>container</code></strong>div structures the page, showcasing the flood level percentage visually with a meter and numerically in feet for easy interpretation.<br> 
+&emsp;&emsp;&emsp;• The<strong><code>meter</code></strong>section changes height to reflect the flood level, while the<strong><code>status-bar</code></strong>displays the exact flood level in feet.<p>
+
+<strong>7. JavaScript and AJAX Updates:</strong><br> 
+&emsp;&emsp;&emsp;• JavaScript fetches data every second from the<strong><code>/flood</code></strong>endpoint, retrieving flood levels in JSON format. This ensures the web interface stays current without needing a full page reload.<br> 
+&emsp;&emsp;&emsp;• The meter fills to represent the flood level, and the background color adjusts based on the flood percentage, creating a clear and dynamic visual for users.<p>
+
+<strong>8. The Setup<code>setup()</code>and Loop<code>loop()</code>Functions:</strong><br> 
+&emsp;&emsp;&emsp;•<strong><code>setup()</code></strong>Initializes the ultrasonic sensor pins, starts the Access Point, and configures the web server.<br> 
+&emsp;&emsp;&emsp;•<strong><code>loop()</code></strong>Continuously handles client requests, updates flood levels through<strong><code>readFloodLevel()</code></strong>, and provides real-time data to the web interface.<p>
+</div>
+
+
+											</div>
+										</div>
+
+								</section>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="generic.html">The Creation</a></li>
+										<li><a href="elements.html">Module Explainer</a></li>
+										<li>
+											<span class="opener">Introductory Projects</span>
+											<ul>
+												<li><a href="io.html">Input Output</a></li>
+												<li><a href="ai.html">Analog Inputs</a></li>
+												<li><a href="pwm.html">PWM (Analog Output)</a></li>
+												<li><a href="sws.html">Switch Web Server</a></li>
+												<li><a href="rlws.html">RGB LED Web Server</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Main Projects</span>
+											<ul>
+												<li><a href="project-1.html">Project 1</a></li>
+												<li><a href="project-2.html">Project 2</a></li>
+												<li><a href="project-3.html">Project 3</a></li>
+												<li><a href="project-4.html">Project 4</a></li>
+												<li><a href="project-5.html">Project 5</a></li>
+												<li><a href="project-6.html">Project 6</a></li>
+												<li><a href="project-7.html">Project 7</a></li>
+												<li><a href="project-8.html">Project 8</a></li>
+												<li><a href="project-9.html">Project 9</a></li>
+												<li><a href="project-10.html">Project 10</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>ADVANCED IOT PROJECTS</h2>
+									</header>
+									<div class="mini-posts">
+										<article>
+											<a href="https://youtu.be/RUO44kqNP24?si=QO3qiHGQLvJSXDaD" class="image"><img src="https://i.ytimg.com/vi/RUO44kqNP24/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLD_wUN6wdxf151rPD6UWSKlwhLK7Q" alt="" /></a>
+											<p>Patient Health Monitoring System Using Raspberry Pi</p>
+										</article>
+										<article>
+											<a href="https://youtu.be/FSqYyjZtH4g?si=9BeVl6KnJ2oD9eBl" class="image"><img src="https://i.ytimg.com/vi/FSqYyjZtH4g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCztyDAtqgoFMqVVEyold-aKebbbQ" alt="" /></a>
+											<p>Women Safety Device Using Internet of Things</p>
+										</article>
+										<article>
+											<a href="https://youtu.be/EamYfGG4Wvg?si=10C8m2DArmPMSOv3" class="image"><img src="https://i.ytimg.com/vi/EamYfGG4Wvg/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH0CYAC0AWKAgwIABABGGUgTShIMA8=&rs=AOn4CLBlZoYwXKvvyn9fsfvRhCCsItaQ3g" alt="" /></a>
+											<p>A Web-Based Accident Reporting and Tracking System</p>
+										</article>
+									</div>
+									<ul class="actions">
+										<li><a href="https://youtube.com/playlist?list=PL87CgTAGz2yZ0geJ-_9HAK2u8NDMhVwFH&si=cr7ljhFT1B8GZR3-" class="button">More</a></li>
+									</ul>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="https://sscr.edu/Beta/">https://sscr.edu/Beta/</a></li>
+										<li class="icon solid fa-phone">(046) 431-9405</li>
+										<li class="icon solid fa-home">Manila-Cavite Road, Sta. Cruz,<br />
+										Cavite City, 4100, Philippines</li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; SSC-RdC IOT Development Board. <br>All rights reserved.
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/copy.js"></script>
+
+	</body>
+</html>

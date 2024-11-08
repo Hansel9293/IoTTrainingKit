@@ -1,0 +1,801 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>PROJECT 4</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo">Project<strong> 4</strong></a>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Fingerprint Attendance</h1>
+									</header>
+
+									<!-- Content -->
+										<h2 id="content">HOW IT WORKS?</h2>
+										<p>In this fingerprint attendance project, an office attendance module is utilized, which features a fingerprint reader sensor. The fingerprint reader sensor captures the unique patterns of an individual's fingerprint when they place their finger on the scanner. Once the fingerprint is scanned, the sensor compares it against stored templates in the system. If there is a match, the sensor sends a signal to the Main Board to record the attendance entry for that individual. <br><br>The system can also provide options for check-in and check-out, ensuring accurate tracking of employee attendance. The integration of the fingerprint sensor offers a secure and efficient method for managing attendance in the workplace.</p>
+										<h2 id="content">PARTS NEEDED:</h2>
+										<p>• Main Board Module<br>
+										• Biometrics Module <br>
+										• Connector Cable <br></p>
+
+								<section>
+									<header class="main">
+										<h2 id="content">SENSOR IN THE MODULE TO BE USED</h2></header>
+										<p><strong>AS608 Fingerprint Sensor</strong><br> This module is used in the project in such a way that it captures an individual's unique fingerprint patterns when they place their finger on the scanner. The sensor uses optical or capacitive technology to create a digital representation of the fingerprint. This image is then compared against pre-registered templates stored in the system. If a match is found, the sensor sends a signal to the Main Board to record the attendance entry. This process ensures secure and accurate identification, streamlining the attendance tracking system.</p>
+								</section>
+
+						<!-- Image Section -->
+						<h2>THE BUILD</h2>
+
+						<!-- Main Image (pic11.jpg) -->
+						<span class="image fit">
+						    <a href="images/sfinger.jpg" class="image-link"><img src="images/sfinger.jpg" alt="" /></a>
+						</span>
+
+						<!-- Modal Dialog -->
+						<div id="modal" class="modal">
+						    <span class="close">&times;</span>
+						    <img class="modal-content" id="modal-image">
+						</div>
+
+						<!-- JavaScript to Show Full Image on Click -->
+						<script>
+						    // Get all elements with class "image-link"
+						    const imageLinks = document.querySelectorAll('.image-link');
+
+						    // Get the modal element
+						    const modal = document.getElementById('modal');
+
+						    // Get the image element within the modal
+						    const modalImg = document.getElementById('modal-image');
+
+						    // Loop through each image link
+						    imageLinks.forEach(link => {
+						        link.addEventListener('click', function(event) {
+						            event.preventDefault(); // Prevent default link behavior
+
+						            // Get href attribute of the clicked link (full-size image URL)
+						            const imageURL = this.getAttribute('href');
+
+						            // Display the modal
+						            modal.style.display = 'flex'; // Show the modal as flexbox for centering
+
+						            // Set the clicked image as the source of the modal image
+						            modalImg.src = imageURL;
+
+						            // Reset modal content position
+						            modal.scrollTop = 0;
+						            modal.scrollLeft = 0;
+						        });
+						    });
+
+						    // Close the modal when the close button (x) is clicked
+						    const closeBtn = document.querySelector('.close');
+						    closeBtn.addEventListener('click', function() {
+						        modal.style.display = 'none';
+						    });
+
+						    // Close the modal when clicking outside of it
+						    window.addEventListener('click', function(event) {
+						        if (event.target === modal) {
+						            modal.style.display = 'none';
+						        }
+						    });
+
+						    // Enable zoom functionality
+						    modalImg.addEventListener('click', function() {
+						        if (modalImg.classList.contains('zoomed')) {
+						            modalImg.classList.remove('zoomed');
+						        } else {
+						            modalImg.classList.add('zoomed');
+						        }
+						    });
+						</script>
+
+
+												<!-- Box -->
+										<h2>INSTRUCTION(s):</h2>
+													<div class="box">
+														<p><strong>Step 1: Assembling the System</strong><br>
+<strong>Positioning the Module:</strong><br>
+1. Take the Biometrics Module (enclosed in the 3D-printed box) and align it over the main board.<br>
+2. Gently press the module onto the main board's connector pins until it fits securely in place.<br>   
+3. Ensure that the module is correctly seated to avoid loose connections.<p>
+<strong>Step 2: Powering the System</strong><br>
+<strong>Connecting Power:</strong><br>
+1. Get the connecting cable and attach it into the laptop that you will use to upload the code.<br>
+2. Plug in the other end of it to the main board. The system will automatically power on.<br>
+<strong>Visual Indicator Check:</strong><br>
+Observe the LED indicators on the main board. The system should show a steady power LED to confirm it's operational.<p>
+<strong>Step 3: Connecting to Web Server:</strong><br>
+1. Once the serial monitor says "Code Uploaded", open the serial monitor of the Arduino IDE then press the <strong>EN</strong> button to show the IP address.<br>
+2. Turn on your WiFi and look for <strong>ESP32_Fingerprint_Attendance"</strong>. Choose that then enter <strong>12345678</strong> as the password.<br>
+3. Go to your web browser and type the IP address shown in the serial monitor, it is usually <strong>192.168.4.1</strong>. <p>
+<strong>Step 4: Monitoring and Alerts</strong><br>
+<strong>Understanding the Alerts:</strong><br>
+1. The system is equipped with a visual (web server) alert.<br>
+2. Initially, the system waits for a fingerprint input. If the fingerprint is not recognized, the user will be given the option to either register it or cancel the process. Choosing the register option prompts the user to place their finger again, followed by entering a name for the system to associate with the fingerprint. Once registered, the system will then monitor and log this person’s arrival and departure each time they tap their fingerprint.<p>
+<strong>Testing the Alerts:</strong><br>
+To test the system, place a fingerprint in the sensor. The alerts should activate.
+														</p>
+													</div>
+
+							<!-- Preformatted Code -->
+                          <!-- Video Button -->
+<button id="showVideoButton">Video Instruction</button>
+
+<!-- Video Modal -->
+<div id="videoModal" class="modal">
+    <span class="close" id="closeVideo">&times;</span>
+    <div class="video-container">
+        <iframe id="videoFrame" width="560" height="315" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+<style>
+/* Video Button */
+#showVideoButton {
+    display: block;
+    margin: 20px auto;
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Video Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.video-container {
+    width: 80%;
+    max-width: 600px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+}
+</style>
+<script>
+// Get the elements
+const showVideoButton = document.getElementById("showVideoButton");
+const videoModal = document.getElementById("videoModal");
+const closeVideo = document.getElementById("closeVideo");
+const videoFrame = document.getElementById("videoFrame");
+
+// Show modal when button is clicked
+showVideoButton.addEventListener("click", function() {
+    videoModal.style.display = "flex";
+});
+
+// Close modal when the close button is clicked
+closeVideo.addEventListener("click", function() {
+    videoModal.style.display = "none";
+    videoFrame.src = videoFrame.src; // Stop the video
+});
+
+// Close modal when clicking outside the video
+window.addEventListener("click", function(event) {
+    if (event.target === videoModal) {
+        videoModal.style.display = "none";
+        videoFrame.src = videoFrame.src; // Stop the video
+    }
+});
+</script>
+<html>
+<head>
+    <title>ESP32 Gas Sensor Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: Arial, sans-serif;}
+        .code-section { background-color: #f5f5f5;}
+        pre { white-space: pre-wrap; font-size: 0.9rem; color: #333;}
+        h2 { margin: 0 0 5px 0; font-size: 1.2rem; }
+    </style>
+    							<div class="code-section">
+							    <h2>CODE</h2>
+							    <pre><code> <!DOCTYPE HTML>
+</head>
+<body>#include &lt;WiFi.h&gt;
+#include &lt;WebServer.h&gt;
+#include &lt;Adafruit_Fingerprint.h&gt;
+
+// Define the Access Point credentials
+const char* ssid = "ESP32_Fingerprint_Attendance";
+const char* password = "12345678";
+
+// Define Static IP Address
+IPAddress local_IP(192, 168, 4, 1);
+IPAddress gateway(192, 168, 4, 1);
+IPAddress subnet(255, 255, 255, 0);
+
+// Fingerprint Sensor Configuration
+#define RX_PIN 16  // RX pin of the sensor
+#define TX_PIN 17  // TX pin of the sensor
+Adafruit_Fingerprint finger = Adafruit_Fingerprint(&Serial2);
+
+WebServer server(80); // Create a web server on port 80
+
+String currentMessage = "Waiting for fingerprint...";
+String lastAction = ""; // Arrival or departure
+String logEntries = ""; // To store the attendance logs
+
+bool isRegistering = false;  // Flag to indicate registration mode
+bool nameEntryRequired = false; // Flag to indicate if name entry is needed
+uint8_t userID = 1; // ID to assign to new registered fingerprints
+
+// Arrays to store user information
+const int MAX_USERS = 20;
+uint8_t userIDs[MAX_USERS];
+String userNames[MAX_USERS];
+int registeredUserCount = 0;
+
+int registrationStage = 0; // Stage of the fingerprint registration process
+
+// Function to add a user to the list
+void addUser(uint8_t id, String name) {
+  if (registeredUserCount &lt; MAX_USERS) {
+    userIDs[registeredUserCount] = id;
+    userNames[registeredUserCount] = name;
+    registeredUserCount++;
+  }
+}
+
+// Function to get a user name by ID
+String getUserNameByID(uint8_t id) {
+  for (int i = 0; i &lt; registeredUserCount; i++) {
+    if (userIDs[i] == id) {
+      return userNames[i];
+    }
+  }
+  return "Unknown User";
+}
+
+// Non-blocking function for fingerprint registration
+void registerFingerprint() {
+  if (!isRegistering) return;
+
+  int p;
+  switch (registrationStage) {
+    case 0: // Get image stage
+      currentMessage = "Place your finger to register...";
+      p = finger.getImage();
+      if (p == FINGERPRINT_OK) {
+        registrationStage++;
+        currentMessage = "Fingerprint image taken. Remove finger.";
+      } else if (p == FINGERPRINT_NOFINGER) {
+        // Do nothing, waiting for the finger
+      } else {
+        currentMessage = "Failed to read fingerprint. Try again.";
+        isRegistering = false;
+        registrationStage = 0;
+      }
+      break;
+    
+    case 1: // Convert image to template
+      p = finger.image2Tz();
+      if (p == FINGERPRINT_OK) {
+        registrationStage++;
+        currentMessage = "Fingerprint converted. Place the same finger again.";
+      } else {
+        currentMessage = "Failed to convert fingerprint. Try again.";
+        isRegistering = false;
+        registrationStage = 0;
+      }
+      break;
+    
+    case 2: // Get second image
+      p = finger.getImage();
+      if (p == FINGERPRINT_OK) {
+        registrationStage++;
+        currentMessage = "Second fingerprint image taken. Remove finger.";
+      } else if (p == FINGERPRINT_NOFINGER) {
+        // Do nothing, waiting for the finger
+      } else {
+        currentMessage = "Failed to read fingerprint. Try again.";
+        isRegistering = false;
+        registrationStage = 0;
+      }
+      break;
+    
+    case 3: // Convert second image to template
+      p = finger.image2Tz(2);
+      if (p == FINGERPRINT_OK) {
+        registrationStage++;
+        currentMessage = "Second fingerprint converted. Creating model.";
+      } else {
+        currentMessage = "Failed to convert second fingerprint. Try again.";
+        isRegistering = false;
+        registrationStage = 0;
+      }
+      break;
+    
+    case 4: // Create a model
+      p = finger.createModel();
+      if (p == FINGERPRINT_OK) {
+        registrationStage++;
+        currentMessage = "Model created. Storing fingerprint.";
+      } else {
+        currentMessage = "Failed to create fingerprint model. Try again.";
+        isRegistering = false;
+        registrationStage = 0;
+      }
+      break;
+    
+    case 5: // Store the model
+      p = finger.storeModel(userID);
+      if (p == FINGERPRINT_OK) {
+        currentMessage = "Fingerprint registered successfully! Please enter your name.";
+        nameEntryRequired = true; // Require name entry
+        isRegistering = false; // End fingerprint registration
+        registrationStage = 0; // Reset the registration stage
+      } else {
+        currentMessage = "Failed to store fingerprint. Try again.";
+        isRegistering = false;
+        registrationStage = 0;
+      }
+      break;
+  }
+}
+
+// Function to handle fingerprint detection
+void checkFingerprint() {
+  if (isRegistering || nameEntryRequired) {
+    return; // Skip detection if in registration or name entry mode
+  }
+
+  if (finger.getImage() != FINGERPRINT_OK) {
+    return;
+  }
+  
+  if (finger.image2Tz() != FINGERPRINT_OK) {
+    return;
+  }
+  
+  int p = finger.fingerSearch();
+  if (p == FINGERPRINT_OK) {
+    uint8_t id = finger.fingerID;
+    String userName = getUserNameByID(id);
+    if (lastAction != "arrived") {
+      lastAction = "arrived";
+      currentMessage = userName + " arrived";
+      logEntries += userName + " arrived&lt;br&gt;";
+    } else {
+      lastAction = "left";
+      currentMessage = userName + " left";
+      logEntries += userName + " left&lt;br&gt;";
+    }
+  } else {
+    currentMessage = "Fingerprint not recognized. Do you want to register?";
+    isRegistering = false; // Reset the registration flag
+  }
+}
+
+// Function to initiate registration
+void initiateRegistration() {
+  isRegistering = true;
+  registrationStage = 0;
+  currentMessage = "Registration started. Place your finger.";
+}
+
+// Function to cancel registration
+void cancelRegistration() {
+  isRegistering = false;
+  nameEntryRequired = false;
+  registrationStage = 0;
+  currentMessage = "Registration canceled. Waiting for fingerprint...";
+}
+
+// Function to handle name submission
+void handleNameSubmission() {
+  if (!nameEntryRequired) {
+    currentMessage = "No name submission required.";
+    return;
+  }
+
+  if (server.hasArg("name")) {
+    String userName = server.arg("name");
+    addUser(userID, userName); // Add the new user to the list
+    currentMessage = "User " + userName + " registered successfully!";
+    logEntries += "User " + userName + " registered&lt;br&gt;";
+    nameEntryRequired = false; // End name entry requirement
+    userID++; // Increment the user ID for the next registration
+  } else {
+    currentMessage = "Please enter a name.";
+  }
+}
+
+// Serve the web page
+void handleRoot() {
+  String html = "&lt;html&gt;&lt;head&gt;&lt;title&gt;Fingerprint Attendance System&lt;/title&gt;";
+  html += "&lt;meta name='viewport' content='width=device-width, initial-scale=1'&gt;";
+  html += "&lt;style&gt;";
+  html += "body { font-family: Arial, sans-serif; text-align: center; background: radial-gradient(circle, white, #00ab41); color: white; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; margin: 0; }";
+  html += ".container { width: 90%; max-width: 400px; background-color: white; padding: 20px; border-radius: 15px; box-shadow: 0 20px 40px 20px rgba(0, 0, 0, 0.3); text-align: center; }";
+  html += "h1 { font-size: 2.5rem; color: black; margin-bottom: 20px; }";
+  html += ".status-bar { background-color: #00ab41; padding: 10px; border-radius: 10px; font-size: 1.5rem; margin-top: 20px; }";
+  html += ".log-container { margin-top: 20px; display: none; color: black; font-size: 1rem; text-align: left; background-color: #f9f9f9; padding: 10px; border-radius: 10px; max-height: 200px; overflow-y: auto; }";
+  html += "button { margin-top: 20px; padding: 10px 20px; font-size: 1rem; cursor: pointer; }";
+  html += "&lt;/style&gt;";
+  
+  // Add JavaScript for toggling logs, registering, and submitting name
+  html += "&lt;script&gt;";
+  html += "function toggleLogs() {";
+  html += "var logs = document.querySelector('.log-container');";
+  html += "if (logs.style.display === 'none') { logs.style.display = 'block'; } else { logs.style.display = 'none'; }";
+  html += "}";
+  html += "function registerUser() {";
+  html += "fetch('/initiateRegister').then(function(response) {";
+  html += "return response.text();";
+  html += "}).then(function(message) {";
+  html += "document.querySelector('#message').innerText = message;";
+  html += "});";
+  html += "}";
+  html += "function cancelRegister() {";
+  html += "fetch('/cancelRegister').then(function(response) {";
+  html += "return response.text();";
+  html += "}).then(function(message) {";
+  html += "document.querySelector('#message').innerText = message;";
+  html += "});";
+  html += "}";
+  html += "function submitName() {";
+  html += "var name = document.getElementById('nameInput').value;";
+  html += "fetch('/submitName?name=' + encodeURIComponent(name)).then(function(response) {";
+  html += "return response.text();";
+  html += "}).then(function(message) {";
+  html += "document.querySelector('#message').innerText = message;";
+  html += "document.getElementById('nameForm').style.display = 'none';";
+  html += "});";
+  html += "}";
+  html += "setInterval(function() {";
+  html += "fetch('/status').then(function(response) {";
+  html += "return response.json();";
+  html += "}).then(function(data) {";
+  html += "document.querySelector('#message').innerText = data.message;";
+  html += "document.querySelector('.log-container').innerHTML = data.logs;";
+  html += "if (data.message.includes('Place your finger') || data.message.includes('enter your name')) {";
+  html += "document.querySelector('#registerBtn').style.display = 'none';";
+  html += "document.querySelector('#cancelBtn').style.display = 'block';";
+  html += "if (data.message.includes('enter your name')) {";
+  html += "document.getElementById('nameForm').style.display = 'block';";
+  html += "} else {";
+  html += "document.getElementById('nameForm').style.display = 'none';";
+  html += "}";
+  html += "} else {";
+  html += "document.querySelector('#registerBtn').style.display = 'block';";
+  html += "document.querySelector('#cancelBtn').style.display = 'none';";
+  html += "document.getElementById('nameForm').style.display = 'none';";
+  html += "}";
+  html += "});";
+  html += "}, 1000);";
+  html += "&lt;/script&gt;&lt;/head&gt;&lt;body&gt;";
+  
+  html += "&lt;div class='container'&gt;";
+  html += "&lt;h1&gt;Fingerprint Attendance System&lt;/h1&gt;";
+  html += "&lt;div class='status-bar'&gt;&lt;p id='message'&gt;Waiting for fingerprint...&lt;/p&gt;&lt;/div&gt;";
+  html += "&lt;button id='registerBtn' onclick='registerUser()'&gt;Register Fingerprint&lt;/button&gt;";
+  html += "&lt;button id='cancelBtn' style='display:none;' onclick='cancelRegister()'&gt;Cancel&lt;/button&gt;";
+  html += "&lt;div id='nameForm' style='display:none;'&gt;";
+  html += "&lt;input type='text' id='nameInput' placeholder='Enter your name'&gt;";
+  html += "&lt;button onclick='submitName()'&gt;Submit Name&lt;/button&gt;";
+  html += "&lt;/div&gt;";
+  html += "&lt;button onclick='toggleLogs()'&gt;Toggle Attendance Logs&lt;/button&gt;";
+  html += "&lt;div class='log-container'&gt;" + logEntries + "&lt;/div&gt;";
+  html += "&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;";
+
+  server.send(200, "text/html", html);
+}
+
+// Serve the current status and logs as JSON for AJAX requests
+void handleStatus() {
+  String json = "{ \"message\": \"" + currentMessage + "\", \"logs\": \"" + logEntries + "\" }";
+  server.send(200, "application/json", json);
+}
+
+void setup() {
+  Serial.begin(115200);
+  
+  // Initialize Fingerprint Sensor
+  Serial2.begin(57600, SERIAL_8N1, RX_PIN, TX_PIN);
+  finger.begin(57600);
+  if (finger.verifyPassword()) {
+    Serial.println("Fingerprint sensor ready.");
+  } else {
+    Serial.println("Fingerprint sensor not detected. Check connections.");
+    while (1);
+  }
+  
+  // Start WiFi as an access point
+  WiFi.softAPConfig(local_IP, gateway, subnet);
+  WiFi.softAP(ssid, password);
+
+  Serial.println("Access Point Started");
+  Serial.println(WiFi.softAPIP());
+
+  // Start the web server
+  server.on("/", handleRoot);
+  server.on("/status", handleStatus);  // Endpoint for AJAX requests
+  server.on("/initiateRegister", initiateRegistration);  // Start registration
+  server.on("/cancelRegister", cancelRegistration);  // Cancel registration
+  server.on("/register", registerFingerprint);  // Complete registration
+  server.on("/submitName", handleNameSubmission);  // Handle name submission
+  server.begin();
+}
+
+void loop() {
+  server.handleClient();  // Handle web requests
+  registerFingerprint();  // Perform non-blocking registration steps
+  checkFingerprint();     // Check the fingerprint sensor
+}
+
+</body>
+</html>
+
+
+							</code></pre>
+							    <button id="copyButton">Copy Code</button>
+							</div>
+
+<h2>CODE EXPLANATION</h2>
+<div class="box">
+    <p>The code sets up a Fingerprint Attendance System using a fingerprint sensor and an ESP32, creating an Access Point (AP) for users to manage attendance logs, view registered users, and register new fingerprints in real-time. Let’s break it down.
+
+    <p><strong>Key Components and Their Roles</strong><br>
+<strong>1. Libraries Included:</strong><br>
+&emsp;&emsp;&emsp;•<strong><code>WiFi.h</code></strong>Handles the ESP32’s Wi-Fi operations, allowing it to create an Access Point.<br>
+&emsp;&emsp;&emsp;•<strong><code>WebServer.h</code></strong>Sets up a local HTTP server on the ESP32 to host the web interface.<br>
+&emsp;&emsp;&emsp; <strong><code>Adafruit_Fingerprint.h</code></strong>Manages fingerprint sensor operations, including enrollment and verification.<p>
+
+<strong>2. WiFi Setup</strong><br>
+&emsp;&emsp;&emsp;• The ESP32 creates an Access Point with the SSID "ESP32_Fingerprint_Attendance" and password "12345678" to securely connect users.<br>
+&emsp;&emsp;&emsp;• A static IP address (192.168.4.1) is assigned, ensuring consistent access to the web server for users.<p>
+
+<strong>3. Fingerprint Sensor Setup:</strong><br>
+&emsp;&emsp;&emsp;• The fingerprint sensor connects to the ESP32 through RX (pin 16) and TX (pin 17) pins, communicating via<strong><code>Serial2</code></strong>at a baud rate of 57600.<br>
+&emsp;&emsp;&emsp;• The<strong><code>Adafruit_Fingerprint</code></strong>object<strong><code>finger</code></strong>manages all fingerprint operations, enabling seamless enrollment and attendance tracking.<p>
+
+<div class="button-container">
+    <!-- Button to show first image -->
+    <button id="showImageButton1" class="show-image-button">Fingerprint Sensor Pinout</button>
+
+    <!-- Button to show second image -->
+    <button id="showImageButton2" class="show-image-button">ESP32 Pinout</button>
+</div>
+
+<!-- Hidden first image container -->
+<div id="imageContainer1" class="hidden">
+    <img src="images/fingerprint.jpg"alt="Fingerprint Sensor Image" style="max-width: 100%; height: auto;"><br> 
+    Photo Credit: ElectroPeak<p>
+</div>
+
+<!-- Hidden second image container -->
+<div id="imageContainer2" class="hidden">
+    <img src="images/esp32.jpg" alt="ESP32 Image" style="max-width: 100%; height: auto;"><br>
+    Photo Credit: Random Nerd Tutorials<p>
+</div>
+
+<!-- JavaScript to handle button clicks for each image -->
+<script>
+    const showImageButton1 = document.getElementById("showImageButton1");
+    const imageContainer1 = document.getElementById("imageContainer1");
+
+    const showImageButton2 = document.getElementById("showImageButton2");
+    const imageContainer2 = document.getElementById("imageContainer2");
+
+    // Toggle first image visibility
+    showImageButton1.addEventListener("click", function() {
+        imageContainer1.classList.toggle("hidden");
+    });
+
+    // Toggle second image visibility
+    showImageButton2.addEventListener("click", function() {
+        imageContainer2.classList.toggle("hidden");
+    });
+</script>
+
+<!-- CSS for styling -->
+<style>
+    /* Center the button container */
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    /* Style for buttons */
+    .show-image-button {
+        padding: 5px 10px;
+        background-color: transparent;
+        color: #7f888f;
+        border: 2px solid #FF6F61;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.75rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Center text inside the button */
+    .show-image-button:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #00ab41;
+    }
+
+    /* Hide initially */
+    .hidden {
+        display: none;
+    }
+
+    /* Margin for image containers */
+    #imageContainer1, #imageContainer2 {
+        margin-top: 10px;
+    }
+</style><p>
+
+<strong>4. Server Functions:</strong><br>
+&emsp;&emsp;&emsp;• The ESP32 runs a web server<strong><code>(WebServer server(80);)</code></strong>, listening on port 80.<br>
+&emsp;&emsp;&emsp;• Key server functions include:<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>handleRoot()</code></strong>Displays the main web page, which includes controls for registering fingerprints and toggling attendance logs.<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>handleStatus()</code></strong>Serves real-time JSON data, including messages and attendance logs, enabling AJAX-based updates on the web interface.<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>initiateRegistration()</code></strong>and<strong><code>cancelRegistration()</code></strong>Manage the registration process, starting and canceling as requested.<p>
+
+<strong>5. Data Collection with<code>checkFingerprint()</code>:</strong><br> 
+&emsp;&emsp;&emsp;• The<strong><code>checkFingerprint()</code></strong>function continuously monitors the fingerprint sensor.<br>
+&emsp;&emsp;&emsp;• Upon detecting a valid fingerprint, the system identifies the user, records their action (arrival or departure), and updates the message and logs accordingly.<p>
+
+<strong>6. Web Interface Design:</strong><br> 
+&emsp;&emsp;&emsp;• The interface uses HTML and CSS to create a structured, visually appealing display.<br> 
+&emsp;&emsp;&emsp;• The<strong><code>container</code></strong>div structures the page, displaying user actions and log data.<br> 
+&emsp;&emsp;&emsp;• The<strong><code>status-bar</code></strong>section highlights real-time user messages and feedback during registration and attendance.<p>
+
+<strong>7. JavaScript and AJAX Updates:</strong><br> 
+&emsp;&emsp;&emsp;• The JavaScript<strong><code>setInterval()</code></strong>function fetches data every second from the <strong><code>/status</code></strong> endpoint to update messages and logs, ensuring real-time responsiveness.<br> 
+&emsp;&emsp;&emsp;• AJAX enables users to interact smoothly with the interface, enhancing the experience without requiring full-page reloads.<p>
+
+<strong>8. The Setup<code>setup()</code>and Loop<code>loop()</code>Functions:</strong><br> 
+&emsp;&emsp;&emsp;•<strong><code>setup()</code></strong>Initializes the fingerprint sensor, starts the Access Point, and configures the server.<br> 
+&emsp;&emsp;&emsp;•<strong><code>loop()</code></strong>Listens for client requests, handles fingerprint registration stages, and checks for new fingerprints, updating the interface in real-time.<p>
+
+</div>
+
+
+											</div>
+										</div>
+
+								</section>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="generic.html">The Creation</a></li>
+										<li><a href="elements.html">Module Explainer</a></li>
+										<li>
+											<span class="opener">Introductory Projects</span>
+											<ul>
+                        <li><a href="io.html">Input Output</a></li>
+                        <li><a href="ai.html">Analog Inputs</a></li>
+                        <li><a href="pwm.html">PWM (Analog Output)</a></li>
+                        <li><a href="sws.html">Switch Web Server</a></li>
+                        <li><a href="rlws.html">RGB LED Web Server</a></li>											</ul>
+										</li>
+										<li>
+											<span class="opener">Main Projects</span>
+											<ul>
+												<li><a href="project-1.html">Project 1</a></li>
+												<li><a href="project-2.html">Project 2</a></li>
+												<li><a href="project-3.html">Project 3</a></li>
+												<li><a href="project-4.html">Project 4</a></li>
+												<li><a href="project-5.html">Project 5</a></li>
+												<li><a href="project-6.html">Project 6</a></li>
+												<li><a href="project-7.html">Project 7</a></li>
+												<li><a href="project-8.html">Project 8</a></li>
+												<li><a href="project-9.html">Project 9</a></li>
+												<li><a href="project-10.html">Project 10</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>ADVANCED IOT PROJECTS</h2>
+									</header>
+									<div class="mini-posts">
+										<article>
+											<a href="https://youtu.be/RUO44kqNP24?si=QO3qiHGQLvJSXDaD" class="image"><img src="https://i.ytimg.com/vi/RUO44kqNP24/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLD_wUN6wdxf151rPD6UWSKlwhLK7Q" alt="" /></a>
+											<p>Patient Health Monitoring System Using Raspberry Pi</p>
+										</article>
+										<article>
+											<a href="https://youtu.be/FSqYyjZtH4g?si=9BeVl6KnJ2oD9eBl" class="image"><img src="https://i.ytimg.com/vi/FSqYyjZtH4g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCztyDAtqgoFMqVVEyold-aKebbbQ" alt="" /></a>
+											<p>Women Safety Device Using Internet of Things</p>
+										</article>
+										<article>
+											<a href="https://youtu.be/EamYfGG4Wvg?si=10C8m2DArmPMSOv3" class="image"><img src="https://i.ytimg.com/vi/EamYfGG4Wvg/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH0CYAC0AWKAgwIABABGGUgTShIMA8=&rs=AOn4CLBlZoYwXKvvyn9fsfvRhCCsItaQ3g" alt="" /></a>
+											<p>A Web-Based Accident Reporting and Tracking System</p>
+										</article>
+									</div>
+									<ul class="actions">
+										<li><a href="https://youtube.com/playlist?list=PL87CgTAGz2yZ0geJ-_9HAK2u8NDMhVwFH&si=cr7ljhFT1B8GZR3-" class="button">More</a></li>
+									</ul>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="https://sscr.edu/Beta/">https://sscr.edu/Beta/</a></li>
+										<li class="icon solid fa-phone">(046) 431-9405</li>
+										<li class="icon solid fa-home">Manila-Cavite Road, Sta. Cruz,<br />
+										Cavite City, 4100, Philippines</li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; SSC-RdC IOT Development Board. <br>All rights reserved.
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/copy.js"></script>
+
+	</body>
+</html>

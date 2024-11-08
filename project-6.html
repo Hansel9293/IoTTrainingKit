@@ -1,0 +1,470 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>PROJECT 6</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo">Project<strong> 6</strong></a>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Kitchen Monitoring</h1>
+									</header>
+
+									<!-- Content -->
+										<h2 id="content">HOW IT WORKS?</h2>
+										<p>A kitchen monitoring system using gas sensor continuously checks for the presence of hazardous gases like methane, propane, or carbon monoxide. When gas molecules come into contact with the sensor, it reacts by changing its electrical properties, which are then measured. If gas levels exceed safe thresholds, the system triggers alarms or visual warnings.
+										</p>
+										<h2 id="content">PARTS NEEDED:</h2>
+										<p>• Main Board Module<br>
+											• Smart Kitchen Module<br>
+											• Connector Cable<br></p>
+
+							<section>
+								<header class="main">
+									<h2 id="content">SENSOR IN THE MODULE TO BE USED</h2></header>
+									<p><strong>MQ2 Gas Sensor</strong><br> This sensor absorbs air and analyze it in a way that makes it able to tell when specific gases are present. It has a certain part that activates when it gets in touch with a specific gas type like oxygen or carbon monoxide for instance. When this happens, the operation of the sensor alters the passing of electricity within the sensor. This change is then quantified, and the sensor displays a signal indicating the degree of the gas present in the air.</p>
+							</section>	
+
+						<!-- Image Section -->
+						<h2>THE BUILD</h2>
+
+						<!-- Main Image (pic11.jpg) -->
+						<span class="image fit">
+						    <a href="images/sgas.jpg" class="image-link"><img src="images/sgas.jpg" alt="" /></a>
+						</span>
+
+						<!-- Modal Dialog -->
+						<div id="modal" class="modal">
+						    <span class="close">&times;</span>
+						    <img class="modal-content" id="modal-image">
+						</div>
+
+						<!-- JavaScript to Show Full Image on Click -->
+						<script>
+						    // Get all elements with class "image-link"
+						    const imageLinks = document.querySelectorAll('.image-link');
+
+						    // Get the modal element
+						    const modal = document.getElementById('modal');
+
+						    // Get the image element within the modal
+						    const modalImg = document.getElementById('modal-image');
+
+						    // Loop through each image link
+						    imageLinks.forEach(link => {
+						        link.addEventListener('click', function(event) {
+						            event.preventDefault(); // Prevent default link behavior
+
+						            // Get href attribute of the clicked link (full-size image URL)
+						            const imageURL = this.getAttribute('href');
+
+						            // Display the modal
+						            modal.style.display = 'flex'; // Show the modal as flexbox for centering
+
+						            // Set the clicked image as the source of the modal image
+						            modalImg.src = imageURL;
+
+						            // Reset modal content position
+						            modal.scrollTop = 0;
+						            modal.scrollLeft = 0;
+						        });
+						    });
+
+						    // Close the modal when the close button (x) is clicked
+						    const closeBtn = document.querySelector('.close');
+						    closeBtn.addEventListener('click', function() {
+						        modal.style.display = 'none';
+						    });
+
+						    // Close the modal when clicking outside of it
+						    window.addEventListener('click', function(event) {
+						        if (event.target === modal) {
+						            modal.style.display = 'none';
+						        }
+						    });
+
+						    // Enable zoom functionality
+						    modalImg.addEventListener('click', function() {
+						        if (modalImg.classList.contains('zoomed')) {
+						            modalImg.classList.remove('zoomed');
+						        } else {
+						            modalImg.classList.add('zoomed');
+						        }
+						    });
+						</script>
+
+
+												<!-- Box -->
+										<h2>INSTRUCTION(s):</h2>
+													<div class="box">
+														<p><strong>Step 1: Assembling the System</strong><br>
+<strong>Positioning the Module:</strong><br>
+1. Take the Smart Kitchen Module (enclosed in the 3D-printed box) and align it over the main board.<br>
+2. Gently press the module onto the main board's connector pins until it fits securely in place.<br>   
+3. Ensure that the module is correctly seated to avoid loose connections.<p>
+<strong>Step 2: Powering the System</strong><br>
+<strong>Connecting Power:</strong><br>
+1. Get the connecting cable and attach it into the laptop that you will use to upload the code.<br>
+2. Plug in the other end of it to the main board. The system will automatically power on.<br>
+<strong>Visual Indicator Check:</strong><br>
+Observe the LED indicators on the main board. The system should show a steady power LED to confirm it's operational.<p>
+<strong>Step 3: Connecting to Web Server:</strong><br>
+1. Once the serial monitor says "Code Uploaded", open the serial monitor of the Arduino IDE then press the <strong>EN</strong> button to show the IP address.<br>
+2. Turn on your WiFi and look for <strong>ESP32_GasSensor</strong>. Choose that then enter <strong>12345678</strong> as the password.<br>
+3. Go to your web browser and type the IP address shown in the serial monitor, it is usually <strong>192.168.4.1</strong>. <p>
+<strong>Step 4: Monitoring and Alerts</strong><br>
+<strong>Understanding the Alerts:</strong><br>
+1. The system is equipped with a visual (web server) alert.<br>
+2. When gas levels are safe, the background color of the website remains green. If gas levels rise above the threshold, the background changes to red, and the container inside it will prompt dangerous levels of gas detected in the area.<p>
+<strong>Testing the Alerts:</strong><br>
+To test the system, simulate the presence of gas (e.g., using a gas lighter without ignition or alcohol) near the sensor. The alerts should activate. 
+														</p>
+													</div>
+
+							<!-- Preformatted Code -->
+<html>
+<head>
+    <title>ESP32 Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: Arial, sans-serif;}
+        .code-section { background-color: #f5f5f5;}
+        pre { white-space: pre-wrap; font-size: 0.9rem; color: #333;}
+        h2 { margin: 0 0 5px 0; font-size: 1.2rem; }
+    </style>
+    							<div class="code-section">
+							    <h2>CODE</h2>
+							    <pre><code> <!DOCTYPE HTML>
+</head>
+<body>#include &lt;WiFi.h&gt;
+#include &lt;WebServer.h&gt;
+
+// Define the Access Point credentials
+const char* ssid = "ESP32_GasSensor";
+const char* password = "12345678";
+
+// Define Static IP Address
+IPAddress local_IP(192, 168, 4, 1);
+IPAddress gateway(192, 168, 4, 1);
+IPAddress subnet(255, 255, 255, 0);
+
+// MQ2 Gas Sensor Pin
+const int gasSensorPin = 34;  // Analog pin connected to the MQ2 sensor
+
+WebServer server(80); // Create a web server on port 80
+
+float gasLevel;
+String gasStatus;
+
+// Function to read the gas level from the MQ2 sensor and determine the status
+void readGasLevel() {
+  gasLevel = analogRead(gasSensorPin);  // Read the analog value from the sensor
+  if (gasLevel &lt;= 200) {
+    gasStatus = "Normal";
+  } else if (gasLevel &gt; 200 &amp;&amp; gasLevel &lt;= 400) {
+    gasStatus = "Moderate - Not that normal";
+  } else {
+    gasStatus = "Dangerous";
+  }
+}
+
+// Serve the web page
+void handleRoot() {
+  String html = "&lt;html&gt;&lt;head&gt;&lt;title&gt;Gas Sensor Monitor&lt;/title&gt;";
+  html += "&lt;meta name='viewport' content='width=device-width, initial-scale=1'&gt;";
+  html += "&lt;style&gt;";
+  html += "body { font-family: Arial, sans-serif; text-align: center; background: radial-gradient(circle, white, #00ab41); color: white; height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0; }";
+  html += ".container { width: 90%; max-width: 400px; background-color: white; padding: 20px; border-radius: 15px; box-shadow: 0 20px 40px 20px rgba(0, 0, 0, 0.3); text-align: center; }";
+  html += "h1 { font-size: 2.5rem; color: black; margin-bottom: 20px; }";
+  html += ".status-bar { background-color: #00ab41; padding: 10px; border-radius: 10px; font-size: 1.2rem; margin-top: 20px; }";
+  html += ".alert-message { font-size: 1.5rem; color: #ff3333; font-weight: bold; margin-top: 10px; }";
+  html += "&lt;/style&gt;";
+  
+  html += "&lt;script&gt;";
+  html += "setInterval(function() {";
+  html += "fetch('/gas').then(function(response) {";
+  html += "return response.json();";
+  html += "}).then(function(data) {";
+  html += "document.querySelector('#gasLevel').innerText = data.gasLevel.toFixed(2);";
+  html += "document.querySelector('#gasStatus').innerText = data.gasStatus;";
+  html += "});";
+  html += "}, 1000);";
+  html += "&lt;/script&gt;&lt;/head&gt;&lt;body&gt;";
+  
+  html += "&lt;div class='container'&gt;";
+  html += "&lt;h1&gt;Gas Sensor Monitor&lt;/h1&gt;";
+  html += "&lt;div class='status-bar'&gt;";
+  html += "&lt;p&gt;Current Gas Level: &lt;span id='gasLevel'&gt;0.00&lt;/span&gt;&lt;/p&gt;";
+  html += "&lt;p&gt;Status: &lt;span id='gasStatus'&gt;Normal&lt;/span&gt;&lt;/p&gt;";
+  html += "&lt;/div&gt;";
+  html += "&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;";
+  server.send(200, "text/html", html);
+}
+
+void handleGasLevel() {
+  readGasLevel();
+  String json = "{ \"gasLevel\": " + String(gasLevel, 2) + ", \"gasStatus\": \"" + gasStatus + "\" }";
+  server.send(200, "application/json", json);
+}
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(gasSensorPin, INPUT);
+  WiFi.softAPConfig(local_IP, gateway, subnet);
+  WiFi.softAP(ssid, password);
+  server.on("/", handleRoot);
+  server.on("/gas", handleGasLevel);
+  server.begin();
+}
+
+void loop() {
+  server.handleClient();
+}
+</body>
+</html>
+
+
+							</code></pre>
+							    <button id="copyButton">Copy Code</button>
+							</div>
+
+<h2>CODE EXPLANATION</h2>
+<div class="box">
+    <p>The code sets up a Kitchen Monitoring System using an MQ2 Gas Sensor and an ESP32, creating an independent network (Access Point) for users to view real-time gas levels on a web page. Let's break it down.
+    <p><strong>Key Components and Their Roles</strong><br>
+<strong>1. Libraries Included:</strong><br>
+&emsp;&emsp;&emsp;•<strong><code>WiFi.h</code></strong> Handles the ESP32’s Wi-Fi operations, allowing it to establish an Access Point.<br>
+&emsp;&emsp;&emsp;•<strong><code>WebServer.h</code></strong> Sets up a local server on the ESP32 to host the webpage.<p>
+<strong>2. WiFi Setup</strong><br>
+&emsp;&emsp;&emsp;• The ESP32 creates an Access Point with the name (SSID) "ESP32_GasSensor" and password "12345678."<br>
+&emsp;&emsp;&emsp;• It also assigns a static IP address (192.168.4.1) for consistent access, so users always know where to find it.<p>
+<strong>3. MQ2 Gas Sensor Setup:</strong><br>
+&emsp;&emsp;&emsp;• The MQ2 Gas Sensor is connected to pin 34 of the ESP32, where it detects gas levels.<br>
+
+<div class="button-container">
+    <!-- Button to show first image -->
+    <button id="showImageButton1" class="show-image-button">MQ2 Pinout</button>
+
+    <!-- Button to show second image -->
+    <button id="showImageButton2" class="show-image-button">ESP32 Pinout</button>
+</div>
+
+<!-- Hidden first image container -->
+<div id="imageContainer1" class="hidden">
+    <img src="images/mq2.jpg"alt="MQ2 Sensor Image" style="max-width: 100%; height: auto;"><br> 
+    Photo Credit: Last Minute Engineers<p>
+</div>
+
+<!-- Hidden second image container -->
+<div id="imageContainer2" class="hidden">
+    <img src="images/esp32.jpg" alt="ESP32 Image" style="max-width: 100%; height: auto;"><br>
+    Photo Credit: Random Nerd Tutorials<p>
+</div>
+
+<!-- JavaScript to handle button clicks for each image -->
+<script>
+    const showImageButton1 = document.getElementById("showImageButton1");
+    const imageContainer1 = document.getElementById("imageContainer1");
+
+    const showImageButton2 = document.getElementById("showImageButton2");
+    const imageContainer2 = document.getElementById("imageContainer2");
+
+    // Toggle first image visibility
+    showImageButton1.addEventListener("click", function() {
+        imageContainer1.classList.toggle("hidden");
+    });
+
+    // Toggle second image visibility
+    showImageButton2.addEventListener("click", function() {
+        imageContainer2.classList.toggle("hidden");
+    });
+</script>
+
+<!-- CSS for styling -->
+<style>
+    /* Center the button container */
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    /* Style for buttons */
+    .show-image-button {
+        padding: 5px 10px;
+        background-color: transparent;
+        color: #7f888f;
+        border: 2px solid #FF6F61;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.75rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Center text inside the button */
+    .show-image-button:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #00ab41;
+    }
+
+    /* Hide initially */
+    .hidden {
+        display: none;
+    }
+
+    /* Margin for image containers */
+    #imageContainer1, #imageContainer2 {
+        margin-top: 10px;
+    }
+</style><p>
+
+<strong>4. Server Functions:</strong><br>
+&emsp;&emsp;&emsp;• The ESP32 runs a web server<strong><code>(WebServer server(80);)</code></strong>, listening on port 80.<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;There are two main server functions:<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;• <strong><code>handleRoot()</code></strong> Displays the main page with the latest gas readings.<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;• <strong><code>handleGasLevel()</code></strong> Provides real-time data in JSON format, which the web page uses to update without reloading.<p>
+
+<strong>5. Data Collection with<code>readGasLevel()</code>:</strong><br> 
+&emsp;&emsp;&emsp;• The <strong><code>readGasLevel()</code></strong>function reads values from the sensor, storing the gas level and categorizing it as "Normal," "Moderate - Not that normal," or "Dangerous" for easy interpretation.<p>
+
+<strong>6. Web Interface Design:</strong><br> 
+&emsp;&emsp;&emsp;• The interface uses HTML and CSS to create a centered, visually appealing display.<br> 
+&emsp;&emsp;&emsp;• The<strong><code>container</code></strong>div styles a card-like box that shows the sensor data.<br> 
+&emsp;&emsp;&emsp;• The<strong><code>status-bar</code></strong>highlights real-time conditions: gas level and status.<p>
+
+<strong>7. JavaScript and AJAX Updates:</strong><br> 
+&emsp;&emsp;&emsp;• The<strong><code>setInterval()</code></strong>JavaScript function fetches data every second from the<strong><code>/gas</code></strong>endpoint, ensuring the displayed values are always up-to-date.<br> 
+&emsp;&emsp;&emsp;• This approach enables real-time updates without reloading the page, enhancing user experience.<p>
+
+<strong>8. The Setup<code>setup()</code>and Loop<code>loop()</code>Functions:</strong><br> 
+&emsp;&emsp;&emsp;• <strong><code>setup()</code></strong>Initializes the sensor, starts the Access Point, and configures the web server.<br> 
+&emsp;&emsp;&emsp;• <strong><code>loop()</code></strong>Continuously listens for incoming client requests to refresh data on the webpage.<p>
+
+</div>
+											</div>
+										</div>
+
+								</section>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="generic.html">The Creation</a></li>
+										<li><a href="elements.html">Module Explainer</a></li>
+										<li>
+											<span class="opener">Introductory Projects</span>
+											<ul>
+												<li><a href="io.html">Input Output</a></li>
+												<li><a href="ai.html">Analog Inputs</a></li>
+												<li><a href="pwm.html">PWM (Analog Output)</a></li>
+												<li><a href="sws.html">Switch Web Server</a></li>
+												<li><a href="rlws.html">RGB LED Web Server</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Main Projects</span>
+											<ul>
+												<li><a href="project-1.html">Project 1</a></li>
+												<li><a href="project-2.html">Project 2</a></li>
+												<li><a href="project-3.html">Project 3</a></li>
+												<li><a href="project-4.html">Project 4</a></li>
+												<li><a href="project-5.html">Project 5</a></li>
+												<li><a href="project-6.html">Project 6</a></li>
+												<li><a href="project-7.html">Project 7</a></li>
+												<li><a href="project-8.html">Project 8</a></li>
+												<li><a href="project-9.html">Project 9</a></li>
+												<li><a href="project-10.html">Project 10</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>ADVANCED IOT PROJECTS</h2>
+									</header>
+									<div class="mini-posts">
+										<article>
+											<a href="https://youtu.be/RUO44kqNP24?si=QO3qiHGQLvJSXDaD" class="image"><img src="https://i.ytimg.com/vi/RUO44kqNP24/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLD_wUN6wdxf151rPD6UWSKlwhLK7Q" alt="" /></a>
+											<p>Patient Health Monitoring System Using Raspberry Pi</p>
+										</article>
+										<article>
+											<a href="https://youtu.be/FSqYyjZtH4g?si=9BeVl6KnJ2oD9eBl" class="image"><img src="https://i.ytimg.com/vi/FSqYyjZtH4g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCztyDAtqgoFMqVVEyold-aKebbbQ" alt="" /></a>
+											<p>Women Safety Device Using Internet of Things</p>
+										</article>
+										<article>
+											<a href="https://youtu.be/EamYfGG4Wvg?si=10C8m2DArmPMSOv3" class="image"><img src="https://i.ytimg.com/vi/EamYfGG4Wvg/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH0CYAC0AWKAgwIABABGGUgTShIMA8=&rs=AOn4CLBlZoYwXKvvyn9fsfvRhCCsItaQ3g" alt="" /></a>
+											<p>A Web-Based Accident Reporting and Tracking System</p>
+										</article>
+									</div>
+									<ul class="actions">
+										<li><a href="https://youtube.com/playlist?list=PL87CgTAGz2yZ0geJ-_9HAK2u8NDMhVwFH&si=cr7ljhFT1B8GZR3-" class="button">More</a></li>
+									</ul>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="https://sscr.edu/Beta/">https://sscr.edu/Beta/</a></li>
+										<li class="icon solid fa-phone">(046) 431-9405</li>
+										<li class="icon solid fa-home">Manila-Cavite Road, Sta. Cruz,<br />
+										Cavite City, 4100, Philippines</li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; SSC-RdC IOT Development Board. <br>All rights reserved.
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/copy.js"></script>
+
+	</body>
+</html>

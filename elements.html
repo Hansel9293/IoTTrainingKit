@@ -1,0 +1,252 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>MODULES EXPLAINER</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+        /* Modal styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        /* Close button */
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #ffffff;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+
+                <!-- Header -->
+                <header id="header">
+                    <a href="index.html" class="logo"><strong>MODULES</strong> EXPLAINER</a>
+                </header>
+
+                <!-- Content with clickable images -->
+                <br><h4>Main Board</h4>
+                <p><span class="image left"><img src="images/mainboard.png" alt="" /></span>Main Board is a central and probably the most critical part of the whole given structure, which acts as the brain of the projects. It contains the ESP32 microcontroller that coordinates and controls all data and signals sent out by the sensors. This board has a sequence of female pin headers mounted on which other modules can simply be plugged in. These pin headers facilitate easy and firm insertion of module pins as well as enabling effective interaction between ESP32 microcontroller and the other modules.<br><br></p>
+<p>
+<h4>Motion Module</h4>
+<p>
+    <span class="image left"><img src="images/ultra.png" alt="" onclick="showModal('images/sche-room.jpg')" /></span>
+    The Motion Module targets to improve safety and to register intrusion by the incorporation of multiple sensors. It consists of an HCSR04 Ultrasonic Sensor, a Passive Infrared (PIR) Sensor, and a Buzzer.
+    <br><br>
+    <button onclick="toggleInfo('homeSecurityInfo', 'homeSecurityButton')" id="homeSecurityButton">Show More</button>
+    <div id="homeSecurityInfo" style="display: none;">
+        <br>
+        <strong>•</strong> The HCSR04 Ultrasonic Sensor measures distances from the approaching objects by emitting ultrasonic waves and then getting the echoes and with the help of these echoes can detect motion in the monitored area.
+        <br><br>
+        <strong>•</strong> PIR Sensor is designed for the detection of infrared radiation, usually released by humans and warm-blooded animals. The principal characteristic of this sensor is its ability to detect motion, including that which is only slight, making it great for use in security systems.
+        <br><br>
+        <strong>•</strong> The buzzer being the alarm sounds when the activity is detected by any of the sensors: the PIR and the Ultrasonic.
+        <br><br>
+    </div>
+    <i>*Click the image to view the schematic diagram of this module and see how each component is connected.</i>
+</p>
+
+<h4>Smart Agriculture Module</h4>
+<p>
+    <span class="image left"><img src="images/plant.png" alt="" onclick="showModal('images/sche-plant.jpg')" /></span>
+    The Smart Agriculture Module is designed to control and improve plant care by monitoring soil moisture and water levels, activating a water pump when needed. It consists of a Pump, a Relay, a Soil Moisture Sensor, and a Water Level Sensor.
+    <br><br>
+    <button onclick="toggleInfo('plantMonitoringInfo', 'plantMonitoringButton')" id="plantMonitoringButton">Show More</button>
+    <div id="plantMonitoringInfo" style="display: none;">
+        <br>
+        <strong>•</strong> The pump is connected to a relay for wireless manual switching of the pump.
+        <br><br>
+        <strong>•</strong> The Soil Moisture Sensor determines the moisture level in the soil, ensuring the plant is watered at the right time. This sensor provides data on the ideal moisture level for optimal plant growth.
+        <br><br>
+        <strong>•</strong> The Water Level Sensor functions independently to monitor the water source, ensuring sufficient water availability. It alerts the user when the water level drops below a specified threshold, signaling the need for a refill.
+        <br><br>
+    </div>
+    <i>*Click the image to view the schematic diagram of this module and see how each component is connected.</i>
+</p>
+
+<h4>Smart Kitchen Module</h4>
+<p>
+    <span class="image left"><img src="images/sec.png" alt="" onclick="showModal('images/sche-sec.jpg')" /></span>
+    The Smart Kitchen Module is made to monitor environmental conditions in the kitchen and helping to ensure safety within the vicinity. It features a DHT11 Humidity and Temperature Sensor and an MQ2 Gas Sensor, both essential for maintaining a safe kitchen environment as well as areas in the house where the module will be placed.
+    <br><br>
+    <button onclick="toggleInfo('kitchenInfo', 'kitchenButton')" id="kitchenButton">Show More</button>
+    <div id="kitchenInfo" style="display: none;">
+        <br>
+        <strong>•</strong> Gas Sensor detects the presence of gases such as propane, methane, and smoke. This sensor is crucial in identifying gas leaks or smoke buildup, providing an early warning for potential fire hazards or gas leaks.
+        <br><br>
+        <strong>•</strong> The DHT11 Humidity and Temperature Sensor provides real-time readings of both humidity and temperature levels. This data can help keep the kitchen climate within comfortable and safe parameters, potentially alerting users if levels go outside the optimal range.
+        <br><br>
+    </div>
+    <i>*Click the image to view the schematic diagram of this module and see how each component is connected.</i>
+</p>
+
+<h4>Biometrics Module</h4>
+<p>
+    <span class="image left"><img src="images/atten.png" alt="" onclick="showModal('images/sfinger.jpg')" /></span>
+    The Attendance Monitoring Module is designed for automated monitoring and secure the process of tracking attendance with the use of a Fingerprint sensor.
+    <br><br>
+    <button onclick="toggleInfo('attendanceInfo', 'attendanceButton')" id="attendanceButton">Show More</button>
+    <div id="attendanceInfo" style="display: none;">
+        <br>
+        <strong>•</strong> The Fingerprint Sensor is integrated for identification to ensure that only the authorized persons are recorded after fingerprint scan. This helps in security as fingerprints are only unique to a specific person, hence cannot be copied.
+        <br><br>
+    </div>
+    <i>*Click the image to view the schematic diagram of this module and see how each component is connected.</i>
+</p>
+
+<script>
+    function toggleInfo(infoId, buttonId) {
+        var info = document.getElementById(infoId);
+        var button = document.getElementById(buttonId);
+        if (info.style.display === "none") {
+            info.style.display = "block";
+            button.innerText = "Show Less";
+        } else {
+            info.style.display = "none";
+            button.innerText = "Show More";
+        }
+    }
+</script>
+
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <div class="inner">
+                <!-- Menu -->
+                <nav id="menu">
+                    <header class="major">
+                        <h2>Menu</h2>
+                    </header>
+                    <ul>
+                        <li><a href="index.html">Homepage</a></li>
+                        <li><a href="generic.html">The Creation</a></li>
+                        <li><a href="elements.html">Module Explainer</a></li>
+                        <li>
+                            <span class="opener">Introductory Projects</span>
+                            <ul>
+												<li><a href="io.html">Input Output</a></li>
+												<li><a href="ai.html">Analog Inputs</a></li>
+												<li><a href="pwm.html">PWM (Analog Output)</a></li>
+												<li><a href="sws.html">Switch Web Server</a></li>
+												<li><a href="rlws.html">RGB LED Web Server</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="opener">Main Projects</span>
+                            <ul>
+                                <li><a href="project-1.html">Project 1</a></li>
+                                <li><a href="project-2.html">Project 2</a></li>
+                                <li><a href="project-3.html">Project 3</a></li>
+                                <li><a href="project-4.html">Project 4</a></li>
+                                <li><a href="project-5.html">Project 5</a></li>
+                                <li><a href="project-6.html">Project 6</a></li>
+                                <li><a href="project-7.html">Project 7</a></li>
+                                <li><a href="project-8.html">Project 8</a></li>
+                                <li><a href="project-9.html">Project 9</a></li>
+                                <li><a href="project-10.html">Project 10</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Section -->
+                <section>
+                    <header class="major">
+                        <h2>ADVANCED IOT PROJECTS</h2>
+                    </header>
+                    <div class="mini-posts">
+                        <article>
+                            <a href="https://youtu.be/RUO44kqNP24?si=QO3qiHGQLvJSXDaD" class="image"><img src="https://i.ytimg.com/vi/RUO44kqNP24/hqdefault.jpg" alt="" /></a>
+                            <p>Patient Health Monitoring System Using Raspberry Pi</p>
+                        </article>
+                        <article>
+                            <a href="https://youtu.be/FSqYyjZtH4g?si=9BeVl6KnJ2oD9eBl" class="image"><img src="https://i.ytimg.com/vi/FSqYyjZtH4g/hqdefault.jpg" alt="" /></a>
+                            <p>Women Safety Device Using Internet of Things</p>
+                        </article>
+                        <article>
+                            <a href="https://youtu.be/EamYfGG4Wvg?si=10C8m2DArmPMSOv3" class="image"><img src="https://i.ytimg.com/vi/EamYfGG4Wvg/hqdefault.jpg" alt="" /></a>
+                            <p>A Web-Based Accident Reporting and Tracking System</p>
+                        </article>
+                    </div>
+                    <ul class="actions">
+                        <li><a href="https://youtube.com/playlist?list=PL87CgTAGz2yZ0geJ-_9HAK2u8NDMhVwFH&si=cr7ljhFT1B8GZR3-" class="button">More</a></li>
+                    </ul>
+                </section>
+
+                <!-- Section -->
+                <section>
+                    <header class="major">
+                        <h2>Get in touch</h2>
+                    </header>
+                    <ul class="contact">
+                        <li class="icon solid fa-envelope"><a href="https://sscr.edu/Beta/">https://sscr.edu/Beta/</a></li>
+                        <li class="icon solid fa-phone">(046) 431-9405</li>
+                        <li class="icon solid fa-home">Manila-Cavite Road, Sta. Cruz,<br />Cavite City, 4100, Philippines</li>
+                    </ul>
+                </section>
+
+                <!-- Footer -->
+                <footer id="footer">
+                    <p class="copyright">&copy; SSC-RdC IOT Development Board. <br>All rights reserved.</p>
+                </footer>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage" />
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+        // JavaScript to handle the modal functionality
+        function showModal(imageSrc) {
+            document.getElementById("imageModal").style.display = "block";
+            document.getElementById("modalImage").src = imageSrc;
+        }
+
+        function closeModal() {
+            document.getElementById("imageModal").style.display = "none";
+        }
+    </script>
+</body>
+</html>

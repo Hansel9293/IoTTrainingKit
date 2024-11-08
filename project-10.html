@@ -1,0 +1,501 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>PROJECT 10</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo">Project<strong> 10</strong></a>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Plant Watering On-The-Go</h1>
+									</header>
+
+									<!-- Content -->
+										<h2 id="content">HOW IT WORKS?</h2>
+										<p>This monitoring is designed to automate the process of watering plants, ensuring they receive adequate moisture without requiring manual intervention. These systems typically include soil moisture sensors placed in the soil to continuously monitor moisture levels, measuring how wet or dry the soil is. The sensors send this data to a microcontroller, which processes the information and determines when the soil moisture drops below a predetermined threshold, signaling that the plant needs water. When this occurs, the microcontroller activates a water pump or opens a valve connected to a water source, delivering the appropriate amount of water directly to the plant's roots.
+										</p>
+										<h2 id="content">PARTS NEEDED:</h2>
+										<p>• Main Board Module<br>
+											• Smart Agriculture Module<br>
+											• Connector Cables<br></p>
+
+							<section>
+								<header class="main">
+									<h2 id="content">SENSOR IN THE MODULE TO BE USED</h2></header>
+									<p><strong>HL-69 Moisture Sensor</strong><br> The sensor works by measuring the electrical conductivity of the soil to determine its moisture level. It has two metal prongs, which are inserted into the soil. When a current is passed through the prongs, the sensor measures how easily electricity flows between them.</p>
+							</section>
+
+								</h3></header>
+									<p><strong>WATER PUMP</strong><br> This device is designed to move water from one location to another by converting mechanical energy into hydraulic energy. The pump features an intake side where water enters and a discharge side where it is expelled. When activated, the pump creates a vacuum or low-pressure area at the intake, allowing atmospheric pressure or the weight of the water source to push water into the pump. As it operates, the pump continuously draws in water while pushing it out through the discharge outlet, with its design determining the flow rate and pressure. </p>
+							</section>
+
+
+						<!-- Image Section -->
+						<h2>THE BUILD</h2>
+
+						<!-- Main Image (pic11.jpg) -->
+						<span class="image fit">
+						    <a href="images/spump.jpg" class="image-link"><img src="images/spump.jpg" alt="" /></a>
+						</span>
+
+
+						<!-- Modal Dialog -->
+						<div id="modal" class="modal">
+						    <span class="close">&times;</span>
+						    <img class="modal-content" id="modal-image">
+						</div>
+
+						<!-- JavaScript to Show Full Image on Click -->
+						<script>
+						    // Get all elements with class "image-link"
+						    const imageLinks = document.querySelectorAll('.image-link');
+
+						    // Get the modal element
+						    const modal = document.getElementById('modal');
+
+						    // Get the image element within the modal
+						    const modalImg = document.getElementById('modal-image');
+
+						    // Loop through each image link
+						    imageLinks.forEach(link => {
+						        link.addEventListener('click', function(event) {
+						            event.preventDefault(); // Prevent default link behavior
+
+						            // Get href attribute of the clicked link (full-size image URL)
+						            const imageURL = this.getAttribute('href');
+
+						            // Display the modal
+						            modal.style.display = 'flex'; // Show the modal as flexbox for centering
+
+						            // Set the clicked image as the source of the modal image
+						            modalImg.src = imageURL;
+
+						            // Reset modal content position
+						            modal.scrollTop = 0;
+						            modal.scrollLeft = 0;
+						        });
+						    });
+
+						    // Close the modal when the close button (x) is clicked
+						    const closeBtn = document.querySelector('.close');
+						    closeBtn.addEventListener('click', function() {
+						        modal.style.display = 'none';
+						    });
+
+						    // Close the modal when clicking outside of it
+						    window.addEventListener('click', function(event) {
+						        if (event.target === modal) {
+						            modal.style.display = 'none';
+						        }
+						    });
+
+						    // Enable zoom functionality
+						    modalImg.addEventListener('click', function() {
+						        if (modalImg.classList.contains('zoomed')) {
+						            modalImg.classList.remove('zoomed');
+						        } else {
+						            modalImg.classList.add('zoomed');
+						        }
+						    });
+						</script>
+
+
+												<!-- Box -->
+										<h2>INSTRUCTION(s):</h2>
+													<div class="box">
+														<p><strong>Step 1: Assembling the System</strong><br>
+<strong>Positioning the Module:</strong><br>
+1. Take the Smart Agriculture Module (enclosed in the 3D-printed box) and align it over the main board.<br>
+2. Gently press the module onto the main board's connector pins until it fits securely in place.<br>   
+3. Ensure that the module is correctly seated to avoid loose connections.<p>
+<strong>Step 2: Powering the System</strong><br>
+<strong>Connecting Power:</strong><br>
+1. Get the connecting cable and attach it into the laptop that you will use to upload the code.<br>
+2. Plug in the other end of it to the main board. The system will automatically power on.<br>
+<strong>Visual Indicator Check:</strong><br>
+Observe the LED indicators on the main board. The system should show a steady power LED to confirm it's operational.<p>
+<strong>Step 3: Connecting to Web Server:</strong><br>
+1. Once the serial monitor says "Code Uploaded", open the serial monitor of the Arduino IDE then press the <strong>EN</strong> button to show the IP address.<br>
+2. Turn on your WiFi and look for <strong>ESP32_WaterPump</strong>. Choose that then enter <strong>12345678</strong> as the password.<br>
+3. Go to your web browser and type the IP address shown in the serial monitor, it is usually <strong>192.168.4.1</strong>. <p>
+<strong>Step 4: Monitoring and Alerts</strong><br>
+<strong>Understanding the Alerts:</strong><br>
+1. The system is equipped with a visual (web server) alert.<br>
+2. The web server will contain a button where they may be able to turn on or off the pump. In ideal situation, the water source of the pump is where the water level sensor is placed to make the system circulated.<p>
+<strong>Testing the Alerts:</strong><br>
+To test the system, tap the button to turn on the relay. You should hear a click.
+														</p>
+													</div>
+
+
+							<!-- Preformatted Code -->
+
+<html>
+<head>
+    <title>ESP32 Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: Arial, sans-serif;}
+        .code-section { background-color: #f5f5f5;}
+        pre { white-space: pre-wrap; font-size: 0.9rem; color: #333;}
+        h2 { margin: 0 0 5px 0; font-size: 1.2rem; }
+    </style>
+    							<div class="code-section">
+							    <h2>CODE</h2>
+							    <pre><code> <!DOCTYPE HTML>
+</head>
+<body>#include &lt;WiFi.h&gt;
+#include &lt;WebServer.h&gt;
+
+// Replace with your desired AP credentials
+const char *ssid = "ESP32_WaterPump"; 
+const char *password = "12345678";
+
+// Relay pin
+const int relayPin = 5;
+bool pumpStatus = false; // Pump initially off
+
+// Create a web server on port 80
+WebServer server(80);
+
+// HTML content for the web page with updated styling and AJAX
+String HTMLPage = R"rawliteral(
+  &lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Water Pump Control&lt;/title&gt;
+    &lt;style&gt;
+      body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: radial-gradient(circle, #e0f7fa, #00796b); color: #fff; }
+      .container { text-align: center; background: #004d40; padding: 20px; border-radius: 10px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5); width: 300px; }
+      h1 { font-size: 24px; margin-bottom: 20px; }
+      .status { font-size: 20px; margin-bottom: 20px; }
+      .button { padding: 15px 30px; font-size: 18px; border: none; cursor: pointer; border-radius: 5px; color: #fff; }
+      .on { background-color: #4CAF50; }
+      .off { background-color: #f44336; }
+    &lt;/style&gt;
+    &lt;script&gt;
+      function togglePump() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/toggle", true);
+        xhr.send();
+      }
+      function updateStatus() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/status", true);
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState == 4 && xhr.status == 200) {
+            var response = JSON.parse(xhr.responseText);
+            document.getElementById("pumpStatus").innerText = response.status;
+            var button = document.getElementById("toggleButton");
+            button.className = response.isOn ? "button on" : "button off";
+            button.innerText = response.isOn ? "Turn Off" : "Turn On";
+          }
+        };
+        xhr.send();
+      }
+      setInterval(updateStatus, 1000); // Update every second
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body onload="updateStatus()"&gt;
+    &lt;div class="container"&gt;
+      &lt;h1&gt;Water Pump Control&lt;/h1&gt;
+      &lt;div class="status"&gt;Current Status: &lt;span id="pumpStatus"&gt;Loading...&lt;/span&gt;&lt;/div&gt;
+      &lt;button id="toggleButton" class="button" onclick="togglePump()"&gt;Loading...&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+  &lt;/html&gt;
+)rawliteral";
+
+// Function to handle root request and serve the web page
+void handleRoot() {
+  server.send(200, "text/html", HTMLPage);
+}
+
+// Function to toggle the pump
+void handleToggle() {
+  pumpStatus = !pumpStatus;
+  digitalWrite(relayPin, pumpStatus ? HIGH : LOW); // HIGH turns the pump on, LOW turns it off
+  server.send(200, "text/plain", pumpStatus ? "ON" : "OFF");
+}
+
+// Function to send pump status as JSON
+void handleStatus() {
+  String json = "{ \"status\": \"" + String(pumpStatus ? "ON" : "OFF") + "\", \"isOn\": " + String(pumpStatus ? "true" : "false") + " }";
+  server.send(200, "application/json", json);
+}
+
+void setup() {
+  // Set up relay pin
+  pinMode(relayPin, OUTPUT);
+  digitalWrite(relayPin, LOW); // Initially turn the pump off (NO configuration)
+
+  // Start serial communication
+  Serial.begin(115200);
+
+  // Set up access point
+  WiFi.softAP(ssid, password);
+  Serial.println("Access Point Started");
+  Serial.print("IP Address: ");
+  Serial.println(WiFi.softAPIP());
+
+  // Define server routes
+  server.on("/", handleRoot);
+  server.on("/toggle", handleToggle);
+  server.on("/status", handleStatus);
+
+  // Start the web server
+  server.begin();
+  Serial.println("Web server started");
+}
+
+void loop() {
+  // Handle client requests
+  server.handleClient();
+}
+</body>
+</html>
+							</code></pre>
+							    <button id="copyButton">Copy Code</button>
+							</div>
+
+<h2>CODE EXPLANATION</h2>
+<div class="box">
+    <p>This code sets up a Water Pump Control System using an ESP32 and a relay. The system allows users to toggle the water pump on and off and monitor its status through a web interface, which auto-updates in real-time using AJAX. Users can connect to an Access Point (AP) and control the pump through an intuitive, styled web page. Let’s break it down.
+
+    <p><strong>Key Components and Their Roles</strong><br>
+<strong>1. Libraries Included:</strong><br>
+&emsp;&emsp;&emsp;•<strong><code>WiFi.h</code></strong>Manages Wi-Fi operations, allowing the ESP32 to create an Access Point for user access.<br>
+&emsp;&emsp;&emsp;•<strong><code>WebServer.h</code></strong>Sets up an HTTP server on the ESP32, hosting the web interface for toggling the pump and checking the current status.<p>
+
+<strong>2. WiFi Setup</strong><br>
+&emsp;&emsp;&emsp;• The ESP32 creates an Access Point with the SSID "ESP32_WaterPump" and password "12345678," allowing users to connect and control the water pump.<br>
+&emsp;&emsp;&emsp;• A static IP address is set up by the ESP32, making it easy for users to connect to the control interface.<p>
+
+<strong>3. Relay Setup for Water Pump Control:</strong><br>
+&emsp;&emsp;&emsp;• The relay is connected to GPIO pin 5 and configured to control the water pump. The<strong><code>relayPin</code></strong>is set to LOW by default, meaning the pump is off initially.<br>
+&emsp;&emsp;&emsp;•<strong><code>pumpStatus</code></strong>keeps track of the pump’s state (ON or OFF), toggling each time the control button is pressed on the web page.<p>
+
+<div class="button-container">
+    <!-- Button to show first image -->
+    <button id="showImageButton1" class="show-image-button">Relay Pinout</button>
+
+    <!-- Button to show second image -->
+    <button id="showImageButton2" class="show-image-button">ESP32 Pinout</button>
+</div>
+
+<!-- Hidden first image container -->
+<div id="imageContainer1" class="hidden">
+    <img src="images/relay.png" alt="Relay Image" style="max-width: 100%; height: auto;"><br>
+    Photo Credit: Last Minute Engineers<p>
+</div>
+
+<!-- Hidden second image container -->
+<div id="imageContainer2" class="hidden">
+    <img src="images/esp32.jpg" alt="ESP32 Image" style="max-width: 100%; height: auto;"><br>
+    Photo Credit: Random Nerd Tutorials<p>
+</div>
+
+<!-- JavaScript to handle button clicks for each image -->
+<script>
+    const showImageButton1 = document.getElementById("showImageButton1");
+    const imageContainer1 = document.getElementById("imageContainer1");
+
+    const showImageButton2 = document.getElementById("showImageButton2");
+    const imageContainer2 = document.getElementById("imageContainer2");
+
+    // Toggle first image visibility
+    showImageButton1.addEventListener("click", function() {
+        imageContainer1.classList.toggle("hidden");
+    });
+
+    // Toggle second image visibility
+    showImageButton2.addEventListener("click", function() {
+        imageContainer2.classList.toggle("hidden");
+    });
+</script>
+
+<!-- CSS for styling -->
+<style>
+    /* Center the button container */
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    /* Style for buttons */
+    .show-image-button {
+        padding: 5px 10px;
+        background-color: transparent;
+        color: #7f888f;
+        border: 2px solid #FF6F61;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.75rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Center text inside the button */
+    .show-image-button:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #00ab41;
+    }
+
+    /* Hide initially */
+    .hidden {
+        display: none;
+    }
+
+    /* Margin for image containers */
+    #imageContainer1, #imageContainer2 {
+        margin-top: 10px;
+    }
+</style><p>
+
+<strong>4. Server Functions:</strong><br>
+&emsp;&emsp;&emsp;• The ESP32 runs a web server<strong><code>(WebServer server(80);)</code></strong>, listening on port 80.<br>
+&emsp;&emsp;&emsp;• Key server functions include:<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>handleRoot()</code></strong>Serves the main control page where users can view the current pump status and toggle the pump on or off.<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>handleToggle()</code></strong>Toggles the pump’s status when the button on the web page is pressed. If the pump is on, it turns off, and vice versa.<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>handleStatus()</code></strong>Sends the pump’s current status as a JSON response, allowing the web page to auto-refresh every second.<p>
+
+<strong>5. Web Interface Design:</strong><br> 
+&emsp;&emsp;&emsp;• The HTML page is designed with CSS for a centered, visually appealing layout, showing the pump’s current status and a button to control it.<br> 
+&emsp;&emsp;&emsp;• The button color and label change based on the pump’s status, offering clear feedback on whether the pump is on or off.<br> 
+&emsp;&emsp;&emsp;• JavaScript updates the button and status text in real-time, fetching the latest data every second from the<strong><code>/status</code></strong>endpoint.<p>
+
+<strong>6. JavaScript and AJAX Updates:</strong><br> 
+&emsp;&emsp;&emsp;• JavaScript on the web page periodically calls<strong><code>updateStatus()</code></strong>to fetch the pump’s status and update the display without requiring a page reload.<br>
+&emsp;&emsp;&emsp;• The<strong><code>togglePump()</code></strong>function triggers the pump toggle action, providing immediate feedback on the pump’s status.<p>
+
+<strong>7. The Setup<code>setup()</code>and Loop<code>loop()</code>Functions:</strong><br> 
+&emsp;&emsp;&emsp;•<strong><code>setup()</code></strong>Initializes the relay pin, starts the Access Point, and configures the web server to serve the control interface.<br> 
+&emsp;&emsp;&emsp;•<strong><code>loop()</code></strong>Continuously handles client requests, allowing for seamless interaction and updates on the water pump’s status.<p>
+
+</div>
+											</div>
+										</div>
+
+								</section>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="generic.html">The Creation</a></li>
+										<li><a href="elements.html">Module Explainer</a></li>
+										<li>
+											<span class="opener">Introductory Projects</span>
+											<ul>
+												<li><a href="io.html">Input Output</a></li>
+												<li><a href="ai.html">Analog Inputs</a></li>
+												<li><a href="pwm.html">PWM (Analog Output)</a></li>
+												<li><a href="sws.html">Switch Web Server</a></li>
+												<li><a href="rlws.html">RGB LED Web Server</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Main Projects</span>
+											<ul>
+												<li><a href="project-1.html">Project 1</a></li>
+												<li><a href="project-2.html">Project 2</a></li>
+												<li><a href="project-3.html">Project 3</a></li>
+												<li><a href="project-4.html">Project 4</a></li>
+												<li><a href="project-5.html">Project 5</a></li>
+												<li><a href="project-6.html">Project 6</a></li>
+												<li><a href="project-7.html">Project 7</a></li>
+												<li><a href="project-8.html">Project 8</a></li>
+												<li><a href="project-9.html">Project 9</a></li>
+												<li><a href="project-10.html">Project 10</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>ADVANCED IOT PROJECTS</h2>
+									</header>
+									<div class="mini-posts">
+										<article>
+											<a href="https://youtu.be/RUO44kqNP24?si=QO3qiHGQLvJSXDaD" class="image"><img src="https://i.ytimg.com/vi/RUO44kqNP24/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLD_wUN6wdxf151rPD6UWSKlwhLK7Q" alt="" /></a>
+											<p>Patient Health Monitoring System Using Raspberry Pi</p>
+										</article>
+										<article>
+											<a href="https://youtu.be/FSqYyjZtH4g?si=9BeVl6KnJ2oD9eBl" class="image"><img src="https://i.ytimg.com/vi/FSqYyjZtH4g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCztyDAtqgoFMqVVEyold-aKebbbQ" alt="" /></a>
+											<p>Women Safety Device Using Internet of Things</p>
+										</article>
+										<article>
+											<a href="https://youtu.be/EamYfGG4Wvg?si=10C8m2DArmPMSOv3" class="image"><img src="https://i.ytimg.com/vi/EamYfGG4Wvg/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH0CYAC0AWKAgwIABABGGUgTShIMA8=&rs=AOn4CLBlZoYwXKvvyn9fsfvRhCCsItaQ3g" alt="" /></a>
+											<p>A Web-Based Accident Reporting and Tracking System</p>
+										</article>
+									</div>
+									<ul class="actions">
+										<li><a href="https://youtube.com/playlist?list=PL87CgTAGz2yZ0geJ-_9HAK2u8NDMhVwFH&si=cr7ljhFT1B8GZR3-" class="button">More</a></li>
+									</ul>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="https://sscr.edu/Beta/">https://sscr.edu/Beta/</a></li>
+										<li class="icon solid fa-phone">(046) 431-9405</li>
+										<li class="icon solid fa-home">Manila-Cavite Road, Sta. Cruz,<br />
+										Cavite City, 4100, Philippines</li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; SSC-RdC IOT Development Board. <br>All rights reserved.
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/copy.js"></script>
+
+	</body>
+</html>

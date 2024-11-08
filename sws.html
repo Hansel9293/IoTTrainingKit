@@ -1,0 +1,289 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>ESP32 Switch Web Server</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo">Introductory Project<strong> 4</strong></a>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>ESP32 Switch Web Server</h1>
+									</header>
+
+									<!-- Content -->
+										<h2 id="content">ABOUT THE PROJECT</h2>
+										<p>In this project, you’ll build a standalone web server using the ESP32 and the Arduino IDE, allowing you to control two LEDs from any device with a browser on your local network. The web server is designed to be mobile responsive, so it works well on both desktop and mobile devices. We’ll guide you through creating the web server and explain the code step-by-step.<br><br>
+
+Before diving into the project, here’s a summary of what our web server will accomplish to help make the steps easier to follow:<br>
+
+&emsp;&emsp;&emsp;- <strong>LED Control:</strong> The web server will control two LEDs connected to the ESP32’s GPIO 26 and GPIO 27 pins.<br>
+&emsp;&emsp;&emsp;- <strong>Accessing the Web Server:</strong> You’ll be able to access the ESP32 web server by typing the ESP32’s IP address into a browser on any device within the same local network.<br>
+&emsp;&emsp;&emsp;- <strong>Interactive Control:</strong> The web interface will feature buttons that allow you to toggle each LED on or off in real time by simply clicking.<br>
+
+With this setup, you’ll have a responsive web server that controls outputs, providing a straightforward way to manage connected devices from anywhere within your network.</p>
+										<h2 id="content">PARTS NEEDED:</h2>
+										<p>• Main Board Module<br>
+										• 2 x LED<br>
+										• Breadboard<br>
+										• Jumper Wires<br>
+										• 2 x 220 Ohm Resistor <br></p>
+
+						<!-- Image Section -->
+						<h2>THE BUILD</h2>
+
+						<!-- Main Image (pic11.jpg) -->
+						<span class="image fit">
+						    <a href="images/sintro4.jpg" class="image-link"><img src="images/sintro4.jpg" alt="" /></a>
+						</span>
+
+
+												<!-- Box -->
+										<h2>INSTRUCTION(s):</h2>
+													<div class="box">
+														<p>To begin, build the circuit by connecting two LEDs to the ESP32, following the schematic diagram:<br>
+
+&emsp;&emsp;&emsp;<strong>• Connect one LED to GPIO 26:</strong> Attach the positive (anode) leg of the LED to GPIO 26 and the negative (cathode) leg to ground via a resistor (typically 220Ω or 330Ω to limit current).<br>
+&emsp;&emsp;&emsp;<strong>• Connect the other LED to GPIO 27:</strong> Similarly, connect the positive leg of this LED to GPIO 27 and the negative leg to ground with a resistor.<br><br>
+<i><strong>Note:</strong> This guide uses the ESP32 DEVKIT DOIT board with 36 pins. Before wiring, ensure you verify the pinout for your specific board model, as pin configurations may vary. This helps prevent miswiring and ensures that each LED is correctly connected to the intended GPIO pins.</i>
+														</p>
+													</div>
+
+<html>
+<head>
+    <title>ESP32 Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: Arial, sans-serif;}
+        .code-section { background-color: #f5f5f5;}
+        pre { white-space: pre-wrap; font-size: 0.9rem; color: #333;}
+        h2 { margin: 0 0 5px 0; font-size: 1.2rem; }
+    </style>
+    							<div class="code-section">
+							    <h2>CODE</h2>
+							    <pre><code> <!DOCTYPE HTML>
+</head>
+<body>#include &lt;WiFi.h&gt;
+
+// Replace with your network credentials
+const char* ssid = "YOUR_SSID";
+const char* password = "YOUR_PASSWORD";
+
+// Pin assignments for LEDs
+const int ledPin1 = 26;  // GPIO 26
+const int ledPin2 = 27;  // GPIO 27
+
+// Variable to store LED states
+bool ledState1 = false;
+bool ledState2 = false;
+
+// Create the WiFiServer object on port 80
+WiFiServer server(80);
+
+void setup() {
+  // Initialize serial communication
+  Serial.begin(115200);
+
+  // Set up the LED pins as outputs
+  pinMode(ledPin1, OUTPUT);
+  pinMode(ledPin2, OUTPUT);
+
+  // Connect to Wi-Fi network
+  WiFi.begin(ssid, password);
+  Serial.print("Connecting to WiFi");
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println();
+  Serial.println("Connected to WiFi");
+  Serial.print("IP Address: ");
+  Serial.println(WiFi.localIP());
+
+  // Start the server
+  server.begin();
+}
+
+void loop() {
+  // Check if a client has connected
+  WiFiClient client = server.available();
+  if (!client) {
+    return;
+  }
+
+  // Wait until the client sends some data
+  while (!client.available()) {
+    delay(1);
+  }
+
+  // Read the request line
+  String request = client.readStringUntil('\r');
+  client.flush();
+
+  // Control LEDs based on the request
+  if (request.indexOf("/LED1/ON") != -1) {
+    ledState1 = true;
+  }
+  if (request.indexOf("/LED1/OFF") != -1) {
+    ledState1 = false;
+  }
+  if (request.indexOf("/LED2/ON") != -1) {
+    ledState2 = true;
+  }
+  if (request.indexOf("/LED2/OFF") != -1) {
+    ledState2 = false;
+  }
+
+  // Set LED states
+  digitalWrite(ledPin1, ledState1);
+  digitalWrite(ledPin2, ledState2);
+
+  // HTML response for the web page
+  String html = "&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;title&gt;ESP32 Web Server&lt;/title&gt;";
+  html += "&lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"&gt;";
+  html += "&lt;style&gt;body { font-family: Arial; text-align: center; } button { padding: 20px; font-size: 20px; margin: 10px; }&lt;/style&gt;&lt;/head&gt;";
+  html += "&lt;body&gt;&lt;h1&gt;ESP32 Web Server&lt;/h1&gt;";
+  html += "&lt;p&gt;LED 1 - State: " + String(ledState1 ? "ON" : "OFF") + "&lt;/p&gt;";
+  html += "&lt;p&gt;&lt;a href=\"/LED1/ON\"&gt;&lt;button&gt;Turn LED 1 ON&lt;/button&gt;&lt;/a&gt;";
+  html += "&lt;a href=\"/LED1/OFF\"&gt;&lt;button&gt;Turn LED 1 OFF&lt;/button&gt;&lt;/a&gt;&lt;/p&gt;";
+  html += "&lt;p&gt;LED 2 - State: " + String(ledState2 ? "ON" : "OFF") + "&lt;/p&gt;";
+  html += "&lt;p&gt;&lt;a href=\"/LED2/ON\"&gt;&lt;button&gt;Turn LED 2 ON&lt;/button&gt;&lt;/a&gt;";
+  html += "&lt;a href=\"/LED2/OFF\"&gt;&lt;button&gt;Turn LED 2 OFF&lt;/button>&lt;/a&gt;&lt;/p&gt;";
+  html += "&lt;/body&gt;&lt;/html&gt;";
+
+  // Send the response to the client
+  client.println("HTTP/1.1 200 OK");
+  client.println("Content-type:text/html");
+  client.println("Connection: close");
+  client.println();
+  client.println(html);
+
+  // Close the connection
+  client.stop();
+}</body>
+</html>
+							</code></pre>
+							    <button id="copyButton">Copy Code</button>
+							</div>
+
+
+											</div>
+										</div>
+
+								</section>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="generic.html">The Creation</a></li>
+										<li><a href="elements.html">Module Explainer</a></li>
+										<li>
+											<span class="opener">Introductory Projects</span>
+											<ul>
+												<li><a href="io.html">Input Output</a></li>
+												<li><a href="ai.html">Analog Inputs</a></li>
+												<li><a href="pwm.html">PWM (Analog Output)</a></li>
+												<li><a href="sws.html">Switch Web Server</a></li>
+												<li><a href="rlws.html">RGB LED Web Server</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Main Projects</span>
+											<ul>
+												<li><a href="project-1.html">Project 1</a></li>
+												<li><a href="project-2.html">Project 2</a></li>
+												<li><a href="project-3.html">Project 3</a></li>
+												<li><a href="project-4.html">Project 4</a></li>
+												<li><a href="project-5.html">Project 5</a></li>
+												<li><a href="project-6.html">Project 6</a></li>
+												<li><a href="project-7.html">Project 7</a></li>
+												<li><a href="project-8.html">Project 8</a></li>
+												<li><a href="project-9.html">Project 9</a></li>
+												<li><a href="project-10.html">Project 10</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>ADVANCED IOT PROJECTS</h2>
+									</header>
+									<div class="mini-posts">
+										<article>
+											<a href="https://youtu.be/RUO44kqNP24?si=QO3qiHGQLvJSXDaD" class="image"><img src="https://i.ytimg.com/vi/RUO44kqNP24/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLD_wUN6wdxf151rPD6UWSKlwhLK7Q" alt="" /></a>
+											<p>Patient Health Monitoring System Using Raspberry Pi</p>
+										</article>
+										<article>
+											<a href="https://youtu.be/FSqYyjZtH4g?si=9BeVl6KnJ2oD9eBl" class="image"><img src="https://i.ytimg.com/vi/FSqYyjZtH4g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCztyDAtqgoFMqVVEyold-aKebbbQ" alt="" /></a>
+											<p>Women Safety Device Using Internet of Things</p>
+										</article>
+										<article>
+											<a href="https://youtu.be/EamYfGG4Wvg?si=10C8m2DArmPMSOv3" class="image"><img src="https://i.ytimg.com/vi/EamYfGG4Wvg/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH0CYAC0AWKAgwIABABGGUgTShIMA8=&rs=AOn4CLBlZoYwXKvvyn9fsfvRhCCsItaQ3g" alt="" /></a>
+											<p>A Web-Based Accident Reporting and Tracking System</p>
+										</article>
+									</div>
+									<ul class="actions">
+										<li><a href="https://youtube.com/playlist?list=PL87CgTAGz2yZ0geJ-_9HAK2u8NDMhVwFH&si=cr7ljhFT1B8GZR3-" class="button">More</a></li>
+									</ul>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="https://sscr.edu/Beta/">https://sscr.edu/Beta/</a></li>
+										<li class="icon solid fa-phone">(046) 431-9405</li>
+										<li class="icon solid fa-home">Manila-Cavite Road, Sta. Cruz,<br />
+										Cavite City, 4100, Philippines</li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; SSC-RdC IOT Development Board. <br>All rights reserved.
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/copy.js"></script>
+
+	</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>ESP32 PWM (Analog Output)</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo">Introductory Project<strong> 3</strong></a>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>ESP32 PWM (Analog Output)</h1>
+									</header>
+
+									<!-- Content -->
+										<h2 id="content">ABOUT THE PROJECT</h2>
+										<p>In this tutorial, we’ll guide you through generating PWM (Pulse Width Modulation) signals with the ESP32 using the Arduino IDE. As an example, we’ll create a simple circuit to control the brightness of an LED using the ESP32’s built-in LED PWM controller.</p>
+										<h2 id="content">PARTS NEEDED:</h2>
+										<p>• Main Board Module<br>
+										• LED<br>
+										• 220 Ohm Resistor<br>
+										• Breadboard<br>
+										• Jumper Wires<br>
+
+						<!-- Image Section -->
+						<h2>THE BUILD</h2>
+
+						<!-- Main Image (pic11.jpg) -->
+						<span class="image fit">
+						    <a href="images/sintro3.jpg" class="image-link"><img src="images/sintro3.jpg" alt="" /></a>
+						</span>
+
+
+												<!-- Box -->
+										<h2>INSTRUCTION(s):</h2>
+													<div class="box">
+														The ESP32 features a LED PWM controller with 16 independent channels that can each be configured to generate unique PWM signals. Follow these steps to dim an LED using PWM with the Arduino IDE:<br><br>
+
+<strong>1. Choose a PWM Channel:</strong> Select one of the 16 available channels, numbered 0 through 15, to generate the PWM signal.<br><br>
+  
+<strong>2. Set the PWM Frequency:</strong> Define the frequency of the PWM signal. For controlling an LED, a frequency of 5000 Hz is suitable.<br><br>
+
+<strong>3. Configure Duty Cycle Resolution:</strong> Specify the resolution of the PWM signal, which can range from 1 to 16 bits. We’ll use an 8-bit resolution, allowing you to adjust LED brightness with values between 0 and 255.<br><br>
+
+<strong>4. Assign GPIO for Output:</strong> Indicate the GPIO pin that will output the PWM signal. To do this, use the following function:<br><br>
+   
+ &emsp;&emsp;&emsp; &emsp;&emsp;<code>ledcAttachPin(GPIO_PIN, PWM_CHANNEL);</code><br>
+ &emsp;&emsp;&emsp;&emsp;&emsp;  - GPIO_PIN is the pin number where the LED is connected.<br>
+ &emsp;&emsp;&emsp;&emsp;&emsp;  - PWM_CHANNEL is the channel generating the signal.<br><br>
+
+<strong>5. Control LED Brightness:</strong> Use the function below to set the duty cycle and adjust LED brightness:<br><br>
+ &emsp;&emsp;&emsp;&emsp;&emsp;<code>ledcWrite(PWM_CHANNEL, dutyCycle);</code><br>
+ &emsp;&emsp;&emsp;&emsp;&emsp;   - PWM_CHANNEL is the channel generating the PWM signal.<br>
+ &emsp;&emsp;&emsp;&emsp;&emsp;  - dutyCycle (from 0 to 255) determines the LED’s brightness, with higher values making the LED brighter.<br><br>
+
+By following these steps, you’ll be able to control the LED’s brightness smoothly using PWM on the ESP32.<br><br>
+
+We'll program the ESP32 using the Arduino IDE, so ensure that you have the ESP32 add-on installed before continuing. (If you’ve already completed this setup, you can skip this step.)<br><br>
+
+After uploading the code, press the ESP32 reset button, then open the Serial Monitor at a baud rate of 115200. As you rotate the potentiometer, you should see the values change in real-time on the Serial Monitor.<br><br>
+													
+													</div>
+
+<html>
+<head>
+    <title>ESP32 Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: Arial, sans-serif;}
+        .code-section { background-color: #f5f5f5;}
+        pre { white-space: pre-wrap; font-size: 0.9rem; color: #333;}
+        h2 { margin: 0 0 5px 0; font-size: 1.2rem; }
+    </style>
+    							<div class="code-section">
+							    <h2>CODE</h2>
+							    <pre><code> <!DOCTYPE HTML>
+</head>
+<body>// LED pin assignment
+const int ledPin = 4; // GPIO 4
+
+// PWM properties
+const int freq = 5000;      // Frequency of the PWM signal
+const int ledChannel = 0;   // Channel to generate the PWM signal
+const int resolution = 8;   // 8-bit resolution (0-255)
+
+void setup() {
+  // Configure LED PWM functionality
+  ledcSetup(ledChannel, freq, resolution);
+
+  // Attach the PWM channel to the LED pin
+  ledcAttachPin(ledPin, ledChannel);
+}
+
+void loop() {
+  // Increase LED brightness
+  for (int dutyCycle = 0; dutyCycle <= 255; dutyCycle++) {
+    // Set the PWM duty cycle
+    ledcWrite(ledChannel, dutyCycle);
+    delay(15);  // Adjust delay to control fade speed
+  }
+
+  // Decrease LED brightness
+  for (int dutyCycle = 255; dutyCycle >= 0; dutyCycle--) {
+    // Set the PWM duty cycle
+    ledcWrite(ledChannel, dutyCycle);
+    delay(15);  // Adjust delay to control fade speed
+  }
+}</body>
+</html>
+							</code></pre>
+							    <button id="copyButton">Copy Code</button>
+							</div>
+
+
+											</div>
+										</div>
+
+								</section>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="generic.html">The Creation</a></li>
+										<li><a href="elements.html">Module Explainer</a></li>
+										<li>
+											<span class="opener">Introductory Projects</span>
+											<ul>
+												<li><a href="io.html">Input Output</a></li>
+												<li><a href="ai.html">Analog Inputs</a></li>
+												<li><a href="pwm.html">PWM (Analog Output)</a></li>
+												<li><a href="sws.html">Switch Web Server</a></li>
+												<li><a href="rlws.html">RGB LED Web Server</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Main Projects</span>
+											<ul>
+												<li><a href="project-1.html">Project 1</a></li>
+												<li><a href="project-2.html">Project 2</a></li>
+												<li><a href="project-3.html">Project 3</a></li>
+												<li><a href="project-4.html">Project 4</a></li>
+												<li><a href="project-5.html">Project 5</a></li>
+												<li><a href="project-6.html">Project 6</a></li>
+												<li><a href="project-7.html">Project 7</a></li>
+												<li><a href="project-8.html">Project 8</a></li>
+												<li><a href="project-9.html">Project 9</a></li>
+												<li><a href="project-10.html">Project 10</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>ADVANCED IOT PROJECTS</h2>
+									</header>
+									<div class="mini-posts">
+										<article>
+											<a href="https://youtu.be/RUO44kqNP24?si=QO3qiHGQLvJSXDaD" class="image"><img src="https://i.ytimg.com/vi/RUO44kqNP24/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLD_wUN6wdxf151rPD6UWSKlwhLK7Q" alt="" /></a>
+											<p>Patient Health Monitoring System Using Raspberry Pi</p>
+										</article>
+										<article>
+											<a href="https://youtu.be/FSqYyjZtH4g?si=9BeVl6KnJ2oD9eBl" class="image"><img src="https://i.ytimg.com/vi/FSqYyjZtH4g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCztyDAtqgoFMqVVEyold-aKebbbQ" alt="" /></a>
+											<p>Women Safety Device Using Internet of Things</p>
+										</article>
+										<article>
+											<a href="https://youtu.be/EamYfGG4Wvg?si=10C8m2DArmPMSOv3" class="image"><img src="https://i.ytimg.com/vi/EamYfGG4Wvg/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH0CYAC0AWKAgwIABABGGUgTShIMA8=&rs=AOn4CLBlZoYwXKvvyn9fsfvRhCCsItaQ3g" alt="" /></a>
+											<p>A Web-Based Accident Reporting and Tracking System</p>
+										</article>
+									</div>
+									<ul class="actions">
+										<li><a href="https://youtube.com/playlist?list=PL87CgTAGz2yZ0geJ-_9HAK2u8NDMhVwFH&si=cr7ljhFT1B8GZR3-" class="button">More</a></li>
+									</ul>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="https://sscr.edu/Beta/">https://sscr.edu/Beta/</a></li>
+										<li class="icon solid fa-phone">(046) 431-9405</li>
+										<li class="icon solid fa-home">Manila-Cavite Road, Sta. Cruz,<br />
+										Cavite City, 4100, Philippines</li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; SSC-RdC IOT Development Board. <br>All rights reserved.
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/copy.js"></script>
+
+	</body>
+</html>

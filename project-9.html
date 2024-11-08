@@ -1,0 +1,508 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>PROJECT 9</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo">Project<strong> 9</strong></a>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Water Level Monitoring</h1>
+									</header>
+
+									<!-- Content -->
+										<h2 id="content">HOW IT WORKS?</h2>
+										<p>A water level monitoring system uses sensors to detect and measure the water level in a tank, reservoir, or other container. The sensor sends this data to the microcontroller, which processes the readings and converts them into meaningful information, such as the current water level or tank fill percentage. The microcontroller processes the data, converting it into a readable format, such as the current water level in meters or as a percentage of tank capacity. Based on this processed information, the system can display the water level, log data for future reference, trigger alerts for low or high levels, and in automated setups, control pumps or valves to manage water levels effectively. This functionality is essential for resource management, preventing overflows, and ensuring efficient water usage across various applications.
+
+										</p>
+										<h2 id="content">PARTS NEEDED:</h2>
+										<p>• Main Board Module<br>
+											• Smart Agriculture Module<br>
+											• Connector Cables<br></p>
+
+							<section>
+								<header class="main">
+									<h2 id="content">SENSOR IN THE MODULE TO BE USED</h2></header>
+									<p><strong>Water Level Sensor</strong><br> This sensor functions by detecting the height of water in a container or environment and providing feedback based on that measurement. Various types of sensors are used, including float sensors, which utilize a buoyant object that rises and falls with the water level to activate switches at predetermined heights.
+									</p>
+							</section>
+
+						<!-- Image Section -->
+						<h2>THE BUILD</h2>
+
+						<!-- Main Image (pic11.jpg) -->
+						<span class="image fit">
+						    <a href="images/swater.jpg" class="image-link"><img src="images/swater.jpg" alt="" /></a>
+						</span>
+
+						<!-- Modal Dialog -->
+						<div id="modal" class="modal">
+						    <span class="close">&times;</span>
+						    <img class="modal-content" id="modal-image">
+						</div>
+
+						<!-- JavaScript to Show Full Image on Click -->
+						<script>
+						    // Get all elements with class "image-link"
+						    const imageLinks = document.querySelectorAll('.image-link');
+
+						    // Get the modal element
+						    const modal = document.getElementById('modal');
+
+						    // Get the image element within the modal
+						    const modalImg = document.getElementById('modal-image');
+
+						    // Loop through each image link
+						    imageLinks.forEach(link => {
+						        link.addEventListener('click', function(event) {
+						            event.preventDefault(); // Prevent default link behavior
+
+						            // Get href attribute of the clicked link (full-size image URL)
+						            const imageURL = this.getAttribute('href');
+
+						            // Display the modal
+						            modal.style.display = 'flex'; // Show the modal as flexbox for centering
+
+						            // Set the clicked image as the source of the modal image
+						            modalImg.src = imageURL;
+
+						            // Reset modal content position
+						            modal.scrollTop = 0;
+						            modal.scrollLeft = 0;
+						        });
+						    });
+
+						    // Close the modal when the close button (x) is clicked
+						    const closeBtn = document.querySelector('.close');
+						    closeBtn.addEventListener('click', function() {
+						        modal.style.display = 'none';
+						    });
+
+						    // Close the modal when clicking outside of it
+						    window.addEventListener('click', function(event) {
+						        if (event.target === modal) {
+						            modal.style.display = 'none';
+						        }
+						    });
+
+						    // Enable zoom functionality
+						    modalImg.addEventListener('click', function() {
+						        if (modalImg.classList.contains('zoomed')) {
+						            modalImg.classList.remove('zoomed');
+						        } else {
+						            modalImg.classList.add('zoomed');
+						        }
+						    });
+						</script>
+
+
+												<!-- Box -->
+										<h2>INSTRUCTION(s):</h2>
+													<div class="box">
+														<p><strong>Step 1: Assembling the System</strong><br>
+<strong>Positioning the Module:</strong><br>
+1. Take the Smart Agriculture Module (enclosed in the 3D-printed box) and align it over the main board.<br>
+2. Gently press the module onto the main board's connector pins until it fits securely in place.<br>
+3. Ensure that the module is correctly seated to avoid loose connections.<p>
+<strong>Step 2: Powering the System</strong><br>
+<strong>Connecting Power:</strong><br>
+1. Get the connecting cable and attach it into the laptop that you will use to upload the code.<br>
+2. Plug in the other end of it to the main board. The system will automatically power on.<br>
+<strong>Visual Indicator Check:</strong><br>
+Observe the LED indicators on the main board. The system should show a steady power LED to confirm it's operational.<p>
+<strong>Step 3: Connecting to Web Server:</strong><br>
+1. Once the serial monitor says "Code Uploaded", open the serial monitor of the Arduino IDE then press the <strong>EN</strong> button to show the IP address.<br>
+2. Turn on your WiFi and look for <strong>ESP32_WaterLevel</strong>. Choose that then enter <strong>12345678</strong> as the password.<br>
+3. Go to your web browser and type the IP address shown in the serial monitor, it is usually <strong>192.168.4.1</strong>. <p>
+<strong>Step 4: Monitoring and Alerts</strong><br>
+<strong>Understanding the Alerts:</strong><br>
+1. The system includes a visual monitoring system accessible via a web server, displaying real-time readings for water levels.<br>
+2. Water Level Alerts:
+   - If the water level is below 20%, the system displays "Low Water Level" to indicate a minimal water supply.
+   - If the water level is between 20% and 80%, the display shows "Normal Water Level," indicating an adequate amount of water.
+   - If the water level exceeds 80%, it indicates "High Water Level" to warn of a near-full or overflowing state.<br>
+3. Real-Time Updates:
+   - The water level reading updates continuously, providing accurate status for efficient monitoring.<p>
+<strong>Testing the Alerts:</strong><br>
+To test the system, place the sensor in a bottle with water. Try to dip it in different levels to see the variation of measurement. The alerts should activate.
+														</p>
+													</div>
+							<!-- Preformatted Code -->
+<html>
+<head>
+    <title>ESP32 Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: Arial, sans-serif;}
+        .code-section { background-color: #f5f5f5;}
+        pre { white-space: pre-wrap; font-size: 0.9rem; color: #333;}
+        h2 { margin: 0 0 5px 0; font-size: 1.2rem; }
+    </style>
+    							<div class="code-section">
+							    <h2>CODE</h2>
+							    <pre><code> <!DOCTYPE HTML>
+</head>
+<body>#include &lt;WiFi.h&gt;
+#include &lt;WebServer.h&gt;
+
+// Define the Access Point credentials
+const char* ssid = "ESP32_WaterLevel";
+const char* password = "12345678";
+
+// Define Static IP Address
+IPAddress local_IP(192, 168, 4, 1);
+IPAddress gateway(192, 168, 4, 1);
+IPAddress subnet(255, 255, 255, 0);
+
+// Water Level Sensor Pin
+const int waterSensorPin = 35;  // Analog pin connected to the water level sensor
+
+WebServer server(80); // Create a web server on port 80
+
+float waterLevel;
+String waterStatus;
+
+// Function to read the water level from the sensor
+void readWaterLevel() {
+  waterLevel = analogRead(waterSensorPin);  // Read the analog value from the sensor
+  
+  // Map the analog value to a percentage (0 - 100%)
+  waterLevel = map(waterLevel, 0, 4095, 0, 100);
+
+  // Determine water status based on the percentage
+  if (waterLevel &lt; 20) {
+    waterStatus = "Low Water Level";
+  } else if (waterLevel &gt;= 20 &amp;&amp; waterLevel &lt;= 80) {
+    waterStatus = "Normal Water Level";
+  } else {
+    waterStatus = "High Water Level";
+  }
+}
+
+// Serve the web page
+void handleRoot() {
+  String html = "&lt;html&gt;&lt;head&gt;&lt;title&gt;Water Level Monitor&lt;/title&gt;";
+  html += "&lt;meta name='viewport' content='width=device-width, initial-scale=1'&gt;";
+  html += "&lt;style&gt;";
+  html += "body { font-family: Arial, sans-serif; text-align: center; background: radial-gradient(circle, white, #00ab41); color: white; height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0; }";
+  html += ".container { width: 90%; max-width: 400px; background-color: white; padding: 20px; border-radius: 15px; box-shadow: 0 20px 40px 20px rgba(0, 0, 0, 0.3); text-align: center; }";
+  html += "h1 { font-size: 2.5rem; color: black; margin-bottom: 20px; }";
+  html += ".status-bar { background-color: #00ab41; padding: 10px; border-radius: 10px; font-size: 1.5rem; margin-top: 20px; }";
+  html += "&lt;/style&gt;";
+  
+  // Add JavaScript to refresh data
+  html += "&lt;script&gt;";
+  html += "setInterval(function() {";
+  html += "fetch('/water').then(function(response) {";
+  html += "return response.json();";  // Expecting JSON data now
+  html += "}).then(function(data) {";
+  html += "document.querySelector('#waterLevel').innerText = data.waterLevel.toFixed(1) + '%';";
+  html += "document.querySelector('#waterStatus').innerText = data.waterStatus;";
+  html += "});";
+  html += "}, 1000);";  // Update every 1 second
+  html += "&lt;/script&gt;&lt;/head&gt;&lt;body&gt;";
+  
+  html += "&lt;div class='container'&gt;";
+  html += "&lt;h1&gt;Water Level Monitor&lt;/h1&gt;";
+  
+  // Display water level and status
+  html += "&lt;div class='status-bar'&gt;";
+  html += "&lt;p&gt;Current Water Level: &lt;span id='waterLevel'&gt;0.0%&lt;/span&gt;&lt;/p&gt;";
+  html += "&lt;p&gt;Status: &lt;span id='waterStatus'&gt;Low Water Level&lt;/span&gt;&lt;/p&gt;";
+  html += "&lt;/div&gt;";
+
+  html += "&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;";
+
+  server.send(200, "text/html", html);
+}
+
+// Serve the water level as JSON for AJAX requests
+void handleWaterLevel() {
+  readWaterLevel();  // Update the water level and status
+  
+  // Send water level and status as JSON
+  String json = "{ \"waterLevel\": " + String(waterLevel, 1) + ", \"waterStatus\": \"" + waterStatus + "\" }";
+  server.send(200, "application/json", json);
+}
+
+void setup() {
+  Serial.begin(115200);
+  
+  pinMode(waterSensorPin, INPUT);
+
+  // Start WiFi as an access point
+  WiFi.softAPConfig(local_IP, gateway, subnet);
+  WiFi.softAP(ssid, password);
+
+  Serial.println("Access Point Started");
+  Serial.println(WiFi.softAPIP());
+
+  // Start the web server
+  server.on("/", handleRoot);
+  server.on("/water", handleWaterLevel);  // Endpoint for AJAX requests
+  server.begin();
+}
+
+void loop() {
+  server.handleClient();  // Handle web requests
+}
+</body>
+</html>
+
+							</code></pre>
+							    <button id="copyButton">Copy Code</button>
+							</div>
+
+<h2>CODE EXPLANATION</h2>
+													<div class="box">
+														<p>This code sets up a Water Level Monitoring System using an ESP32 in Access Point mode, allowing users to view the current water level and status on a web page with real-time updates. Let's break it down.
+														<p><strong>Key Components and Their Roles</strong><br>
+<strong>1. Libraries Included:</strong><br>
+&emsp;&emsp;&emsp;•<strong><code>WiFi.h</code></strong> Handles the ESP32’s Wi-Fi operations, allowing it to establish an Access Point.<br>
+&emsp;&emsp;&emsp;•<strong><code>WebServer.h</code></strong> Sets up a local server on the ESP32 to host the webpage.<br>
+<strong>2. WiFi Setup</strong><br>
+&emsp;&emsp;&emsp;• The ESP32 creates an Access Point with the name (SSID) "ESP32_WaterLevel" and password "12345678."<br>
+&emsp;&emsp;&emsp;• It also assigns a static IP address (192.168.4.1) for consistent access, so users always know where to find it.<p>
+<strong>3. Water Level Sensor Setup:</strong><br>
+&emsp;&emsp;&emsp;• The Water Level Sensor is connected to pin 35 of the ESP32, with the <strong><code>#define</code></strong> statements specifying the pin and sensor type.<br>
+
+<div class="button-container">
+    <!-- Button to show first image -->
+    <button id="showImageButton1" class="show-image-button">Water Level Sensor Pinout</button>
+
+    <!-- Button to show second image -->
+    <button id="showImageButton2" class="show-image-button">ESP32 Pinout</button>
+</div>
+
+<!-- Hidden first image container -->
+<div id="imageContainer1" class="hidden">
+    <img src="images/waterlevel.jpg" alt="Water Level Sensor Image" style="max-width: 100%; height: auto;"><br>
+    Photo Credit: Circuit Digest<p>
+</div>
+
+<!-- Hidden second image container -->
+<div id="imageContainer2" class="hidden">
+    <img src="images/esp32.jpg" alt="ESP32 Image" style="max-width: 100%; height: auto;"><br>
+    Photo Credit: Random Nerd Tutorials<p>
+</div>
+
+<!-- JavaScript to handle button clicks for each image -->
+<script>
+    const showImageButton1 = document.getElementById("showImageButton1");
+    const imageContainer1 = document.getElementById("imageContainer1");
+
+    const showImageButton2 = document.getElementById("showImageButton2");
+    const imageContainer2 = document.getElementById("imageContainer2");
+
+    // Toggle first image visibility
+    showImageButton1.addEventListener("click", function() {
+        imageContainer1.classList.toggle("hidden");
+    });
+
+    // Toggle second image visibility
+    showImageButton2.addEventListener("click", function() {
+        imageContainer2.classList.toggle("hidden");
+    });
+</script>
+
+<!-- CSS for styling -->
+<style>
+    /* Center the button container */
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px; /* Space between buttons */
+        margin-top: 10px;
+    }
+
+    /* Style for buttons */
+    .show-image-button {
+        padding: 5px 10px;
+        background-color: transparent;
+        color: #7f888f !important; /* Set text color to black */
+        border: 2px solid #FF6F61; /* Match the border color in your image */
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.75rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px; /* Ensure sufficient height for vertical centering */
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Center text inside the button */
+    .show-image-button:hover {
+        background-color: rgba(255, 255, 255, 0.2); /* Slightly tinted for hover effect */
+        color: #00ab41; /* Example color on hover */
+    }
+
+    /* Hide initially */
+    .hidden {
+        display: none;
+    }
+
+    /* Margin for image containers */
+    #imageContainer1, #imageContainer2 {
+        margin-top: 10px;
+    }
+</style><p>
+
+<strong>4. Server Functions:</strong><br>
+&emsp;&emsp;•<strong><code>WebServer server(80);</code></strong>This line creates a web server on port 80, the standard port for HTTP communication. By using this port, the ESP32 can serve web content that can be accessed by any device connected to the same network.<br>
+
+&emsp;&emsp;• <strong>Root Endpoint ("/"):</strong> The server listens for incoming requests at the root path where it serves the main HTML page displaying the water level data. When a device (client) connects to the server's IP address (typically 192.168.4.1) and requests this root endpoint, the ESP32 responds by sending the dynamically generated HTML page, which includes the current water level and status.<br>
+
+&emsp;&emsp;• <strong>AJAX Endpoint<code>("/water")</code></strong>An additional endpoint,<strong><code>/water</code></strong>, is defined for AJAX requests. This endpoint serves JSON data, providing the current water level and status in a lightweight format that can be processed by JavaScript in the client’s browser. This enables real-time updates on the web page without needing a full refresh. The<strong><code>/water</code></strong>endpoint is polled every second by JavaScript on the client side, fetching the latest readings and updating the displayed information.<br>
+
+&emsp;&emsp;• <strong>HTML and JSON Responses:</strong> By serving both HTML and JSON responses, the server provides flexibility. HTML is used for the initial page load, and JSON is ideal for updating specific elements (like water level and status) via JavaScript, enhancing responsiveness and reducing load times.
+
+&emsp;&emsp;• <strong>Handling Client Requests:</strong> The<strong><code>server.handleClient()</code></strong>function, called in the main<strong><code>loop()</code></strong>, listens for incoming HTTP requests and processes them based on defined endpoints. If a request is received, the server calls<strong><code>handleRoot()</code></strong>to serve the main HTML content. If a request is received at<code>"/water"</code>, the server calls<strong><code>handleWaterLevel()</code></strong>to respond with the latest JSON data. Once a request is handled, the client connection is closed to free up resources, enabling the ESP32 to handle multiple requests efficiently.
+
+This robust server configuration provides a real-time, interactive experience for users monitoring the water level.<p>
+
+<strong>5. Data Collection with<code>readDHT11()</code>:</strong><br> 
+    &emsp;&emsp;•<strong><code>analogRead(waterSensorPin)</code></strong>Reads the analog value from the water level sensor and maps it to a percentage (0–100%). The code categorizes water levels based on this percentage:<br>
+    &emsp;&emsp;&emsp;&emsp;• <strong>Low Water Level:</strong>Less than 20%<br>
+    &emsp;&emsp;&emsp;&emsp;• <strong>Normal Water Level:</strong>20% to 80%<br>
+    &emsp;&emsp;&emsp;&emsp;• <strong>High Water Level:</strong>Above 80%<br>
+    &emsp;&emsp;These ranges help users understand the water level at a glance.<p>
+
+<strong>6. Web Interface Design:</strong><br> 
+  &emsp;&emsp;• The HTML code for the web page is generated dynamically each time a client requests it. The page includes:<br>
+    &emsp;&emsp;&emsp;&emsp;• <strong>Title and Refresh:</strong> The title, "Water Level Monitor," appears at the top, and JavaScript updates the water level every second.<br>
+    &emsp;&emsp;&emsp;&emsp;• <strong>Display of Water Level and Status:</strong> The water level and its corresponding status ("Low," "Normal," or "High") appear, giving users real-time information about the water level.<p>
+
+<strong>7. JavaScript and AJAX Updates:</strong><br> 
+ &emsp;&emsp;• JavaScript with AJAX fetches updated water level data every second from the<strong><code>/water</code></strong>endpoint. This approach ensures that the displayed values on the web page are always up-to-date without requiring manual refreshes.<p>
+
+<strong>8. The Setup<code>setup()</code>and Loop<code>loop()</code>Functions:</strong><br> 
+    &emsp;&emsp;•<strong><code>setup()</code>:</strong>Initializes the sensor pin, sets up the Access Point, starts the web server, and displays the IP address.<br>
+    &emsp;&emsp;•<strong><code>loop()</code>:</strong>Continuously checks for client requests, processes data, and updates the monitoring page with the latest water level and status information.<p>
+
+
+													</div>
+
+
+											</div>
+										</div>
+
+								</section>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="generic.html">The Creation</a></li>
+										<li><a href="elements.html">Module Explainer</a></li>
+										<li>
+											<span class="opener">Introductory Projects</span>
+											<ul>
+												<li><a href="io.html">Input Output</a></li>
+												<li><a href="ai.html">Analog Inputs</a></li>
+												<li><a href="pwm.html">PWM (Analog Output)</a></li>
+												<li><a href="sws.html">Switch Web Server</a></li>
+												<li><a href="rlws.html">RGB LED Web Server</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Main Projects</span>
+											<ul>
+												<li><a href="project-1.html">Project 1</a></li>
+												<li><a href="project-2.html">Project 2</a></li>
+												<li><a href="project-3.html">Project 3</a></li>
+												<li><a href="project-4.html">Project 4</a></li>
+												<li><a href="project-5.html">Project 5</a></li>
+												<li><a href="project-6.html">Project 6</a></li>
+												<li><a href="project-7.html">Project 7</a></li>
+												<li><a href="project-8.html">Project 8</a></li>
+												<li><a href="project-9.html">Project 9</a></li>
+												<li><a href="project-10.html">Project 10</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>ADVANCED IOT PROJECTS</h2>
+									</header>
+									<div class="mini-posts">
+										<article>
+											<a href="https://youtu.be/RUO44kqNP24?si=QO3qiHGQLvJSXDaD" class="image"><img src="https://i.ytimg.com/vi/RUO44kqNP24/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLD_wUN6wdxf151rPD6UWSKlwhLK7Q" alt="" /></a>
+											<p>Patient Health Monitoring System Using Raspberry Pi</p>
+										</article>
+										<article>
+											<a href="https://youtu.be/FSqYyjZtH4g?si=9BeVl6KnJ2oD9eBl" class="image"><img src="https://i.ytimg.com/vi/FSqYyjZtH4g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCztyDAtqgoFMqVVEyold-aKebbbQ" alt="" /></a>
+											<p>Women Safety Device Using Internet of Things</p>
+										</article>
+										<article>
+											<a href="https://youtu.be/EamYfGG4Wvg?si=10C8m2DArmPMSOv3" class="image"><img src="https://i.ytimg.com/vi/EamYfGG4Wvg/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH0CYAC0AWKAgwIABABGGUgTShIMA8=&rs=AOn4CLBlZoYwXKvvyn9fsfvRhCCsItaQ3g" alt="" /></a>
+											<p>A Web-Based Accident Reporting and Tracking System</p>
+										</article>
+									</div>
+									<ul class="actions">
+										<li><a href="https://youtube.com/playlist?list=PL87CgTAGz2yZ0geJ-_9HAK2u8NDMhVwFH&si=cr7ljhFT1B8GZR3-" class="button">More</a></li>
+									</ul>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="https://sscr.edu/Beta/">https://sscr.edu/Beta/</a></li>
+										<li class="icon solid fa-phone">(046) 431-9405</li>
+										<li class="icon solid fa-home">Manila-Cavite Road, Sta. Cruz,<br />
+										Cavite City, 4100, Philippines</li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; SSC-RdC IOT Development Board. <br>All rights reserved.
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/copy.js"></script>
+
+	</body>
+</html>

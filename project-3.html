@@ -1,0 +1,511 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>PROJECT 3</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="index.html" class="logo">Project<strong> 3</strong></a>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>Intruder Alert</h1>
+									</header>
+
+									<!-- Content -->
+										<h2 id="content">HOW IT WORKS?</h2>
+										<p>In this intruder alert project, a room occupancy module is utilized, which contains a PIR (Passive Infrared) sensor. The PIR sensor detects infrared radiation emitted by objects, primarily humans, in its field of view. When a person enters the monitored area, the sensor registers a change in infrared levels and sends a signal to the Main Board. This signal triggers an alert, indicating potential intruder activity. <br><br>The system can be programmed to differentiate between movement patterns, allowing it to minimize false alarms from pets or other non-threatening sources. The integration of the PIR sensor provides an effective and responsive means of monitoring for unauthorized entry.</p>
+										<h2 id="content">PARTS NEEDED:</h2>
+										<p>• Main Board Module<br>
+										• Motion Module<br>
+										• Connector Cable<br></p>
+
+								<section>
+									<header class="main">
+										<h2 id="content">SENSOR IN THE MODULE TO BE USED</h2></header>
+										<p><strong>PIR (Passive Infrared) Sensor</strong><br> This module is used in the project in such a way that it detects changes in infrared radiation within its field of view. It consists of two infrared-sensitive elements that measure ambient infrared levels. <br><br>When a warm object, such as a person, moves through the sensor's range, it creates a differential change in detected radiation. This change triggers a signal to the Main Board, alerting to potential intruder activity. The sensor effectively ignores static heat sources, reducing false alarms and ensuring reliable monitoring of the area for unauthorized entry.</p>
+								</section>
+
+
+						<!-- Image Section -->
+						<h2>THE BUILD</h2>
+
+						<!-- Main Image (pic11.jpg) -->
+						<span class="image fit">
+						    <a href="images/spir.jpg" class="image-link"><img src="images/spir.jpg" alt="" /></a>
+						</span>
+
+						<!-- Modal Dialog -->
+						<div id="modal" class="modal">
+						    <span class="close">&times;</span>
+						    <img class="modal-content" id="modal-image">
+						</div>
+
+						<!-- JavaScript to Show Full Image on Click -->
+						<script>
+						    // Get all elements with class "image-link"
+						    const imageLinks = document.querySelectorAll('.image-link');
+
+						    // Get the modal element
+						    const modal = document.getElementById('modal');
+
+						    // Get the image element within the modal
+						    const modalImg = document.getElementById('modal-image');
+
+						    // Loop through each image link
+						    imageLinks.forEach(link => {
+						        link.addEventListener('click', function(event) {
+						            event.preventDefault(); // Prevent default link behavior
+
+						            // Get href attribute of the clicked link (full-size image URL)
+						            const imageURL = this.getAttribute('href');
+
+						            // Display the modal
+						            modal.style.display = 'flex'; // Show the modal as flexbox for centering
+
+						            // Set the clicked image as the source of the modal image
+						            modalImg.src = imageURL;
+
+						            // Reset modal content position
+						            modal.scrollTop = 0;
+						            modal.scrollLeft = 0;
+						        });
+						    });
+
+						    // Close the modal when the close button (x) is clicked
+						    const closeBtn = document.querySelector('.close');
+						    closeBtn.addEventListener('click', function() {
+						        modal.style.display = 'none';
+						    });
+
+						    // Close the modal when clicking outside of it
+						    window.addEventListener('click', function(event) {
+						        if (event.target === modal) {
+						            modal.style.display = 'none';
+						        }
+						    });
+
+						    // Enable zoom functionality
+						    modalImg.addEventListener('click', function() {
+						        if (modalImg.classList.contains('zoomed')) {
+						            modalImg.classList.remove('zoomed');
+						        } else {
+						            modalImg.classList.add('zoomed');
+						        }
+						    });
+						</script>
+
+
+												<!-- Box -->
+										<h2>INSTRUCTION(s):</h2>
+													<div class="box">
+														<p><strong>Step 1: Assembling the System</strong><br>
+<strong>Positioning the Module:</strong><br>
+1. Take the Motion Module (enclosed in the 3D-printed box) and align it over the main board.<br>
+2. Gently press the module onto the main board's connector pins until it fits securely in place.<br>   
+3. Ensure that the module is correctly seated to avoid loose connections.<p>
+<strong>Step 2: Powering the System</strong><br>
+<strong>Connecting Power:</strong><br>
+1. Get the connecting cable and attach it into the laptop that you will use to upload the code.<br>
+2. Plug in the other end of it to the main board. The system will automatically power on.<br>
+<strong>Visual Indicator Check:</strong><br>
+Observe the LED indicators on the main board. The system should show a steady power LED to confirm it's operational.<p>
+<strong>Step 3: Connecting to Web Server:</strong><br>
+1. Once the serial monitor says "Code Uploaded", open the serial monitor of the Arduino IDE then press the <strong>EN</strong> button to show the IP address.<br>
+2. Turn on your WiFi and look for <strong>ESP32_IntruderAlert</strong>. Choose that then enter <strong>12345678</strong> as the password.<br>
+3. Go to your web browser and type the IP address shown in the serial monitor, it is usually <strong>192.168.4.1</strong>. <p>
+<strong>Step 4: Monitoring and Alerts</strong><br>
+<strong>Understanding the Alerts:</strong><br>
+1. The system is equipped with a visual (web server) alert.<br>
+2. As soon as the code is uploaded, the system immediately begins monitoring for movement. When motion is detected, it sends a notification through the web server and activates the buzzer continuously. After a 3-second interval, the system refreshes and resumes monitoring. You can adjust this delay duration within the code if needed.<p>
+<strong>Testing the Alerts:</strong><br>
+To test the system, place your palm near the sensor and make varioous movements then remove it. The alerts should activate.
+														</p>
+													</div>
+
+							<!-- Preformatted Code -->
+
+<html>
+<head>
+    <title>ESP32 Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: Arial, sans-serif;}
+        .code-section { background-color: #f5f5f5;}
+        pre { white-space: pre-wrap; font-size: 0.9rem; color: #333;}
+        h2 { margin: 0 0 5px 0; font-size: 1.2rem; }
+    </style>
+    							<div class="code-section">
+							    <h2>CODE</h2>
+							    <pre><code> <!DOCTYPE HTML>
+</head>
+<body>#include &lt;WiFi.h&gt;
+#include &lt;WebServer.h&gt;
+
+// Define the Access Point credentials
+const char* ssid = "ESP32_IntruderAlert";
+const char* password = "12345678";
+
+// Define Static IP Address
+IPAddress local_IP(192, 168, 4, 1);
+IPAddress gateway(192, 168, 4, 1);
+IPAddress subnet(255, 255, 255, 0);
+
+// PIR Sensor Pin
+const int pirPin = 13;   // PIR sensor pin
+// Buzzer Pin
+const int buzzerPin = 4; // Buzzer pin
+
+bool intruderDetected = false; // Tracks if motion has been detected
+
+WebServer server(80); // Create a web server on port 80
+
+// Function to check for motion detected by the PIR sensor
+void checkForIntruder() {
+  if (digitalRead(pirPin) == HIGH) {
+    if (!intruderDetected) {
+      intruderDetected = true;
+      digitalWrite(buzzerPin, HIGH); // Turn on the buzzer
+      Serial.println("Intruder Alert! Motion Detected.");
+    }
+  } else {
+    if (intruderDetected) {
+      intruderDetected = false;
+      digitalWrite(buzzerPin, LOW); // Turn off the buzzer
+      Serial.println("No Motion Detected.");
+    }
+  }
+}
+
+// Serve the web page
+void handleRoot() {
+  String html = "&lt;html&gt;&lt;head&gt;&lt;title&gt;Intruder Alert&lt;/title&gt;";
+  html += "&lt;meta name='viewport' content='width=device-width, initial-scale=1'&gt;";
+  html += "&lt;style&gt;";
+  html += "body { font-family: Arial, sans-serif; text-align: center; background: radial-gradient(circle, white, #ff4d4d); color: black; height: 100vh; display: flex; justify-content: center; align-items: center; margin: 0; }";
+  html += ".container { width: 90%; max-width: 400px; padding: 20px; text-align: center; }";
+  html += "h1 { font-size: 2.5rem; margin-bottom: 20px; }";
+  html += ".alert { font-size: 1.5rem; color: red; margin-top: 20px; }";
+  html += "button { margin-top: 20px; padding: 10px 20px; font-size: 1.5rem; cursor: pointer; }";
+  html += "&lt;/style&gt;";
+  html += "&lt;script&gt;";
+  html += "setInterval(function() {";
+  html += "fetch('/status').then(function(response) {";
+  html += "return response.json();";
+  html += "}).then(function(data) {";
+  html += "document.getElementById('status').innerText = data.intruderDetected ? 'Intruder Detected!' : 'No Motion';";
+  html += "document.body.style.background = data.intruderDetected ? '#ff4d4d' : '#4dff4d';";
+  html += "});";
+  html += "}, 1000);";
+
+  html += "function turnOffAlarm() {";
+  html += "fetch('/turnOffAlarm');";
+  html += "}";
+  html += "&lt;/script&gt;";
+  html += "&lt;/head&gt;&lt;body&gt;";
+
+  html += "&lt;div class='container'&gt;";
+  html += "&lt;h1&gt;Intruder Alert&lt;/h1&gt;";
+  html += "&lt;div id='status' class='alert'&gt;Loading...&lt;/div&gt;";
+  html += "&lt;button onclick='turnOffAlarm()'&gt;Turn Off Alarm&lt;/button&gt;";
+  html += "&lt;/div&gt;";
+
+  html += "&lt;/body&gt;&lt;/html&gt;";
+
+  server.send(200, "text/html", html);
+}
+
+// Handle turning off the alarm
+void handleTurnOffAlarm() {
+  intruderDetected = false;
+  digitalWrite(buzzerPin, LOW); // Turn off the buzzer
+  server.send(200, "text/plain", "Alarm turned off");
+}
+
+// Serve the intruder status as JSON for AJAX requests
+void handleStatus() {
+  String json = "{ \"intruderDetected\": " + String(intruderDetected ? "true" : "false") + " }";
+  server.send(200, "application/json", json);
+}
+
+void setup() {
+  Serial.begin(115200);
+
+  pinMode(pirPin, INPUT);
+  pinMode(buzzerPin, OUTPUT);
+  digitalWrite(buzzerPin, LOW); // Ensure buzzer is off initially
+
+  // Start WiFi as an access point
+  WiFi.softAPConfig(local_IP, gateway, subnet);
+  WiFi.softAP(ssid, password);
+
+  Serial.println("Access Point Started");
+  Serial.println(WiFi.softAPIP());
+
+  // Start the web server
+  server.on("/", handleRoot);
+  server.on("/turnOffAlarm", handleTurnOffAlarm);
+  server.on("/status", handleStatus);
+  server.begin();
+}
+
+void loop() {
+  server.handleClient();  // Handle web requests
+  checkForIntruder();     // Check if the PIR sensor detects motion
+}
+</body>
+</html>
+
+
+							</code></pre>
+							    <button id="copyButton">Copy Code</button>
+							</div>
+
+<h2>CODE EXPLANATION</h2>
+<div class="box">
+    <p>The code sets up an Intruder Alert System using a PIR motion sensor and a buzzer connected to an ESP32. It creates an independent network (Access Point) for monitoring and alerts, notifying users of motion detection through a web interface and a buzzer. Let’s break it down.
+
+    <p><strong>Key Components and Their Roles</strong><br>
+<strong>1. Libraries Included:</strong><br>
+&emsp;&emsp;&emsp;•<strong><code>WiFi.h</code></strong>Manages the ESP32’s Wi-Fi capabilities, allowing it to create an Access Point.<br>
+&emsp;&emsp;&emsp;•<strong><code>WebServer.h</code></strong>Sets up a local web server on the ESP32 to host the web interface.<p>
+
+<strong>2. WiFi Setup</strong><br>
+&emsp;&emsp;&emsp;• The ESP32 creates an Access Point with the SSID "ESP32_IntruderAlert" and password "12345678," allowing secure access for monitoring.<br>
+&emsp;&emsp;&emsp;• A static IP address (192.168.4.1) is assigned for consistent access, so users can easily reach the web interface.<p>
+
+<strong>3. PIR Sensor and Buzzer Setup:</strong><br>
+&emsp;&emsp;&emsp;• The PIR sensor is connected to GPIO pin 13 and detects motion in its range.<br>
+&emsp;&emsp;&emsp;• The buzzer is connected to GPIO pin 4 and sounds an alarm when motion is detected.<br>
+&emsp;&emsp;&emsp;• The variable<strong><code>intruderDetected</code></strong>tracks the sensor status, updating when motion is detected or cleared.<p>
+
+<div class="button-container">
+    <!-- Button to show first image -->
+    <button id="showImageButton1" class="show-image-button">PIR Sensor Pinout</button>
+
+    <!-- Button to show second image -->
+    <button id="showImageButton2" class="show-image-button">ESP32 Pinout</button>
+</div>
+
+<!-- Hidden first image container -->
+<div id="imageContainer1" class="hidden">
+    <img src="images/pir.png" alt="PIR Sensor Image" style="max-width: 100%; height: auto;"><br>
+    Photo Credit: Last Minute Engineers<p>
+</div>
+
+<!-- Hidden second image container -->
+<div id="imageContainer2" class="hidden">
+    <img src="images/esp32.jpg" alt="ESP32 Image" style="max-width: 100%; height: auto;"><br>
+    Photo Credit: Random Nerd Tutorials<p>
+</div>
+
+<!-- JavaScript to handle button clicks for each image -->
+<script>
+    const showImageButton1 = document.getElementById("showImageButton1");
+    const imageContainer1 = document.getElementById("imageContainer1");
+
+    const showImageButton2 = document.getElementById("showImageButton2");
+    const imageContainer2 = document.getElementById("imageContainer2");
+
+    // Toggle first image visibility
+    showImageButton1.addEventListener("click", function() {
+        imageContainer1.classList.toggle("hidden");
+    });
+
+    // Toggle second image visibility
+    showImageButton2.addEventListener("click", function() {
+        imageContainer2.classList.toggle("hidden");
+    });
+</script>
+
+<!-- CSS for styling -->
+<style>
+    /* Center the button container */
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    /* Style for buttons */
+    .show-image-button {
+        padding: 5px 10px;
+        background-color: transparent;
+        color: #7f888f;
+        border: 2px solid #FF6F61;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.75rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Center text inside the button */
+    .show-image-button:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        color: #00ab41;
+    }
+
+    /* Hide initially */
+    .hidden {
+        display: none;
+    }
+
+    /* Margin for image containers */
+    #imageContainer1, #imageContainer2 {
+        margin-top: 10px;
+    }
+</style><p>
+
+<strong>4. Server Functions:</strong><br>
+&emsp;&emsp;&emsp;• The ESP32 runs a web server<strong><code>(WebServer server(80);)</code></strong>, listening on port 80.<br>
+&emsp;&emsp;&emsp;• Main server functions include:<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>handleRoot()</code></strong>Serves the main web page displaying the intruder status and provides a button to manually turn off the alarm.<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>handleTurnOffAlarm()</code></strong>Turns off the buzzer and resets<strong><code>intruderDetected</code></strong>if the alarm button is pressed on the web interface.<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>handleStatus()</code></strong>Provides real-time motion status as JSON data for AJAX-based updates on the interface.<p>
+
+<strong>5. Data Collection with<code>checkForIntruder()</code>:</strong><br> 
+&emsp;&emsp;&emsp;• The<strong><code>checkForIntruder()</code></strong>function reads the PIR sensor pin to detect motion.<br>
+&emsp;&emsp;&emsp;• When motion is detected, <code>intruderDetected</code> is set to true, triggering the buzzer and updating the interface. When motion stops,<strong><code>intruderDetected</code></strong>is reset, and the buzzer turns off.<p>
+
+<strong>6. Web Interface Design:</strong><br> 
+&emsp;&emsp;&emsp;• The interface uses HTML and CSS to create a simple, visually distinct alert system.<br> 
+&emsp;&emsp;&emsp;• The<strong><code>container</code></strong>div organizes the content, displaying the current status (e.g., "Intruder Detected" or "No Motion") and providing a button to turn off the alarm.<br> 
+&emsp;&emsp;&emsp;• The page background color changes dynamically to red when motion is detected and green when no motion is present, enhancing visibility of status.<p>
+
+<strong>7. JavaScript and AJAX Updates:</strong><br> 
+&emsp;&emsp;&emsp;• JavaScript polls the<strong><code>/status</code></strong>endpoint every second, fetching the latest motion status in JSON format. This enables real-time updates without reloading the page.<br> 
+&emsp;&emsp;&emsp;• The<strong><code>turnOffAlarm()</code></strong>function allows users to deactivate the alarm manually by pressing the "Turn Off Alarm" button, which sends a request to the <code>/turnOffAlarm</code> endpoint.<p>
+
+<strong>8. The Setup<code>setup()</code>and Loop<code>loop()</code>Functions:</strong><br> 
+&emsp;&emsp;&emsp;•<strong><code>setup()</code></strong>Initializes the PIR sensor and buzzer, configures the Access Point, and starts the web server.<br> 
+&emsp;&emsp;&emsp;•<strong><code>loop()</code></strong>Checks for client requests, updates motion detection through <code>checkForIntruder()</code>, and handles server communication to keep the web interface updated.<p>
+
+
+</div>
+
+
+											</div>
+										</div>
+
+								</section>
+
+<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="index.html">Homepage</a></li>
+										<li><a href="generic.html">The Creation</a></li>
+										<li><a href="elements.html">Module Explainer</a></li>
+										<li>
+											<span class="opener">Introductory Projects</span>
+											<ul>
+												<li><a href="io.html">Input Output</a></li>
+												<li><a href="ai.html">Analog Inputs</a></li>
+												<li><a href="pwm.html">PWM (Analog Output)</a></li>
+												<li><a href="sws.html">Switch Web Server</a></li>
+												<li><a href="rlws.html">RGB LED Web Server</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener">Main Projects</span>
+											<ul>
+												<li><a href="project-1.html">Project 1</a></li>
+												<li><a href="project-2.html">Project 2</a></li>
+												<li><a href="project-3.html">Project 3</a></li>
+												<li><a href="project-4.html">Project 4</a></li>
+												<li><a href="project-5.html">Project 5</a></li>
+												<li><a href="project-6.html">Project 6</a></li>
+												<li><a href="project-7.html">Project 7</a></li>
+												<li><a href="project-8.html">Project 8</a></li>
+												<li><a href="project-9.html">Project 9</a></li>
+												<li><a href="project-10.html">Project 10</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>ADVANCED IOT PROJECTS</h2>
+									</header>
+									<div class="mini-posts">
+										<article>
+											<a href="https://youtu.be/RUO44kqNP24?si=QO3qiHGQLvJSXDaD" class="image"><img src="https://i.ytimg.com/vi/RUO44kqNP24/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLD_wUN6wdxf151rPD6UWSKlwhLK7Q" alt="" /></a>
+											<p>Patient Health Monitoring System Using Raspberry Pi</p>
+										</article>
+										<article>
+											<a href="https://youtu.be/FSqYyjZtH4g?si=9BeVl6KnJ2oD9eBl" class="image"><img src="https://i.ytimg.com/vi/FSqYyjZtH4g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCztyDAtqgoFMqVVEyold-aKebbbQ" alt="" /></a>
+											<p>Women Safety Device Using Internet of Things</p>
+										</article>
+										<article>
+											<a href="https://youtu.be/EamYfGG4Wvg?si=10C8m2DArmPMSOv3" class="image"><img src="https://i.ytimg.com/vi/EamYfGG4Wvg/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH0CYAC0AWKAgwIABABGGUgTShIMA8=&rs=AOn4CLBlZoYwXKvvyn9fsfvRhCCsItaQ3g" alt="" /></a>
+											<p>A Web-Based Accident Reporting and Tracking System</p>
+										</article>
+									</div>
+									<ul class="actions">
+										<li><a href="https://youtube.com/playlist?list=PL87CgTAGz2yZ0geJ-_9HAK2u8NDMhVwFH&si=cr7ljhFT1B8GZR3-" class="button">More</a></li>
+									</ul>
+								</section>
+
+							<!-- Section -->
+								<section>
+									<header class="major">
+										<h2>Get in touch</h2>
+									</header>
+									<ul class="contact">
+										<li class="icon solid fa-envelope"><a href="https://sscr.edu/Beta/">https://sscr.edu/Beta/</a></li>
+										<li class="icon solid fa-phone">(046) 431-9405</li>
+										<li class="icon solid fa-home">Manila-Cavite Road, Sta. Cruz,<br />
+										Cavite City, 4100, Philippines</li>
+									</ul>
+								</section>
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; SSC-RdC IOT Development Board. <br>All rights reserved.
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/copy.js"></script>
+
+	</body>
+</html>
