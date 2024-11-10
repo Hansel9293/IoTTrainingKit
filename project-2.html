@@ -131,7 +131,22 @@ Observe the LED indicators on the main board. The system should show a steady po
 <strong>Step 4: Monitoring and Alerts</strong><br>
 <strong>Understanding the Alerts:</strong><br>
 1. The system is equipped with a visual (web server) alert.<br>
-2. The web server will show a visual meter reading showing the water level detected by the sensor. It should be noted that to be able to get an accurate reading, the sensor should be placed 6.45 feet above ground.<p>
+2. The web server will show a visual meter reading showing the water level detected by the sensor. It should be noted that to be able to get an accurate reading, the sensor should be placed 6.45 feet above ground.<br>
+3. To adjust the module based on desired height, you may use the following sound speed coefficients: 1 foot - 58.82 us, 2 feet - 117.65 us, 3 feet - 176.47 us. Simple computation for such would be <strong>Time = feet/0.034ft/us.</strong>. You shall incorporate this into the code if you want to try, simple troubleshooting is required for this.<p> <code>// Define thresholds in feet<br>
+const float threshold1 = 1.0;<br>
+const float threshold2 = 2.0;<br>
+const float threshold3 = 3.0;<br><br>
+
+// Function to read the distance from the ultrasonic sensor<br>
+float readFloodLevel() {<br>
+  digitalWrite(trigPin, LOW);<br>
+  delayMicroseconds(2);<br>
+  digitalWrite(trigPin, HIGH);<br>
+  delayMicroseconds(10);<br>
+  digitalWrite(trigPin, LOW);<br><br>
+  
+  duration = pulseIn(echoPin, HIGH);<br>
+  distanceCm = duration * SOUND_SPEED / 2;  // Convert time to distance in cm</code>	<br>
 <strong>Testing the Alerts:</strong><br>
 To test the system, place you palm in front of the sensor and move it closer then away. The alerts should activate.
 														</p>
