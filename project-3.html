@@ -127,8 +127,8 @@
 Observe the LED indicators on the main board. The system should show a steady power LED to confirm it's operational.<p>
 <strong>Step 3: Connecting to Web Server:</strong><br>
 1. Once the serial monitor says "Code Uploaded", open the serial monitor of the Arduino IDE then press the <strong>EN</strong> button to show the IP address.<br>
-2. Turn on your WiFi and look for <strong>ESP32_IntruderAlert</strong>. Choose that then enter <strong>12345678</strong> as the password.<br>
-3. Go to your web browser and type the IP address shown in the serial monitor, it is usually <strong>192.168.4.1</strong>. <p>
+2. Open your WiFi and look for <strong>ESP32_IntruderAlert</strong>. Choose that option and enter password <strong>12345678</strong><be>.
+3. Enter the IP address in a search engine <strong>192.168.4.1</strong>. <p>
 <strong>Step 4: Monitoring and Alerts</strong><br>
 <strong>Understanding the Alerts:</strong><br>
 1. The system is equipped with a visual (web server) alert.<br>
@@ -283,13 +283,10 @@ void loop() {
 
     <p><strong>Key Components and Their Roles</strong><br>
 <strong>1. Libraries Included:</strong><br>
-&emsp;&emsp;&emsp;•<strong><code>WiFi.h</code></strong>Manages the ESP32’s Wi-Fi capabilities, allowing it to create an Access Point.<br>
-&emsp;&emsp;&emsp;•<strong><code>WebServer.h</code></strong>Sets up a local web server on the ESP32 to host the web interface.<p>
-
+&emsp;&emsp;&emsp;•<strong><code>WiFi.h</code></strong> Executes Wi-Fi related activities, thus enabling the ESP32 to configure the formation of an Access Point for use by a user.<br>
 <strong>2. WiFi Setup</strong><br>
-&emsp;&emsp;&emsp;• The ESP32 creates an Access Point with the SSID "ESP32_IntruderAlert" and password "12345678," allowing secure access for monitoring.<br>
-&emsp;&emsp;&emsp;• A static IP address (192.168.4.1) is assigned for consistent access, so users can easily reach the web interface.<p>
-
+&emsp;&emsp;&emsp;• By inserting the ESP32, an Access Point is configured with the Service Set Identifier (SSID) ESP32_IntruderAlert and the password 12345678.<br>
+&emsp;&emsp;&emsp;• The ESP32 configures a static IP address for easy connection to the control interface by users.<p>
 <strong>3. PIR Sensor and Buzzer Setup:</strong><br>
 &emsp;&emsp;&emsp;• The PIR sensor is connected to GPIO pin 13 and detects motion in its range.<br>
 &emsp;&emsp;&emsp;• The buzzer is connected to GPIO pin 4 and sounds an alarm when motion is detected.<br>
@@ -422,6 +419,7 @@ void loop() {
 									</header>
 									<ul>
 										<li><a href="index.html">Homepage</a></li>
+										<li><a href="generic.html">The Creation</a></li>
 										<li><a href="elements.html">Module Explainer</a></li>
 										<li>
 											<span class="opener">Introductory Projects</span>
