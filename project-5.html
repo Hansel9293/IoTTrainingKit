@@ -29,7 +29,7 @@
 
                   <!-- Content -->
                     <h2 id="content">How It Works?</h2>
-                    <p>In this Library Management System project, the fingerprint sensor will bes used to allow borrowing and returning of books. The users will be prompted to scan their fingerprint and their name before being allowed to enter the book they want to borrow. A list of available books will be displayed in the homepage as well. Javascript in the code is utilized in multiple buttons and saving of the fingerprints.</p>
+                    <p>This will be done by installing a fingerprint sensor to Unlock and check out books, as well as to lock and return books. The users will be required to scan for their fingerprint and their name before they are let in the book they want to borrow. There is also going to be a list of books that are available in the homepage show above. Javascript in the code is used in various buttons as well as the saving of the fingerprints.</p>
                     <h2 id="content">Parts Needed:</h2>
                     <p>• Main Board Module<br>
                     • Biometrics Module <br>
@@ -38,7 +38,7 @@
                 <section>
                   <header class="main">
                     <h2 id="content">Sensor in the Module to be Used</h2></header>
-                    <p><strong>AS608 Fingerprint Sensor</strong><br> This module is used in the project in such a way that it captures an individual's unique fingerprint patterns when they place their finger on the scanner. The sensor uses optical or capacitive technology to create a digital representation of the fingerprint.</p>
+                    <p><strong>AS608 Fingerprint Sensor</strong><br> Used in the project whereby an individual is required to put his finger on the scanner in order to get his/her unique fingerprint pattern impressed on the module. This causes the creation of a digital image by the sensor, which uses optical or capacitive manner at making it.</p>
                 </section>
 
 
@@ -128,8 +128,8 @@
 Observe the LED indicators on the main board. The system should show a steady power LED to confirm it's operational.<p>
 <strong>Step 3: Connecting to Web Server:</strong><br>
 1. Once the serial monitor says "Code Uploaded", open the serial monitor of the Arduino IDE then press the <strong>EN</strong> button to show the IP address.<br>
-2. Turn on your WiFi and look for <strong>ESP32_Library_System"</strong>. Choose that then enter <strong>12345678</strong> as the password.<br>
-3. Go to your web browser and type the IP address shown in the serial monitor, it is usually <strong>192.168.4.1</strong>. <p>
+2. Open your WiFi and look for <strong>ESP32_WaterLevel</strong>. Choose that option and enter password <strong>12345678</strong><be>.
+3. Enter the IP address in a search engine <strong>192.168.4.1</strong>. <p>
 <strong>Step 4: Monitoring and Alerts</strong><br>
 <strong>Understanding the Alerts:</strong><br>
 1. The system is equipped with a visual (web server) alert.<br>
@@ -501,16 +501,13 @@ void loop() {
 
     <p><strong>Key Components and Their Roles</strong><br>
 <strong>1. Libraries Included:</strong><br>
-&emsp;&emsp;&emsp;•<strong><code>WiFi.h</code></strong>Manages Wi-Fi operations, allowing the ESP32 to create an Access Point (AP) for user access.<br>
-&emsp;&emsp;&emsp;•<strong><code>WebServer.h</code></strong>Sets up an HTTP server on the ESP32 to host the control interface.<br>
-&emsp;&emsp;&emsp;•<strong><code>Adafruit_Fingerprint.h</code></strong>Communicates with the fingerprint sensor to manage user authentication and registration.<p>
-
+&emsp;&emsp;&emsp;•<strong><code>WiFi.h</code></strong> Executes Wi-Fi related activities, thus enabling the ESP32 to configure the formation of an Access Point for use by a user.<br>
+&emsp;&emsp;&emsp;•<strong><code>Adafruit_Fingerprint.h</code></strong>Used for registration and authentication of the fingerprints.<p>
 <strong>2. WiFi Setup</strong><br>
-&emsp;&emsp;&emsp;• The ESP32 creates an Access Point with SSID "ESP32_Library_System" and password "12345678," enabling secure access for users to borrow and return books.<br>
-&emsp;&emsp;&emsp;• A static IP is assigned to simplify access to the web interface, where users interact with the system.<p>
-
+&emsp;&emsp;&emsp;• By inserting the ESP32, an Access Point is configured with the Service Set Identifier (SSID) ESP32_Library_System and the password is 12345678.<br>
+&emsp;&emsp;&emsp;• The ESP32 configures a static IP address for easy connection to the control interface by users.<p>
 <strong>3. Fingerprint Sensor Configuration:</strong><br>
-&emsp;&emsp;&emsp;• The fingerprint sensor connects to the ESP32 via designated RX and TX pins, with the<strong><code>Adafruit_Fingerprint</code></strong>library managing fingerprint enrollment and identification.<br>
+&emsp;&emsp;&emsp;• The fingerprint sensor is connected to RX and TX pins, with the<strong><code>Adafruit_Fingerprint</code></strong>library mainly being used for the management of the biometrics.<br>
 &emsp;&emsp;&emsp;• Registered users can check out and return books by scanning their fingerprints.<p>
 
 <div class="button-container">
@@ -602,12 +599,12 @@ void loop() {
 &emsp;&emsp;&emsp;• User information, including name and ID, is stored in arrays to verify and retrieve user data.<p>
 
 <strong>5. Book Management:</strong><br>
-&emsp;&emsp;&emsp;• The system maintains a list of 10 predefined books, with each book's availability status tracked by <code>bookAvailable</code>.<br>
-&emsp;&emsp;&emsp;• When a user selects a book title, the system checks its availability and either borrows or returns the book accordingly.<br>
+&emsp;&emsp;&emsp;• Up to 10 books can be placed inside the code, they may be able to put additional number of books by altering the C++ code. <code>bookAvailable</code>.<br>
+&emsp;&emsp;&emsp;• The availability of the books are checked every time a function is made.<br>
 &emsp;&emsp;&emsp;• Only books marked as "available" can be borrowed, and books that are currently borrowed can be returned.<p>
 
 <strong>6. User Authentication and Borrow/Return Process:</strong><br>
-&emsp;&emsp;&emsp;•<strong><code>checkFingerprint()</code></strong> verifies the user’s identity by comparing their scanned fingerprint to registered IDs. Verified users can proceed with book check-out/in.<br>
+&emsp;&emsp;&emsp;• Checking whether the scanned fingerprint is registered or not is a job of the<strong><code>checkFingerprint()</code></strong>. Verified users can proceed with book check-out/in.<br>
 &emsp;&emsp;&emsp;• If a user is recognized, the system enables book input for borrowing or returning books. Unrecognized users can opt to register.<br>
 &emsp;&emsp;&emsp;• Each transaction is logged, allowing users to view a record of recent actions.<p>
 
@@ -643,6 +640,7 @@ void loop() {
                   </header>
                   <ul>
                     <li><a href="index.html">Homepage</a></li>
+                    <li><a href="generic.html">The Creation</a></li>
                     <li><a href="elements.html">Module Explainer</a></li>
                     <li>
                       <span class="opener">Introductory Projects</span>
