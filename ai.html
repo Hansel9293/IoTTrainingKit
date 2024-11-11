@@ -29,15 +29,12 @@
 
 									<!-- Content -->
 										<h2 id="content">ABOUT THE PROJECT</h2>
-										<p>For the said purposes, in this introductory guide, you will be informed of how to use ESP32 with Arduino IDE in reading digital inputs such as a button switch and control digital outputs like an LED. For the above purposes, we are going to make a simple project using a pushbutton and an LED. In this example, we are going to read the state of the pushbutton connected and control the LED lighting or not based on the pressed button as depicted in the figure.</p>
+										<p>In this project, you will be learning about how an ESP32 is able to reag analog inputs using different variable resistors.</p>
 										<h2 id="content">PARTS NEEDED:</h2>
 										<p>• Main Board Module<br>
-										• LED<br>
-										• 10k Ohm Resistor<br>
+										• Ptentiometer <br>
 										• Breadboard<br>
 										• Jumper Wires<br>
-										• Pushbutton<br>
-										• 220 Ohm Resistor <br></p>
 
 						<!-- Image Section -->
 						<h2>THE BUILD</h2>
@@ -51,7 +48,7 @@
 												<!-- Box -->
 										<h2>INSTRUCTION(s):</h2>
 													<div class="box">
-														<p>Before you begin, you will establish a circuit with an LED and a pushbutton. Connect this circuit up to your ESP32, having your LED connected at GPIO 5 and your push button at GPIO 4. Upload the code above. After uploading, you should look at your circuit. Your LED should now come on each time you click on your pushbutton.
+														<p>The VCC and GND of the potentiometer should ceonnected to the corresponding ESP32 pins while the signal pin is connected to D4.
 														</p>
 													</div>
 
@@ -70,37 +67,20 @@
 							    <h2>CODE</h2>
 							    <pre><code> <!DOCTYPE HTML>
 </head>
-<body>// Pin assignments
-const int buttonPin = 4; // the number of the pushbutton pin
-const int ledPin = 5;    // the number of the LED pin
+<body>// Potentiometer is connected to GPIO 4 (Analog
+ADC2_CH0) const int potPin = 4;
 
-// Variable for storing the pushbutton state
-int buttonState = 0;
+// variable for storing the potentiometer valueint potValue = 0;
 
 void setup() {
-  // Start the serial communication for debugging
-  Serial.begin(115200);
-  
-  // Initialize the pushbutton pin as an input
-  pinMode(buttonPin, INPUT);
-  
-  // Initialize the LED pin as an output
-  pinMode(ledPin, OUTPUT);
-}
+Serial.begin(115200);
+delay(1000);}
 
 void loop() {
-  // Read the state of the pushbutton value
-  buttonState = digitalRead(buttonPin);
-
-  // Check if the button is pressed
-  if (buttonState == HIGH) {
-    // Turn on the LED
-    digitalWrite(ledPin, HIGH);
-  } else {
-    // Turn off the LED
-    digitalWrite(ledPin, LOW);
-  }
-}</body>
+// Reading potentiometer value
+potValue = analogRead(potPin);
+Serial.println(potValue);
+delay(500);}</body>
 </html>
 							</code></pre>
 							    <button id="copyButton">Copy Code</button>
