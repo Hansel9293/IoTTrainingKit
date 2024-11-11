@@ -29,22 +29,22 @@
 
 									<!-- Content -->
 										<h2 id="content">ABOUT THE PROJECT</h2>
-										<p>In this project, you’ll learn how to control an RGB LED remotely using an ESP32 web server that includes a color picker. Here’s a breakdown of how the web server works:<br>
+										<p>In this project, you will be able to control and RGB LED using the ESP32. <br>
 
-&emsp;&emsp;&emsp;<strong>• Color Picker Interface:</strong> The ESP32 hosts a web server that displays a color picker in the browser.<br>
-&emsp;&emsp;&emsp;<strong>• Choosing a Color:</strong> When you select a color, the browser sends a request containing the R, G, and B parameters (Red, Green, Blue values) of the chosen color.<br>
+&emsp;&emsp;&emsp;<strong>• Color Picker Interface:</strong> ESP32 hosts a web server showing a color picker in the browser.<br>
+&emsp;&emsp;&emsp;<strong>• Choosing a Color:</strong> During color selection, the browser constructs a message requesting the red, green, and blue values of the selected color.<br>
 &emsp;&emsp;&emsp;<strong>• ESP32 Processing:</strong> The ESP32 receives the request, extracts each color parameter, and assigns the corresponding value to each color channel.<br>
-&emsp;&emsp;&emsp;<strong>• PWM Signal Output:</strong> The ESP32 then sends PWM signals with the specified intensities to the GPIO pins controlling the RGB LED, adjusting the brightness for each color.<br><br>
+&emsp;&emsp;&emsp;<strong>• PWM Signal Output:</strong> On receiving the request, the ESP32 extracts each color parameter and assigns each color channel to the requested value.<br><br>
 
 <strong>How Do RGB LEDs Work?</strong><br>
-In this project, we’re using a common-cathode RGB LED, where all three LEDs (Red, Green, and Blue) share a common ground (cathode). By applying PWM signals to the Red, Green, and Blue pins of the LED, you can control the intensity of each color and produce a wide range of colors.<br><br>
+All three LEDs Red, Green, and Blue share a common ground (cathode). By making a PWM signal through the Red, Green, and Blue pins of the LED, you can regulate the intensity of each color and create an extensive amount of colors.<br><br>
 
 <strong>Creating Different Colors</strong><br>
-&emsp;&emsp;&emsp;<strong>• Primary Colors:</strong> The RGB LED can produce red, green, and blue light by setting each LED channel to high intensity individually.<br>
-&emsp;&emsp;&emsp;<strong>• Mixing Colors:</strong> By adjusting the intensity of each color, you can create different colors.<br>
-&emsp;&emsp;&emsp;<strong>• Blue Light:</strong> Set only the blue LED to the highest intensity while keeping red and green at their lowest.<br>
-&emsp;&emsp;&emsp;<strong>• White Light:</strong> Set all three LEDs (Red, Green, Blue) to the highest intensity.<br>
-&emsp;&emsp;&emsp;<strong>• Color Combination:</strong> The close proximity of the LEDs causes their colors to blend, so we see the combined color rather than each color individually. By using a PWM signal to control each LED’s brightness, you can create colors with various shades and intensities.</p><br>
+&emsp;&emsp;&emsp;<strong>• Primary Colors:</strong> Using this RGB LED you can have the individual control to emit light through Red, Green, Blue color individually to a high degree of intensity.<br>
+&emsp;&emsp;&emsp;<strong>• Mixing Colors:</strong> All of the colours can be obtained by altering the light intensities for all colours.<br>
+&emsp;&emsp;&emsp;<strong>• Blue Light:</strong> Make all the others Red, Green at least the minimum light intensity with maximum Blue<br>
+&emsp;&emsp;&emsp;<strong>• White Light:</strong> At their peak intensity operate Red, Green, and Blue.<br>
+&emsp;&emsp;&emsp;<strong>• Color Combination:</strong> Because LEDs are placed in close proximity to one another, the colors tend to mix. We thereby see the composite color rather than each color. You can create different shades and intensity by controlling the brightness of each LED with a PWM signal.</p><br>
 										<h2 id="content">PARTS NEEDED:</h2>
 										<p>• Main Board Module<br>
 										• RGB LED<br>
@@ -64,7 +64,7 @@ In this project, we’re using a common-cathode RGB LED, where all three LEDs (R
 												<!-- Box -->
 										<h2>INSTRUCTION(s):</h2>
 													<div class="box">
-														<p>Before you begin, you'll need to set up a circuit with an LED and a pushbutton. Connect the LED to GPIO 5 and the pushbutton to GPIO 4 on the ESP32.<br>Once you've uploaded the code, test your circuit. The LED should light up whenever you press the pushbutton.
+														<p>Connect the pins of the RGB LED as displayed in the image. Ensure that the pins are conencted correctly to make the project work.
 														</p>
 													</div>
 
