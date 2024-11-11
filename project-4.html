@@ -29,7 +29,8 @@
 
 									<!-- Content -->
 										<h2 id="content">HOW IT WORKS?</h2>
-										<p>In this fingerprint attendance project, an office attendance module is utilized, which features a fingerprint reader sensor. The fingerprint reader sensor captures the unique patterns of an individual's fingerprint when they place their finger on the scanner. Once the fingerprint is scanned, the sensor compares it against stored templates in the system. If there is a match, the sensor sends a signal to the Main Board to record the attendance entry for that individual. <br><br>The system can also provide options for check-in and check-out, ensuring accurate tracking of employee attendance. The integration of the fingerprint sensor offers a secure and efficient method for managing attendance in the workplace.</p>
+										<p>For this fingerprint attendance project, an office attendance module is used; it comes with a fingerprint reader sensor. The lense moves lightly and scans the fingerprint of a person when they touch the surface of the scanner. Finally upon scanning of the fingerprint, the sensor matches the scanned image with the already existing images in the system. In the case of a match, the signal goes to the Main Board to establish that person’s attendance entry. <br><|human|>The system also has choices for check-in and check-out methods to guarantee the correct sighting of the employee’s attendance. The integration of the fingerprint sensor makes a safe and effective way to solve the problem of controlling attendance at work.
+</p>
 										<h2 id="content">PARTS NEEDED:</h2>
 										<p>• Main Board Module<br>
 										• Biometrics Module <br>
@@ -38,7 +39,7 @@
 								<section>
 									<header class="main">
 										<h2 id="content">SENSOR IN THE MODULE TO BE USED</h2></header>
-										<p><strong>AS608 Fingerprint Sensor</strong><br> This module is used in the project in such a way that it captures an individual's unique fingerprint patterns when they place their finger on the scanner. The sensor uses optical or capacitive technology to create a digital representation of the fingerprint. This image is then compared against pre-registered templates stored in the system. If a match is found, the sensor sends a signal to the Main Board to record the attendance entry. This process ensures secure and accurate identification, streamlining the attendance tracking system.</p>
+										<p><strong>AS608 Fingerprint Sensor</strong><br> Used in the project whereby an individual is required to put his finger on the scanner in order to get his/her unique fingerprint pattern impressed on the module. This causes the creation of a digital image by the sensor, which uses optical or capacitive manner at making it.</p>
 								</section>
 
 						<!-- Image Section -->
@@ -126,8 +127,8 @@
 Observe the LED indicators on the main board. The system should show a steady power LED to confirm it's operational.<p>
 <strong>Step 3: Connecting to Web Server:</strong><br>
 1. Once the serial monitor says "Code Uploaded", open the serial monitor of the Arduino IDE then press the <strong>EN</strong> button to show the IP address.<br>
-2. Turn on your WiFi and look for <strong>ESP32_Fingerprint_Attendance"</strong>. Choose that then enter <strong>12345678</strong> as the password.<br>
-3. Go to your web browser and type the IP address shown in the serial monitor, it is usually <strong>192.168.4.1</strong>. <p>
+2. Open your WiFi and look for <strong>ESP32_WaterLevel</strong>. Choose that option and enter password <strong>12345678</strong><be>.
+3. Enter the IP address in a search engine <strong>192.168.4.1</strong>. <p>
 <strong>Step 4: Monitoring and Alerts</strong><br>
 <strong>Understanding the Alerts:</strong><br>
 1. The system is equipped with a visual (web server) alert.<br>
@@ -571,21 +572,17 @@ void loop() {
 
 <h2>CODE EXPLANATION</h2>
 <div class="box">
-    <p>The code sets up a Fingerprint Attendance System using a fingerprint sensor and an ESP32, creating an Access Point (AP) for users to manage attendance logs, view registered users, and register new fingerprints in real-time. Let’s break it down.
-
+    <p>The code establishes a Fingerprint Attendance System using a fingerprint sensor and ESP32 employed an access point through which users can actually check the logs, all the users registered, and even register fingerprints to the system. Let’s break it down.
     <p><strong>Key Components and Their Roles</strong><br>
 <strong>1. Libraries Included:</strong><br>
-&emsp;&emsp;&emsp;•<strong><code>WiFi.h</code></strong>Handles the ESP32’s Wi-Fi operations, allowing it to create an Access Point.<br>
-&emsp;&emsp;&emsp;•<strong><code>WebServer.h</code></strong>Sets up a local HTTP server on the ESP32 to host the web interface.<br>
-&emsp;&emsp;&emsp; <strong><code>Adafruit_Fingerprint.h</code></strong>Manages fingerprint sensor operations, including enrollment and verification.<p>
-
+&emsp;&emsp;&emsp;•<strong><code>WiFi.h</code></strong> Executes Wi-Fi related activities, thus enabling the ESP32 to configure the formation of an Access Point for use by a user.<br>
+&emsp;&emsp;&emsp;•<strong><code>Adafruit_Fingerprint.h</code></strong>Used for registration and authentication of the fingerprints.<p>
 <strong>2. WiFi Setup</strong><br>
-&emsp;&emsp;&emsp;• The ESP32 creates an Access Point with the SSID "ESP32_Fingerprint_Attendance" and password "12345678" to securely connect users.<br>
-&emsp;&emsp;&emsp;• A static IP address (192.168.4.1) is assigned, ensuring consistent access to the web server for users.<p>
-
-<strong>3. Fingerprint Sensor Setup:</strong><br>
-&emsp;&emsp;&emsp;• The fingerprint sensor connects to the ESP32 through RX (pin 16) and TX (pin 17) pins, communicating via<strong><code>Serial2</code></strong>at a baud rate of 57600.<br>
-&emsp;&emsp;&emsp;• The<strong><code>Adafruit_Fingerprint</code></strong>object<strong><code>finger</code></strong>manages all fingerprint operations, enabling seamless enrollment and attendance tracking.<p>
+&emsp;&emsp;&emsp;• By inserting the ESP32, an Access Point is configured with the Service Set Identifier (SSID) ESP32_Fingerprint and the password is 12345678.<br>
+&emsp;&emsp;&emsp;• The ESP32 configures a static IP address for easy connection to the control interface by users.<p>
+<strong>3. Fingerprint Sensor Configuration:</strong><br>
+&emsp;&emsp;&emsp;• The fingerprint sensor is connected to RX and TX pins, with the<strong><code>Adafruit_Fingerprint</code></strong>library mainly being used for the management of the biometrics.<br>
+&emsp;&emsp;&emsp;• Registered users can check out and return books by scanning their fingerprints.<p>
 
 <div class="button-container">
     <!-- Button to show first image -->
@@ -671,11 +668,12 @@ void loop() {
 </style><p>
 
 <strong>4. Server Functions:</strong><br>
-&emsp;&emsp;&emsp;• The ESP32 runs a web server<strong><code>(WebServer server(80);)</code></strong>, listening on port 80.<br>
+&emsp;&emsp;&emsp;• The ESP32 initializes a web server<strong><code>(WebServer server(80);)</code></strong>made through port 80.<br>
 &emsp;&emsp;&emsp;• Key server functions include:<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>handleRoot()</code></strong>Displays the main web page, which includes controls for registering fingerprints and toggling attendance logs.<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>handleStatus()</code></strong>Serves real-time JSON data, including messages and attendance logs, enabling AJAX-based updates on the web interface.<br>
-&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>initiateRegistration()</code></strong>and<strong><code>cancelRegistration()</code></strong>Manage the registration process, starting and canceling as requested.<p>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>handleRoot()</code></strong>Starts with the main web page arising with Register Finger option and On/Off of the attendance log.<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>handleStatus()</code></strong>Presents messages and attendance logs as real time JSON which allows AJAX based update to the web interface.
+<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>initiateRegistration()</code></strong>and<strong><code>cancelRegistration()</code></strong>Oversee the registration process, start and stop as necessary.<p>
 
 <strong>5. Data Collection with<code>checkFingerprint()</code>:</strong><br> 
 &emsp;&emsp;&emsp;• The<strong><code>checkFingerprint()</code></strong>function continuously monitors the fingerprint sensor.<br>
@@ -713,6 +711,7 @@ void loop() {
 									</header>
 									<ul>
 										<li><a href="index.html">Homepage</a></li>
+										<li><a href="generic.html">The Creation</a></li>
 										<li><a href="elements.html">Module Explainer</a></li>
 										<li>
 											<span class="opener">Introductory Projects</span>
