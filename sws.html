@@ -29,15 +29,15 @@
 
 									<!-- Content -->
 										<h2 id="content">ABOUT THE PROJECT</h2>
-										<p>In this project, you’ll build a standalone web server using the ESP32 and the Arduino IDE, allowing you to control two LEDs from any device with a browser on your local network. The web server is designed to be mobile responsive, so it works well on both desktop and mobile devices. We’ll guide you through creating the web server and explain the code step-by-step.<br><br>
+										<p>In the following project you will create a stand-alone web server using your ESP32 and the Arduino IDE. This is how you can control two LEDs from every device containing a browser on your own LAN. The web server here has been designed to be mobile responsive for ideal use with the desktop and mobile version. Here we'll show how to create the web server step-by-step through the code in this tutorial.<br><br>
 
-Before diving into the project, here’s a summary of what our web server will accomplish to help make the steps easier to follow:<br>
+Before we start the project, let's outline exactly what our web server is going to do to make things a bit easier to understand:<br>
 
-&emsp;&emsp;&emsp;- <strong>LED Control:</strong> The web server will control two LEDs connected to the ESP32’s GPIO 26 and GPIO 27 pins.<br>
-&emsp;&emsp;&emsp;- <strong>Accessing the Web Server:</strong> You’ll be able to access the ESP32 web server by typing the ESP32’s IP address into a browser on any device within the same local network.<br>
-&emsp;&emsp;&emsp;- <strong>Interactive Control:</strong> The web interface will feature buttons that allow you to toggle each LED on or off in real time by simply clicking.<br>
+&emsp;&emsp;&emsp;- <strong>LED Control:</strong> The web server will control two LEDs connected to GPIO 26 and GPIO 27 pins of the ESP32.<br>
+&emsp;&emsp;&emsp;- <strong>Accessing the Web Server:</strong> The web server of ESP32 can be accessed from any device on that network by typing the IP address of ESP32 in the browser.<br>
+&emsp;&emsp;&emsp;- <strong>Interactive Control:</strong> The web interface should have buttons that let you toggle each LED on/off in real time just by clicking.<br>
 
-With this setup, you’ll have a responsive web server that controls outputs, providing a straightforward way to manage connected devices from anywhere within your network.</p>
+Using this setup, you are going to have a responsive web server controlling your outputs with a simple way to manage devices connected to your network from any point.</p>
 										<h2 id="content">PARTS NEEDED:</h2>
 										<p>• Main Board Module<br>
 										• 2 x LED<br>
@@ -59,9 +59,9 @@ With this setup, you’ll have a responsive web server that controls outputs, pr
 													<div class="box">
 														<p>To begin, build the circuit by connecting two LEDs to the ESP32, following the schematic diagram:<br>
 
-&emsp;&emsp;&emsp;<strong>• Connect one LED to GPIO 26:</strong> Attach the positive (anode) leg of the LED to GPIO 26 and the negative (cathode) leg to ground via a resistor (typically 220Ω or 330Ω to limit current).<br>
-&emsp;&emsp;&emsp;<strong>• Connect the other LED to GPIO 27:</strong> Similarly, connect the positive leg of this LED to GPIO 27 and the negative leg to ground with a resistor.<br><br>
-<i><strong>Note:</strong> This guide uses the ESP32 DEVKIT DOIT board with 36 pins. Before wiring, ensure you verify the pinout for your specific board model, as pin configurations may vary. This helps prevent miswiring and ensures that each LED is correctly connected to the intended GPIO pins.</i>
+&emsp;&emsp;&emsp;<strong>• LED on GPIO 26: Connect anode (positive leg) of an LED to GPIO 26 and cathode (negative leg) to ground through a resistor, normally 220Ω or 330Ω, to limit the current.<br>
+&emsp;&emsp;&emsp;&emsp;<strong>Connect the other LED to GPIO 27: </strong>Connect the positive leg of this LED to GPIO 27 and negative to GND with a resistor. <br><br>
+<i><strong>Important Note:</strong> This project is hardwired on the ESP32 DEVKIT DOIT, which has 36 pins. Before wiring, please check that the board model you are using is correct, as some boards could have different pinouts. This will avoid miswiring and lead to each LED being correctly connected to its target GPIO pin.
 														</p>
 													</div>
 
