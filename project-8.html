@@ -29,7 +29,7 @@
 
 									<!-- Content -->
 										<h2 id="content">HOW IT WORKS?</h2>
-										<p>Soil moisture monitoring involves using sensors to measure the amount of moisture present in the soil, which is crucial for ensuring optimal conditions for plant growth and effective water management. The sensor is installed in the ground at root level and can vary in type, such as resistive, capacitive, or time-domain reflectometry sensors. These device measure soil moisture by detecting electrical properties; for instance, resistive sensors assess the resistance between two electrodes, where wetter soil conducts electricity better, resulting in lower resistance, while drier soil has higher resistance. Once the sensor collects moisture data, it transmits this information to a microcontroller or monitoring system, either through wired connections or wirelessly. The microcontroller processes the data to determine the moisture level, often converting it into a readable format such as percentage moisture content.
+										<p>Soil moisture is used in determination of the amount of water existing in the soil and this is important for checking proper growth conditions for plant and water conservation programme. It is an underground sensor placed at root level or may be of resistive, capacitive or time domain reflectometry type. Such device determines the soil moisture through three electrical properties: Resistive sensors measure the resistance between two electrodes, the higher the moisture levels the lower resistance while the lower moisture levels, the higher the resistance. Once the sensor acquires moisture data, it forward such data to a microcontroller or monitoring system, using wired links or cables or through wireless communication. The microcontroller analyses the data and perhaps calculates there from the degree of moisture, normally converted to a format such as percentage moisture content.
 
 
 
@@ -43,8 +43,8 @@
 							<section>
 								<header class="main">
 									<h2 id="content">SENSOR IN THE MODULE TO BE USED</h2></header>
-									<p><strong>HL-69 Moisture Sensor</strong><br> The prongs of HL-69 Moisture Sensor measures the moisture level in the soil by passing an electric current through it and gauging the resistance. Moist soil allows electricity to flow more easily, resulting in lower resistance, whereas dry soil, which conducts electricity poorly, has higher resistance. <br> <br> 
-									If the soil is wet, it conducts electricity better because water increases conductivity, resulting in lower resistance. Conversely, if the soil is dry, it conducts electricity poorly, leading to higher resistance. This data is then sent to a microcontroller, like an Arduino, which interprets the resistance levels to determine the moisture content of the soil. Based on the readings, the system can trigger actions like watering plants when the soil is too dry.</p>
+									<p><strong>HL-69 Moisture Sensor</strong><br> The prongs of the HL-69 Moisture Sensor to determine the soil moisture by sending a current there through and then comparing the level of electrical resistance. In moist condition, with flow of current is easy and therefore the resistance is low while in a dry condition, the conductivity of electricity is poor, therefore the resistance is high.  <br> <br> 
+									This data is then, passed on to a microcontroller for example an Arduino, to estimate the resistance level in order to analyze the moisture content of the soil. It can execute such actions as watering of plants when the amounts of soil moisture are too low, according to the readings.</p>
 							</section>
 
 						<!-- Image Section -->
@@ -134,17 +134,17 @@
 Observe the LED indicators on the main board. A steady power LED confirms that the system is operational.<p>
 
 <strong>Step 3: Connecting to Web Server:</strong><br>
-1. After uploading the code, open the serial monitor in the Arduino IDE and press the <strong>EN</strong> button to display the IP address.<br>
-2. Turn on your WiFi and look for <strong>ESP32_Soil_Moisture</strong>. Select it and enter <strong>12345678</strong> as the password.<br>
-3. Open your web browser and type the IP address shown in the serial monitor, usually <strong>192.168.4.1</strong>.<p>
+1. Once the serial monitor says "Code Uploaded", open the serial monitor of the Arduino IDE then press the <strong>EN</strong> button to show the IP address.<br>
+2. Open your WiFi and look for <strong>ESP32_Soil_Moisture</strong>. Choose that option and enter password <strong>12345678</strong><be>.
+3. Enter the IP address in a search engine <strong>192.168.4.1</strong>. <p>
 
 <strong>Step 4: Monitoring and Alerts</strong><br>
 <strong>Understanding the Alerts:</strong><br>
-1. The system includes a web server that displays soil moisture levels in real-time.<br>
-2. When the soil moisture reading is high (sensor value above 4000), it will display "Dry Soil." For moderate levels (sensor value between 2500 and 4000), it shows "Moist Soil," and for low levels (below 2500), it indicates "Wet Soil." The moisture status appears below the numerical sensor reading.<p>
+1.  It also comprises a web server for monitoring soil moisture content in real-time on a locally hosted websire.<br>
+2. However, when the sensor reading for the soil moisture is high, the message “Dry Soil.” will appear, when sensor value is above 4000. For moderate level it illustrates as “Moist Soil” when sensor value lies between 2500 and 4000 and, “Wet Soil” if it comes below 2500. The moisture status is presented as a figure preceded by words ‘numerical sensor reading’ below which it continues.<p>
 
 <strong>Testing the Alerts:</strong><br>
-To test the system, place the sensor in various moisture conditions (dry soil, wet soil, etc.) to observe the corresponding alerts on the web interface.
+To verify the system put the sensor in various moistures (dry, wet, etc.) to see that it would provide the respective alerts on the web interface.
 
 														</p>
 													</div>
@@ -325,12 +325,12 @@ void loop() {
 														<p>The code sets up a Soil Moisture Monitoring System using an ESP32, where users can monitor the soil moisture level on a web page in real-time. Let's break it down.
 														<p><strong>Key Components and Their Roles</strong><br>
 <strong>1. Libraries Included:</strong><br>
-&emsp;&emsp;&emsp;•<strong><code>WiFi.h</code></strong> Handles the ESP32’s Wi-Fi operations, allowing it to establish an Access Point.<br>
+&emsp;&emsp;&emsp;•<strong><code>WiFi.h</code></strong> Executes Wi-Fi related activities, thus enabling the ESP32 to configure the formation of an Access Point for use by a user.<br>
 <strong>2. WiFi Setup</strong><br>
-&emsp;&emsp;&emsp;• The ESP32 creates an Access Point with the name (SSID) "ESP32_Soil_Moisture" and password "12345678."<br>
-&emsp;&emsp;&emsp;• It also assigns a static IP address (192.168.4.1) for consistent access, so users always know where to find it.<p>
+&emsp;&emsp;&emsp;• By inserting the ESP32, an Access Point is configured with the Service Set Identifier (SSID) ESP32_Soil_Moisture and the password 12345678 to enable users control the water pump.<br>
+&emsp;&emsp;&emsp;• The ESP32 configures a static IP address for easy connection to the control interface by users.<p>
 <strong>3. Soil Moisture Sensor Setup:</strong><br>
-&emsp;&emsp;&emsp;• The Soil Moisture sensor is connected to pin 34 of the ESP32, with the <strong><code>#define</code></strong> statements specifying the pin and sensor type.<br>
+&emsp;&emsp;&emsp;• The Soil Moisture sensor is connected to pin 34 of the ESP32, with the <strong><code>#define</code></strong> pointing out the pin and sensor to be used.<br>
 
 <div class="button-container">
     <!-- Button to show first image -->
@@ -417,31 +417,32 @@ void loop() {
 
 <strong>4. Soil Moisture Sensor Data Collection</strong><br>
     &emsp;&emsp;•<strong><code>analogRead(SENSOR_PIN)</code></strong>:Reads the analog value from the sensor connected to pin 34. Based on this value, the code categorizes soil moisture as:<br>
-    &emsp;&emsp;&emsp;&emsp;•<strong>Dry Soil:</strong> Sensor value above 4000.<br>
-    &emsp;&emsp;&emsp;&emsp;•<strong>Moist Soil:</strong> Sensor value between 2500 and 4000.<br>
-    &emsp;&emsp;&emsp;&emsp;•<strong>Wet Soil:</strong> Sensor value below 2500.<br>
+    &emsp;&emsp;&emsp;&emsp;•<strong>Dry Soil</strong> means sensor value above 4000.<br>
+    &emsp;&emsp;&emsp;&emsp;•<strong>Moist Soil</strong> means ensor value between 2500 and 4000.<br>
+    &emsp;&emsp;&emsp;&emsp;•<strong>Wet Soil</strong> means ensor value below 2500.<br>
     &emsp;&emsp;•These ranges allow users to interpret the moisture status easily, without needing to interpret raw values directly.<p>
 
 
     <p><strong>5. Web Page Content</strong><br>
-    &emsp;&emsp;• The HTML code for the web page is dynamically generated each time a client requests it. The page includes:<br>
-    &emsp;&emsp;&emsp;&emsp;•<strong>Title and Refresh:</strong>The page title, "Soil Moisture Level," is set with a 1-second auto-refresh using <strong><code>&lt;meta http-equiv='refresh' content='1'&gt;</code></strong>, ensuring that users receive up-to-date soil moisture information in real-time.<br>
-    &emsp;&emsp;&emsp;&emsp;•<strong>Display of Sensor Value and Status:</strong> The soil moisture level is shown in numeric format and as a moisture status (Dry, Moist, or Wet). This approach gives users clear and actionable information on soil conditions.<p>
+    &emsp;&emsp;• This means that the HTML code for the web page is produced at the slightest indication of a client’s request. The page includes:<br>
+    &emsp;&emsp;&emsp;&emsp;•<strong>Title and Refresh:</strong>The name of the page is ‘Soil Moisture Level’ as it is fixed with the 1sec auto refresh using <strong><code>&lt;meta http-equiv='refresh' content='1'&gt;</code></strong>. As a result, users are provided with the updated information of their soils moisture level in real time.
+<br>
+    &emsp;&emsp;&emsp;&emsp;•<strong>Display of Sensor Value and Status:</strong> The soil moisture content is represented numerically and as moisture status, which includes; Dry, Moist, and Wet. This approach provides users with relevant and understandable information on the state of the ground.<p>
 
     <p><strong>6. Client Connection Handling</strong><br>
-    &emsp;&emsp;• The ESP32 constantly checks for client connections. Once a client connects and requests the root page<strong><code>GET /</code></strong>,the ESP32:<br>
-    &emsp;&emsp;&emsp;&emsp;• Sends an HTTP header indicating success (HTTP 200 OK) and sets the content type to HTML.<br>
-    &emsp;&emsp;&emsp;&emsp;• Generates and serves the HTML page with real-time soil moisture readings.<br>
-    &emsp;&emsp;• The client connection is closed after serving the page to free up resources for other potential users.<p>
+    &emsp;&emsp;• To make it clear, the ESP32 is always looking for client connections. Once a client connects and requests the root page<strong><code>GET /</code></strong>,the ESP32:<br>
+    &emsp;&emsp;&emsp;&emsp;• Sends an HTTP header informing of success (HTTP 200 OK), and sets the content- type to HTML.<br>
+    &emsp;&emsp;&emsp;&emsp;• Stimulates and dispatches the HTML page containing actual readings of the soil moisture.<br>
+    &emsp;&emsp;• Once the page has been served, the client connection is terminated freeing up the resources to be used by other clients.<p>
 
     <p><strong>7. Code Flow in Setup and Loop Functions</strong><br>
-    &emsp;&emsp;•<strong><code>setup()</code>:</strong>Initializes the soil moisture sensor pin, configures the ESP32 as an AP, displays the AP IP address, and starts the HTTP server.<br>
-    &emsp;&emsp;•<strong><code>loop()</code>:</strong>Continuously checks for client connections, serves the monitoring page to connected clients, and reads the latest soil moisture value, refreshing the display on the web page.<p>
+    &emsp;&emsp;•<strong><code>setup()</code>:</strong>Sets up the soil moisture sensor pin, sets ESP32 to AP mode, shows the AP IP address, and begins the HTTP server.<br>
+    &emsp;&emsp;•<strong><code>loop()</code>:</strong>Implements a loop that looks for simple client connections, serves a basic monitoring page to-connected clients, and publishes the most current soil moisture reading while redisplaying the page on the web.<p>
 
 
 <strong>8. The Setup <code>setup()</code> and Loop <code>loop()</code> Functions:</strong><br> 
-&emsp;&emsp;&emsp;• <strong><code>setup()</code></strong> Initializes the sensor, starts the Access Point, and configures the web server.<br> 
-&emsp;&emsp;&emsp;• <strong><code>loop()</code></strong> Continuously listens for incoming client requests to refresh data on the webpage.<p>
+&emsp;&emsp;&emsp;• <strong><code>setup()</code></strong> It will then wake up the sensor, turn on the Access Point and get the web server up and running.<br> 
+&emsp;&emsp;&emsp;• <strong><code>loop()</code></strong>  Is always on the lookout for new client requests to update the information on the said web page.<p>
 
 
 													</div>
@@ -463,6 +464,7 @@ void loop() {
 									</header>
 									<ul>
 										<li><a href="index.html">Homepage</a></li>
+										<li><a href="generic.html">The Creation</a></li>
 										<li><a href="elements.html">Module Explainer</a></li>
 										<li>
 											<span class="opener">Introductory Projects</span>
