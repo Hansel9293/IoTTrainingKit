@@ -437,7 +437,6 @@ void loop() {
 </style><p>
 
 <strong>4. Server Functions:</strong><br>
-&emsp;&emsp;&emsp;• The ESP32 runs a web server<strong><code>(WebServer server(80);)</code></strong>, listening on port 80.<br>
 &emsp;&emsp;&emsp;• Key server functions include:<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>handleRoot()</code></strong>Showcases the home page through which users can send out a reminder note or check the reminder on. This function changes the content according to whether there is an active reminder or if there is a need for a particular message setting.<br>
 &emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>handleSetMessage()</code></strong>Recovers a message that is received from the user through the Web interface and saves it for the reminder.<br>
