@@ -137,6 +137,101 @@ To test the system, place you palm in front of the sensor. The alerts should act
 														</p>
 													</div>
 
+<!-- Video Button -->
+<button id="showVideoButton">Watch Video Instruction</button>
+
+<!-- Video Modal -->
+<div id="videoModal" class="modal">
+    <span class="close" id="closeVideo">&times;</span>
+    <div class="video-container">
+        <video id="videoPlayer" controls>
+            <source src="videos/motion.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+
+<!-- CSS for Styling -->
+<style>
+    /* Video Button */
+    #showVideoButton {
+        display: block;
+        margin: 20px auto;
+        padding: 1px 5px;
+        background-color: transparent;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 12px;
+    }
+
+    /* Video Modal */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .video-container {
+        width: 80%;
+        max-width: 600px;
+    }
+
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 2rem;
+        color: white;
+        cursor: pointer;
+    }
+
+    video {
+        width: 100%;
+        height: auto;
+        border: none;
+    }
+</style>
+
+<!-- JavaScript for Modal Functionality -->
+<script>
+    // Get the elements
+    const showVideoButton = document.getElementById("showVideoButton");
+    const videoModal = document.getElementById("videoModal");
+    const closeVideo = document.getElementById("closeVideo");
+    const videoPlayer = document.getElementById("videoPlayer");
+
+    // Show modal when button is clicked
+    showVideoButton.addEventListener("click", function() {
+        videoModal.style.display = "flex";
+        videoPlayer.play(); // Auto-play video when modal is shown
+    });
+
+    // Close modal when the close button is clicked
+    closeVideo.addEventListener("click", function() {
+        videoModal.style.display = "none";
+        videoPlayer.pause(); // Pause video when modal is closed
+        videoPlayer.currentTime = 0; // Reset video to start
+    });
+
+    // Close modal when clicking outside the video
+    window.addEventListener("click", function(event) {
+        if (event.target === videoModal) {
+            videoModal.style.display = "none";
+            videoPlayer.pause(); // Pause video when modal is closed
+            videoPlayer.currentTime = 0; // Reset video to start
+        }
+    });
+</script>
+
 
 <html>
 <head>
