@@ -157,7 +157,7 @@ To verify the system put the sensor in various moistures (dry, wet, etc.) to see
     <span class="close" id="closeVideo">&times;</span>
     <div class="video-container">
         <video id="videoPlayer" controls>
-            <source src="videos/agri.mp4" type="video/mp4">
+            <source src="agri.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
@@ -258,12 +258,10 @@ To verify the system put the sensor in various moistures (dry, wet, etc.) to see
     </style>
     							<div class="code-section">
 							    <h2>CODE</h2>
-							    <pre><code> <!DOCTYPE HTML>
-</head>
-<body>#include &lt;WiFi.h&gt;
+							    <pre><code> #include &lt;WiFi.h&gt;
 
 // Define the GPIO pin connected to the soil moisture sensor
-#define SENSOR_PIN 34
+#define SENSOR_PIN 32
 
 // WiFi credentials for AP mode
 const char* ssid = "ESP32_Soil_Moisture";  // SSID of the AP
@@ -310,7 +308,7 @@ String HTMLPage = R"rawliteral(
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "/data", true);
         xhr.onreadystatechange = function() {
-          if (xhr.readyState == 4 &amp;&amp; xhr.status == 200) {
+          if (xhr.readyState == 4 && xhr.status == 200) {
             var response = JSON.parse(xhr.responseText);
             document.getElementById("moistureValue").innerText = response.moistureValue;
             document.getElementById("soilStatus").innerText = response.soilStatus;
@@ -333,7 +331,7 @@ String HTMLPage = R"rawliteral(
 
 // Function to return sensor data as JSON
 String getSensorData() {
-  int sensorValue = analogRead(SENSOR_PIN);
+  int sensorValue = analogRead(SENSOR_PIN);  // Read the sensor value
   String soilStatus;
 
   if (sensorValue &gt; 4000) {
@@ -344,8 +342,8 @@ String getSensorData() {
     soilStatus = "Wet Soil";
   }
 
-  // Create a JSON string to send the sensor value and soil status
-  String jsonData = "{\"moistureValue\": \"" + String(sensorValue) + "\", \"soilStatus\": \"" + soilStatus + "\"}";
+  // Create a JSON string
+  String jsonData = "{\"moistureValue\":" + String(sensorValue) + ", \"soilStatus\":\"" + soilStatus + "\"}";
   return jsonData;
 }
 
@@ -361,7 +359,7 @@ void setup() {
   WiFi.softAP(ssid, password);  // Start AP with SSID and password
   Serial.println("Access Point Created");
   
-  // Display the IP address of the ESP32 (usually 192.168.4.1 in AP mode)
+  // Display the IP address of the ESP32
   Serial.print("AP IP address: ");
   Serial.println(WiFi.softAPIP());
 
@@ -370,46 +368,52 @@ void setup() {
 }
 
 void loop() {
-  // Check if a client has connected
   WiFiClient client = server.available();
 
   if (client) {
     Serial.println("New Client connected");
-    String currentLine = "";
-    while (client.connected()) {
+    String request = "";
+    unsigned long timeout = millis();
+    while (client.connected() && millis() - timeout &lt; 2000) {
       if (client.available()) {
         char c = client.read();
-        currentLine += c;
-
-        // If the client requests the root page:
-        if (currentLine.endsWith("GET / ")) {
-          // Send the webpage
-          client.println("HTTP/1.1 200 OK");
-          client.println("Content-type:text/html");
-          client.println();
-          client.print(HTMLPage);
-          break;
-        }
-        // If the client requests the sensor data:
-        if (currentLine.endsWith("GET /data ")) {
-          // Send the JSON data
-          client.println("HTTP/1.1 200 OK");
-          client.println("Content-type:application/json");
-          client.println();
-          client.print(getSensorData());
-          break;
-        }
+        request += c;
+        if (c == '\n') break;  // End of HTTP request
       }
     }
 
-    // Clear the current line
-    currentLine = "";
+    // Handle root page request
+    if (request.indexOf("GET / ") &gt;= 0) {
+      client.println("HTTP/1.1 200 OK");
+      client.println("Content-type:text/html");
+      client.println();
+      client.print(HTMLPage);
+    } 
+    // Handle sensor data request
+    else if (request.indexOf("GET /data ") &gt;= 0) {
+      client.println("HTTP/1.1 200 OK");
+      client.println("Content-type:application/json");
+      client.println();
+      client.print(getSensorData());
+    }
+    // Handle other requests
+    else {
+      client.println("HTTP/1.1 404 Not Found");
+      client.println("Content-type:text/plain");
+      client.println();
+      client.println("404: Not Found");
+    }
+
+    // Close the connection
     client.stop();
     Serial.println("Client disconnected");
   }
 }
 </body>
 </html>
+							</code></pre>
+							    <button id="copyButton">Copy Code</button>
+							</div>
 
 							</code></pre>
 							    <button id="copyButton">Copy Code</button>
