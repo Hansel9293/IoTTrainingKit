@@ -6,6 +6,29 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+    .hidden {
+        display: none; /* Initially hides the sections */
+    }
+    .toggle-button {
+        display: inline-block;
+        margin: 10px 0;
+        padding: 0px 20px;
+        background-color: transparent;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .toggle-button:hover {
+        background-color: #0056b3;
+    }
+    .section {
+        padding: 10px;
+        border: 1px solid #ddd;
+        margin: 10px 0;
+    }
+</style>
 	</head>
 	<body class="is-preload">
 
@@ -26,7 +49,71 @@
 									<header class="main">
 										<h1>Water Level Monitoring</h1>
 									</header>
+                        <!-- Main Image (pic11.jpg) -->
+                        <span class="image fit">
+                            <a href="images/9.jpg" class="image-link"><img src="images/9.jpg" alt="" /></a>
+                        </span>
 
+
+                        <!-- Modal Dialog -->
+                        <div id="modal" class="modal">
+                            <span class="close">&times;</span>
+                            <img class="modal-content" id="modal-image">
+                        </div>
+
+                        <!-- JavaScript to Show Full Image on Click -->
+                        <script>
+                            // Get all elements with class "image-link"
+                            const imageLinks = document.querySelectorAll('.image-link');
+
+                            // Get the modal element
+                            const modal = document.getElementById('modal');
+
+                            // Get the image element within the modal
+                            const modalImg = document.getElementById('modal-image');
+
+                            // Loop through each image link
+                            imageLinks.forEach(link => {
+                                link.addEventListener('click', function(event) {
+                                    event.preventDefault(); // Prevent default link behavior
+
+                                    // Get href attribute of the clicked link (full-size image URL)
+                                    const imageURL = this.getAttribute('href');
+
+                                    // Display the modal
+                                    modal.style.display = 'flex'; // Show the modal as flexbox for centering
+
+                                    // Set the clicked image as the source of the modal image
+                                    modalImg.src = imageURL;
+
+                                    // Reset modal content position
+                                    modal.scrollTop = 0;
+                                    modal.scrollLeft = 0;
+                                });
+                            });
+
+                            // Close the modal when the close button (x) is clicked
+                            const closeBtn = document.querySelector('.close');
+                            closeBtn.addEventListener('click', function() {
+                                modal.style.display = 'none';
+                            });
+
+                            // Close the modal when clicking outside of it
+                            window.addEventListener('click', function(event) {
+                                if (event.target === modal) {
+                                    modal.style.display = 'none';
+                                }
+                            });
+
+                            // Enable zoom functionality
+                            modalImg.addEventListener('click', function() {
+                                if (modalImg.classList.contains('zoomed')) {
+                                    modalImg.classList.remove('zoomed');
+                                } else {
+                                    modalImg.classList.add('zoomed');
+                                }
+                            });
+                        </script>
 									<!-- Content -->
 										<h2 id="content">HOW IT WORKS?</h2>
 										<p>Water level monitoring system is defined as an instrument that employs sensors to monitor and determine the water level in a tank, reservoir or some sort of container. The sensor relays this data to the microcontroller in turn with computations being made from the data, resulting in relevant information such as the current water level or tank fill percentage. The microcontroller then acts as a decoder and translates it into an actual figure, for instance in meters or as a percentage proportion to the size of the water tank. From this processed information the system can show the water level, record information for later use, indicate low or high water level alarms, and in automatic settings, it can open or close the pump or valve to regulate water levels properly. It is very useful in resource control, to prevent over flow, and to control the usage of water within the different areas of application.
@@ -113,10 +200,360 @@
 						</script>
 
 
-												<!-- Box -->
-										<h2>INSTRUCTION(s):</h2>
-													<div class="box">
-														<p><strong>Step 1: Assembling the System</strong><br>
+<h2>CHOOSE WHAT PROJECT YOU WISH TO PERFORM"</h2>
+<!-- Button for Set 1 -->
+<button id="toggleSet1" class="toggle-button">Through the Internet</button>
+<!-- Section 1 -->
+<div id="set1" class="hidden">
+    <div class="section">
+        <h2>Instructions</h2>
+<p><strong>Step 1: Assembling the System</strong><br>
+<strong>Positioning the Module:</strong><br>
+1. Take the Smart Agriculture Module (enclosed in the 3D-printed box) and align it over the main board.<br>
+2. Gently press the module onto the main board's connector pins until it fits securely in place.<br>   
+3. Ensure that the module is correctly seated to avoid loose connections.<p>
+<strong>Step 2: Powering the System</strong><br>
+<strong>Connecting Power:</strong><br>
+1. Get the connecting cable and attach it into the laptop that you will use to upload the code.<br>
+2. Plug in the other end of it to the main board. The system will automatically power on.<br>
+<strong>Visual Indicator Check:</strong><br>
+Observe the LED indicators on the main board. The system should show a steady power LED to confirm it's operational.<p>
+<strong>Step 3: Connecting to the Internet and Adafruit IO:</strong><br>
+1. Copy the code in the website under "Through Internet" then change the WiFi SSID and password depending on what connection you wish to connect.
+2. Open Adafruit IO in your search engine then use "denzelgaddi5@gmail.com" as email and "Denzel92934." as password.
+3. Select Project 9 in the dashboard. <p>
+<strong>Testing the Alerts:</strong><br>
+To test the system, place you palm in front of the sensor. The alerts should activate.
+                            </p>
+
+<!-- Video Button -->
+<button id="showVideoButton">Watch Video Instruction</button>
+
+<!-- Video Modal -->
+<div id="videoModal" class="modal">
+    <span class="close" id="closeVideo">&times;</span>
+    <div class="video-container">
+        <video id="videoPlayer" controls>
+            <source src="videos/bio.vagri" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+
+<!-- CSS for Styling -->
+<style>
+    /* Video Button */
+    #showVideoButton {
+        display: block;
+        margin: 20px auto;
+        padding: 1px 5px;
+        background-color: transparent;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 12px;
+    }
+
+    /* Video Modal */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .video-container {
+        width: 80%;
+        max-width: 600px;
+    }
+
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 2rem;
+        color: white;
+        cursor: pointer;
+    }
+
+    video {
+        width: 100%;
+        height: auto;
+        border: none;
+    }
+</style>
+
+<!-- JavaScript for Modal Functionality -->
+<script>
+    // Get the elements
+    const showVideoButton = document.getElementById("showVideoButton");
+    const videoModal = document.getElementById("videoModal");
+    const closeVideo = document.getElementById("closeVideo");
+    const videoPlayer = document.getElementById("videoPlayer");
+
+    // Show modal when button is clicked
+    showVideoButton.addEventListener("click", function() {
+        videoModal.style.display = "flex";
+        videoPlayer.play(); // Auto-play video when modal is shown
+    });
+
+    // Close modal when the close button is clicked
+    closeVideo.addEventListener("click", function() {
+        videoModal.style.display = "none";
+        videoPlayer.pause(); // Pause video when modal is closed
+        videoPlayer.currentTime = 0; // Reset video to start
+    });
+
+    // Close modal when clicking outside the video
+    window.addEventListener("click", function(event) {
+        if (event.target === videoModal) {
+            videoModal.style.display = "none";
+            videoPlayer.pause(); // Pause video when modal is closed
+            videoPlayer.currentTime = 0; // Reset video to start
+        }
+    });
+</script>
+    </div>
+    <div class="section">
+        <h2>Code</h2>
+        <pre><code>
+#include &lt;WiFi.h&gt;
+#include "AdafruitIO_WiFi.h"
+
+// Adafruit IO credentials
+#define IO_USERNAME "IoTTrainingBoard"
+#define IO_KEY "aio_lYXr89c05NCpeRgnLIeYJuSGcjby"
+
+// WiFi credentials
+#define WIFI_SSID "PLDTHOMEFIBR5e300"
+#define WIFI_PASS "SASHuke@1123"
+
+// Adafruit IO instance
+AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
+
+// Feeds for water level monitoring
+AdafruitIO_Feed *waterLevelFeed = io.feed("water_level");
+AdafruitIO_Feed *waterStatusFeed = io.feed("water_status");
+
+// Water Level Sensor Pin
+const int waterSensorPin = 35;  // Analog pin connected to the water level sensor
+
+float waterLevel;
+String waterStatus;
+
+// Function to read the water level from the sensor and determine status
+void readWaterLevel() {
+  waterLevel = analogRead(waterSensorPin);  // Read the analog value from the sensor
+
+  // Map the analog value to a percentage (0 - 100%)
+  waterLevel = map(waterLevel, 0, 4095, 0, 100);
+
+  // Determine water status based on the percentage
+  if (waterLevel &lt; 20) {
+    waterStatus = "Low Water Level";
+  } else if (waterLevel &gt;= 20 && waterLevel &lt;= 80) {
+    waterStatus = "Normal Water Level";
+  } else {
+    waterStatus = "High Water Level";
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+
+  pinMode(waterSensorPin, INPUT);
+
+  // Connect to Adafruit IO
+  Serial.print("Connecting to Adafruit IO...");
+  io.connect();
+
+  // Wait for connection
+  while (io.status() &lt; AIO_CONNECTED) {
+    Serial.print(".");
+    delay(500);
+  }
+  Serial.println("Connected!");
+
+  // Initialize Adafruit IO feeds
+  waterLevelFeed-&gt;save(0);       // Initialize water level
+  waterStatusFeed-&gt;save("Low Water Level"); // Initialize water status
+}
+
+void loop() {
+  io.run();       // Keep Adafruit IO connection alive
+  readWaterLevel(); // Read water level and determine status
+
+  // Publish water level and status to Adafruit IO
+  waterLevelFeed-&gt;save(waterLevel);
+  waterStatusFeed-&gt;save(waterStatus);
+
+  // Debugging logs
+  Serial.print("Water Level: ");
+  Serial.print(waterLevel);
+  Serial.print("% | Status: ");
+  Serial.println(waterStatus);
+
+  delay(1000); // Update every second
+}
+
+
+</code></pre><button id="copyButton">Copy Code</button>
+    </div>
+    <div class="section">
+        <h2>Code Explanation</h2>        
+ <p>This code sets up a Water Level Monitoring System using an ESP32 in Access Point mode, allowing users to view the current water level and status on a web page with real-time updates. Let's break it down.
+                            <p><strong>Key Components and Their Roles</strong><br>
+
+    <p><strong>Key Components and Their Roles</strong><br>
+<strong>1. Libraries Included:</strong><br>
+&emsp;&emsp;&emsp;•<strong><code>WiFi.h</code></strong>Handles Wi-Fi connectivity for the ESP32.<br>
+&emsp;&emsp;&emsp;•<strong><code>AdafruitIO_WiFi.h</code></strong>Integrates the ESP32 with Adafruit IO for data feeds and connectivity.<br>
+<strong>2. WiFi Setup:</strong><br>
+&emsp;&emsp;&emsp;• Configures the ESP32 to connect to a Wi-Fi network using SSID <code>PLDTHOMEFIBR5e300</code> and password <code>SASHuke@1123</code>.<br>
+&emsp;&emsp;&emsp;• Establishes an Adafruit IO instance using the username <code>Hanseljedd</code> and key <code>aio_lYXr89c05NCpeRgnLIeYJuSGcjby</code>.<p>
+
+<strong>3. Water Level Sensor Setup:</strong><br>
+&emsp;&emsp;&emsp;• The water level sensor is connected to analog pin GPIO 35 for monitoring water levels.<br>
+&emsp;&emsp;&emsp;• Sensor readings are mapped to a percentage (0% to 100%) to represent the water level.<br>
+&emsp;&emsp;&emsp;• Water levels are categorized into statuses:<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>Low Water Level</code></strong> for percentages &lt; 20%.<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>Normal Water Level</code></strong> for percentages between 20% and 80%.<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>High Water Level</code></strong> for percentages &gt; 80%.<p>
+
+<div class="button-container">
+    <!-- Button to show first image -->
+    <button id="showImageButton1" class="show-image-button">Water Level Sensor Pinout</button>
+
+    <!-- Button to show second image -->
+    <button id="showImageButton2" class="show-image-button">ESP32 Pinout</button>
+</div>
+
+<!-- Hidden first image container -->
+<div id="imageContainer1" class="hidden">
+    <img src="images/waterlevel.jpg" alt="Water Level Sensor Image" style="max-width: 100%; height: auto;"><br>
+    Photo Credit: Circuit Digest<p>
+</div>
+
+<!-- Hidden second image container -->
+<div id="imageContainer2" class="hidden">
+    <img src="images/esp32.jpg" alt="ESP32 Image" style="max-width: 100%; height: auto;"><br>
+    Photo Credit: Random Nerd Tutorials<p>
+</div>
+
+<!-- JavaScript to handle button clicks for each image -->
+<script>
+    const showImageButton1 = document.getElementById("showImageButton1");
+    const imageContainer1 = document.getElementById("imageContainer1");
+
+    const showImageButton2 = document.getElementById("showImageButton2");
+    const imageContainer2 = document.getElementById("imageContainer2");
+
+    // Toggle first image visibility
+    showImageButton1.addEventListener("click", function() {
+        imageContainer1.classList.toggle("hidden");
+    });
+
+    // Toggle second image visibility
+    showImageButton2.addEventListener("click", function() {
+        imageContainer2.classList.toggle("hidden");
+    });
+</script>
+
+<!-- CSS for styling -->
+<style>
+    /* Center the button container */
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px; /* Space between buttons */
+        margin-top: 10px;
+    }
+    /* Style for buttons */
+    .show-image-button {
+        padding: 5px 10px;
+        background-color: transparent;
+        color: #7f888f !important; /* Set text color to black */
+        border: 2px solid #FF6F61; /* Match the border color in your image */
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.75rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px; /* Ensure sufficient height for vertical centering */
+        transition: background-color 0.3s, color 0.3s;
+    }
+    /* Center text inside the button */
+    .show-image-button:hover {
+        background-color: rgba(255, 255, 255, 0.2); /* Slightly tinted for hover effect */
+        color: #00ab41; /* Example color on hover */
+    }
+    /* Hide initially */
+    .hidden {
+        display: none;
+    }
+    /* Margin for image containers */
+    #imageContainer1, #imageContainer2 {
+        margin-top: 10px;
+    }
+</style><p>
+<strong>4. Server Functions:</strong><br>
+&emsp;&emsp;&emsp;• Key server functions include:<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>readWaterLevel()</code></strong>Reads the water level from the sensor and determines the water status.<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>waterLevelFeed</code></strong>Publishes the water level percentage to Adafruit IO.<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>waterStatusFeed</code></strong>Publishes the water status ("Low Water Level," "Normal Water Level," or "High Water Level") to Adafruit IO.<p>
+
+<strong>5. Data Collection and Management:</strong><br> 
+&emsp;&emsp;&emsp;• The<strong><code>readWaterLevel()</code></strong>function captures data from the water level sensor and categorizes the water status.<br>
+&emsp;&emsp;&emsp;• Data is sent to Adafruit IO feeds for real-time monitoring via the web interface.<p>
+
+<strong>6. Web Interface Design:</strong><br> 
+&emsp;&emsp;&emsp;• Adafruit IO serves as the web interface for displaying water level percentages and their corresponding statuses.<br> 
+&emsp;&emsp;&emsp;• Users can monitor real-time updates on water levels remotely.<p>
+
+<strong>7. JavaScript and AJAX Updates:</strong><br> 
+&emsp;&emsp;&emsp;• Adafruit IO provides real-time updates for water levels and status, ensuring users can view changes dynamically.<br> 
+&emsp;&emsp;&emsp;• Users can access the data through Adafruit IO dashboards.<p>
+
+<strong>8. The Setup<code>setup()</code>and Loop<code>loop()</code>Functions:</strong><br> 
+&emsp;&emsp;&emsp;•<strong><code>setup()</code></strong>Initializes the water level sensor, connects to Adafruit IO, and initializes feeds with default values.<br> 
+&emsp;&emsp;&emsp;•<strong><code>loop()</code></strong>Reads sensor data, updates Adafruit IO feeds, and prints debug information to the Serial Monitor.<p>
+
+<strong>5. Data Collection with<code>readDHT11()</code>:</strong><br> 
+    &emsp;&emsp;•<strong><code>analogRead(waterSensorPin)</code></strong>Reads the analog value from the water level sensor and maps it to a percentage (0–100%). The code categorizes water levels based on this percentage:<br>
+    &emsp;&emsp;&emsp;&emsp;• <strong>Low Water Level</strong>means less than 20%<br>
+    &emsp;&emsp;&emsp;&emsp;• <strong>Normal Water Level</strong>means 20% to 80%<br>
+    &emsp;&emsp;&emsp;&emsp;• <strong>High Water Level</strong>means above 80%<br>
+    &emsp;&emsp;These ranges help users understand the water level at a glance.<p>
+
+<strong>6. Web Interface Design:</strong><br> 
+  &emsp;&emsp;• The HTML code for the web page is generated dynamically each time a client requests it. The page includes:<br>
+    &emsp;&emsp;&emsp;&emsp;• <strong>Title and Refresh:</strong> The title, "Water Level Monitor," appears at the top, and JavaScript updates the water level every second.<br>
+    &emsp;&emsp;&emsp;&emsp;• <strong>Display of Water Level and Status:</strong> The water level and its corresponding status ("Low," "Normal," or "High") appear, giving users real-time information about the water level.<p>
+
+<strong>7. JavaScript and AJAX Updates:</strong><br> 
+ &emsp;&emsp;• JavaScript with AJAX fetches updated water level data every second from the<strong><code>/water</code></strong>endpoint. This esnsures that real-time updates are provided.<p>
+
+<strong>8. The Setup<code>setup()</code>and Loop<code>loop()</code>Functions:</strong><br> 
+    &emsp;&emsp;•<strong><code>setup()</code>:</strong>Initializes the sensor pin, sets up the Access Point, starts the web server, and displays the IP address.<br>
+    &emsp;&emsp;•<strong><code>loop()</code>:</strong>Continuously checks for client requests, processes data, and updates the monitoring page with the latest water level and status information.<p>
+    </div>
+</div>
+
+<!-- Button for Set 2 -->
+<button id="toggleSet2" class="toggle-button">WiFi Direct</button>
+<!-- Section 2 -->
+<div id="set2" class="hidden">
+    <div class="section">
+                            <p><strong>Step 1: Assembling the System</strong><br>
 <strong>Positioning the Module:</strong><br>
 1. Take the Smart Agriculture Module (enclosed in the 3D-printed box) and align it over the main board.<br>
 2. Gently press the module onto the main board's connector pins until it fits securely in place.<br>
@@ -142,8 +579,8 @@ Observe the LED indicators on the main board. The system should show a steady po
    - The water level reading updates continuously, providing accurate status for efficient monitoring.<p>
 <strong>Testing the Alerts:</strong><br>
 To test the system, place the sensor in a bottle with water. Try to dip it in different levels to see the variation of measurement. The alerts should activate.
-														</p>
-													</div>
+                            </p>
+
 
 <!-- Video Button -->
 <button id="showVideoButton">Watch Video Instruction</button>
@@ -153,7 +590,7 @@ To test the system, place the sensor in a bottle with water. Try to dip it in di
     <span class="close" id="closeVideo">&times;</span>
     <div class="video-container">
         <video id="videoPlayer" controls>
-            <source src="agri.mp4" type="video/mp4">
+            <source src="videos/agri.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
@@ -240,23 +677,11 @@ To test the system, place the sensor in a bottle with water. Try to dip it in di
     });
 </script>
 
-							<!-- Preformatted Code -->
-<html>
-<head>
-    <title>ESP32 Project</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body { font-family: Arial, sans-serif;}
-        .code-section { background-color: #f5f5f5;}
-        pre { white-space: pre-wrap; font-size: 0.9rem; color: #333;}
-        h2 { margin: 0 0 5px 0; font-size: 1.2rem; }
-    </style>
-    							<div class="code-section">
-							    <h2>CODE</h2>
-							    <pre><code> <!DOCTYPE HTML>
-</head>
-<body>#include &lt;WiFi.h&gt;
+    </div>
+    <div class="section">
+        <h2>Code</h2>
+        <pre><code>
+#include &lt;WiFi.h&gt;
 #include &lt;WebServer.h&gt;
 
 // Define the Access Point credentials
@@ -360,16 +785,12 @@ void setup() {
 void loop() {
   server.handleClient();  // Handle web requests
 }
-</body>
-</html>
+        </code></pre><button id="copyButton">Copy Code</button>
+    </div>
 
-							</code></pre>
-							    <button id="copyButton">Copy Code</button>
-							</div>
-<h2>CODE EXPLANATION</h2>
-													<div class="box">
-														<p>This code sets up a Water Level Monitoring System using an ESP32 in Access Point mode, allowing users to view the current water level and status on a web page with real-time updates. Let's break it down.
-														<p><strong>Key Components and Their Roles</strong><br>
+    <div class="section"><h2>Code Explanation</h2><p>
+ <p>This code sets up a Water Level Monitoring System using an ESP32 in Access Point mode, allowing users to view the current water level and status on a web page with real-time updates. Let's break it down.
+                            <p><strong>Key Components and Their Roles</strong><br>
 
     <p><strong>Key Components and Their Roles</strong><br>
 <strong>1. Libraries Included:</strong><br>
@@ -492,109 +913,243 @@ The sturdy server makes the system very engaging, where users monitoring water l
     &emsp;&emsp;•<strong><code>loop()</code>:</strong>Continuously checks for client requests, processes data, and updates the monitoring page with the latest water level and status information.<p>
 
 
-													</div>
+<script>
+    // Toggle visibility for Set 1
+    const toggleSet1 = document.getElementById('toggleSet1');
+    const set1 = document.getElementById('set1');
+    toggleSet1.addEventListener('click', () => {
+        set1.classList.toggle('hidden'); // Toggles the "hidden" class
+    });
+
+    // Toggle visibility for Set 2
+    const toggleSet2 = document.getElementById('toggleSet2');
+    const set2 = document.getElementById('set2');
+    toggleSet2.addEventListener('click', () => {
+        set2.classList.toggle('hidden'); // Toggles the "hidden" class
+    });
+</script>
+
+    </div><p>
+</div>
+
+<p><h2>ASSESSMENT</h2>
+<div class="box">
+In this section, students are required to accomplish the following activity.<p><p>
+<strong>Project Description</strong><br>
+This project involves creating a Water Level Monitoring System using an ESP32, a water level sensor, and Adafruit IO. The system reads water levels, maps the sensor data to a percentage, and determines the water status (e.g., Low, Normal, or High). The provided code contains two intentional errors. Your task is to:
+<br>
+&emsp;&emsp;&emsp;- Identify and fix the errors.<br>
+&emsp;&emsp;&emsp;- Answer the provided questions to explain your changes.<br><br>
+
+<strong>Code with Bug</strong><br>
+The bug is in the handleBookSubmission function. Examine the code snippet below carefully.<br><br>
+  <pre><code>
+#include &lt;WiFi.h&gt;
+#include "AdafruitIO_WiFi.h"
+
+// Adafruit IO credentials
+#define IO_USERNAME "Hanseljedd"
+#define IO_KEY "aio_lYXr89c05NCpeRgnLIeYJuSGcjby"
+
+// WiFi credentials
+#define WIFI_SSID "PLDTHOMEFIBR5e300"
+#define WIFI_PASS "SASHuke@1123"
+
+// Adafruit IO instance
+AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
+
+// Feeds for water level monitoring
+AdafruitIO_Feed *waterLevelFeed = io.feed("water_level");
+AdafruitIO_Feed *waterStatusFeed = io.feed("water_status");
+
+// Water Level Sensor Pin
+const int waterSensorPin = 35;  // Analog pin connected to the water level sensor
+
+float waterLevel;
+String waterStatus;
+
+// Function to read the water level from the sensor and determine status
+void readWaterLevel() {
+  waterLevel = analogRead(waterSensorPin);  // Read the analog value from the sensor
+
+  // Intentional Error 1: Incorrect mapping range
+  waterLevel = map(waterLevel, 0, 1023, 0, 100);
+
+  // Determine water status based on the percentage
+  if (waterLevel &lt; 20) {
+    waterStatus = "Low Water Level";
+  } 
+  // Intentional Error 2: Incorrect logical operator in condition
+  else if (waterLevel &gt;= 20 || waterLevel &lt;= 80) {
+    waterStatus = "Normal Water Level";
+  } else {
+    waterStatus = "High Water Level";
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+
+  pinMode(waterSensorPin, INPUT);
+
+  // Connect to Adafruit IO
+  Serial.print("Connecting to Adafruit IO...");
+  io.connect();
+
+  // Wait for connection
+  while (io.status() &lt; AIO_CONNECTED) {
+    Serial.print(".");
+    delay(500);
+  }
+  Serial.println("Connected!");
+
+  // Initialize Adafruit IO feeds
+  waterLevelFeed->save(0);       // Initialize water level
+  waterStatusFeed->save("Low Water Level"); // Initialize water status
+}
+
+void loop() {
+  io.run();       // Keep Adafruit IO connection alive
+  readWaterLevel(); // Read water level and determine status
+
+  // Publish water level and status to Adafruit IO
+  waterLevelFeed->save(waterLevel);
+  waterStatusFeed->save(waterStatus);
+
+  // Debugging logs
+  Serial.print("Water Level: ");
+  Serial.print(waterLevel);
+  Serial.print("% | Status: ");
+  Serial.println(waterStatus);
+
+  delay(1000); // Update every second
+}
 
 
-											</div>
-										</div>
+  </pre></code>
 
-								</section>
+    <button id="key" class="toggle-button">Answer Key and Questions</button>
+<!-- Section 1 -->
+<div id="answerkey" class="hidden">
+
+    <div class="section">
+<strong>Error 1: Why did you change the mapping range in the map() function?<br></strong>
+&emsp;&emsp;&emsp;Explain how the incorrect range affected the water level percentage and why the correction was necessary.<br><br>
+<strong>Error 2: Why did you change the logical operator in the else if condition?<br></strong>
+&emsp;&emsp;&emsp;Describe the issue with the original condition and how your fix improved the logic for determining water status.
+<br><br>
+</div>
+</div></div>
+<script>
+    // Toggle visibility for Answer Key
+    const key = document.getElementById('key');
+    const answerkey = document.getElementById('answerkey');
+    key.addEventListener('click', () => {
+        answerkey.classList.toggle('hidden'); // Toggles the "hidden" class
+    });
+</script>
+
+
+                      </div>
+                    </div>
+
+                </section>
 
 <!-- Sidebar -->
-					<div id="sidebar">
-						<div class="inner">
+          <div id="sidebar">
+            <div class="inner">
 
-							<!-- Menu -->
-								<nav id="menu">
-									<header class="major">
-										<h2>Menu</h2>
-									</header>
-									<ul>
-										<li><a href="index.html">Homepage</a></li>
-										<li><a href="generic.html">The Creation</a></li>
-										<li><a href="elements.html">Module Explainer</a></li>
-										<li>
-											<span class="opener">Introductory Projects</span>
-											<ul>
-												<li><a href="io.html">Input Output</a></li>
-												<li><a href="ai.html">Analog Inputs</a></li>
-												<li><a href="pwm.html">PWM (Analog Output)</a></li>
-												<li><a href="sws.html">Switch Web Server</a></li>
-												<li><a href="rlws.html">RGB LED Web Server</a></li>
-											</ul>
-										</li>
-										<li>
-											<span class="opener">Main Projects</span>
-											<ul>
-												<li><a href="project-1.html">Project 1</a></li>
-												<li><a href="project-2.html">Project 2</a></li>
-												<li><a href="project-3.html">Project 3</a></li>
-												<li><a href="project-4.html">Project 4</a></li>
-												<li><a href="project-5.html">Project 5</a></li>
-												<li><a href="project-6.html">Project 6</a></li>
-												<li><a href="project-7.html">Project 7</a></li>
-												<li><a href="project-8.html">Project 8</a></li>
-												<li><a href="project-9.html">Project 9</a></li>
-												<li><a href="project-10.html">Project 10</a></li>
-											</ul>
-										</li>
-									</ul>
-								</nav>
+              <!-- Menu -->
+                <nav id="menu">
+                  <header class="major">
+                    <h2>Menu</h2>
+                  </header>
+                  <ul>
+                    <li><a href="index.html">Homepage</a></li>
+                    <li><a href="generic.html">The Creation</a></li>
+                    <li><a href="elements.html">Module Explainer</a></li>
+                    <li>
+                      <span class="opener">Introductory Projects</span>
+                      <ul>
+                        <li><a href="io.html">Input Output</a></li>
+                        <li><a href="ai.html">Analog Inputs</a></li>
+                        <li><a href="pwm.html">PWM (Analog Output)</a></li>
+                        <li><a href="sws.html">Switch Web Server</a></li>
+                        <li><a href="rlws.html">RGB LED Web Server</a></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <span class="opener">Main Projects</span>
+                      <ul>
+                        <li><a href="project-1.html">Project 1</a></li>
+                        <li><a href="project-2.html">Project 2</a></li>
+                        <li><a href="project-3.html">Project 3</a></li>
+                        <li><a href="project-4.html">Project 4</a></li>
+                        <li><a href="project-5.html">Project 5</a></li>
+                        <li><a href="project-6.html">Project 6</a></li>
+                        <li><a href="project-7.html">Project 7</a></li>
+                        <li><a href="project-8.html">Project 8</a></li>
+                        <li><a href="project-9.html">Project 9</a></li>
+                        <li><a href="project-10.html">Project 10</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
 
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>ADVANCED IOT PROJECTS</h2>
-									</header>
-									<div class="mini-posts">
-										<article>
-											<a href="https://youtu.be/RUO44kqNP24?si=QO3qiHGQLvJSXDaD" class="image"><img src="https://i.ytimg.com/vi/RUO44kqNP24/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLD_wUN6wdxf151rPD6UWSKlwhLK7Q" alt="" /></a>
-											<p>Patient Health Monitoring System Using Raspberry Pi</p>
-										</article>
-										<article>
-											<a href="https://youtu.be/FSqYyjZtH4g?si=9BeVl6KnJ2oD9eBl" class="image"><img src="https://i.ytimg.com/vi/FSqYyjZtH4g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCztyDAtqgoFMqVVEyold-aKebbbQ" alt="" /></a>
-											<p>Women Safety Device Using Internet of Things</p>
-										</article>
-										<article>
-											<a href="https://youtu.be/EamYfGG4Wvg?si=10C8m2DArmPMSOv3" class="image"><img src="https://i.ytimg.com/vi/EamYfGG4Wvg/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH0CYAC0AWKAgwIABABGGUgTShIMA8=&rs=AOn4CLBlZoYwXKvvyn9fsfvRhCCsItaQ3g" alt="" /></a>
-											<p>A Web-Based Accident Reporting and Tracking System</p>
-										</article>
-									</div>
-									<ul class="actions">
-										<li><a href="https://youtube.com/playlist?list=PL87CgTAGz2yZ0geJ-_9HAK2u8NDMhVwFH&si=cr7ljhFT1B8GZR3-" class="button">More</a></li>
-									</ul>
-								</section>
+              <!-- Section -->
+                <section>
+                  <header class="major">
+                    <h2>ADVANCED IOT PROJECTS</h2>
+                  </header>
+                  <div class="mini-posts">
+                    <article>
+                      <a href="https://youtu.be/RUO44kqNP24?si=QO3qiHGQLvJSXDaD" class="image"><img src="https://i.ytimg.com/vi/RUO44kqNP24/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLD_wUN6wdxf151rPD6UWSKlwhLK7Q" alt="" /></a>
+                      <p>Patient Health Monitoring System Using Raspberry Pi</p>
+                    </article>
+                    <article>
+                      <a href="https://youtu.be/FSqYyjZtH4g?si=9BeVl6KnJ2oD9eBl" class="image"><img src="https://i.ytimg.com/vi/FSqYyjZtH4g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCztyDAtqgoFMqVVEyold-aKebbbQ" alt="" /></a>
+                      <p>Women Safety Device Using Internet of Things</p>
+                    </article>
+                    <article>
+                      <a href="https://youtu.be/EamYfGG4Wvg?si=10C8m2DArmPMSOv3" class="image"><img src="https://i.ytimg.com/vi/EamYfGG4Wvg/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH0CYAC0AWKAgwIABABGGUgTShIMA8=&rs=AOn4CLBlZoYwXKvvyn9fsfvRhCCsItaQ3g" alt="" /></a>
+                      <p>A Web-Based Accident Reporting and Tracking System</p>
+                    </article>
+                  </div>
+                  <ul class="actions">
+                    <li><a href="https://youtube.com/playlist?list=PL87CgTAGz2yZ0geJ-_9HAK2u8NDMhVwFH&si=cr7ljhFT1B8GZR3-" class="button">More</a></li>
+                  </ul>
+                </section>
 
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>Get in touch</h2>
-									</header>
-									<ul class="contact">
-										<li class="icon solid fa-envelope"><a href="https://sscr.edu/Beta/">https://sscr.edu/Beta/</a></li>
-										<li class="icon solid fa-phone">(046) 431-9405</li>
-										<li class="icon solid fa-home">Manila-Cavite Road, Sta. Cruz,<br />
-										Cavite City, 4100, Philippines</li>
-									</ul>
-								</section>
+              <!-- Section -->
+                <section>
+                  <header class="major">
+                    <h2>Get in touch</h2>
+                  </header>
+                  <ul class="contact">
+                    <li class="icon solid fa-envelope"><a href="https://sscr.edu/Beta/">https://sscr.edu/Beta/</a></li>
+                    <li class="icon solid fa-phone">(046) 431-9405</li>
+                    <li class="icon solid fa-home">Manila-Cavite Road, Sta. Cruz,<br />
+                    Cavite City, 4100, Philippines</li>
+                  </ul>
+                </section>
 
-							<!-- Footer -->
-								<footer id="footer">
-									<p class="copyright">&copy; SSC-RdC IOT Development Board. <br>All rights reserved.
-								</footer>
+              <!-- Footer -->
+                <footer id="footer">
+                  <p class="copyright">&copy; SSC-RdC IOT Development Board. <br>All rights reserved.
+                </footer>
 
-						</div>
-					</div>
+            </div>
+          </div>
 
-			</div>
+      </div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script src="assets/js/copy.js"></script>
+    <!-- Scripts -->
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/browser.min.js"></script>
+      <script src="assets/js/breakpoints.min.js"></script>
+      <script src="assets/js/util.js"></script>
+      <script src="assets/js/main.js"></script>
+      <script src="assets/js/copy.js"></script>
 
-	</body>
+  </body>
 </html>
