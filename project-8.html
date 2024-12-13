@@ -1,126 +1,547 @@
 <!DOCTYPE HTML>
 
 <html>
-	<head>
-		<title>PROJECT 8</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
+  <head>
+    <title>PROJECT 8</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <style>
+    .hidden {
+        display: none; /* Initially hides the sections */
+    }
+    .toggle-button {
+        display: inline-block;
+        margin: 10px 0;
+        padding: 0px 20px;
+        background-color: transparent;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .toggle-button:hover {
+        background-color: #0056b3;
+    }
+    .section {
+        padding: 10px;
+        border: 1px solid #ddd;
+        margin: 10px 0;
+    }
+</style>
+  </head>
+  <body class="is-preload">
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+    <!-- Wrapper -->
+      <div id="wrapper">
 
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
+        <!-- Main -->
+          <div id="main">
+            <div class="inner">
 
-							<!-- Header -->
-								<header id="header">
-									<a href="index.html" class="logo">Project<strong> 8</strong></a>
-								</header>
+              <!-- Header -->
+                <header id="header">
+                  <a href="index.html" class="logo">Project<strong> 8</strong></a>
+                </header>
 
-							<!-- Content -->
-								<section>
-									<header class="main">
-										<h1>Soil Moisture Monitoring</h1>
-									</header>
-
-									<!-- Content -->
-										<h2 id="content">HOW IT WORKS?</h2>
-										<p>Soil moisture is used in determination of the amount of water existing in the soil and this is important for checking proper growth conditions for plant and water conservation programme. It is an underground sensor placed at root level or may be of resistive, capacitive or time domain reflectometry type. Such device determines the soil moisture through three electrical properties: Resistive sensors measure the resistance between two electrodes, the higher the moisture levels the lower resistance while the lower moisture levels, the higher the resistance. Once the sensor acquires moisture data, it forward such data to a microcontroller or monitoring system, using wired links or cables or through wireless communication. The microcontroller analyses the data and perhaps calculates there from the degree of moisture, normally converted to a format such as percentage moisture content.
-
-
-
-											
-										</p>
-										<h2 id="content">PARTS NEEDED:</h2>
-										<p>• Main Board Module<br>
-											• Smart Agriculture Module<br>
-											• Connector Cables<br></p>
-
-							<section>
-								<header class="main">
-									<h2 id="content">SENSOR IN THE MODULE TO BE USED</h2></header>
-									<p><strong>HL-69 Moisture Sensor</strong><br> The prongs of the HL-69 Moisture Sensor to determine the soil moisture by sending a current there through and then comparing the level of electrical resistance. In moist condition, with flow of current is easy and therefore the resistance is low while in a dry condition, the conductivity of electricity is poor, therefore the resistance is high.  <br> <br> 
-									This data is then, passed on to a microcontroller for example an Arduino, to estimate the resistance level in order to analyze the moisture content of the soil. It can execute such actions as watering of plants when the amounts of soil moisture are too low, according to the readings.</p>
-							</section>
-
-						<!-- Image Section -->
-						<h2>THE BUILD</h2>
-
-						<!-- Main Image (pic11.jpg) -->
-						<span class="image fit">
-						    <a href="images/ssoil.jpg" class="image-link"><img src="images/ssoil.jpg" alt="" /></a>
-						</span>
-
-						<!-- Modal Dialog -->
-						<div id="modal" class="modal">
-						    <span class="close">&times;</span>
-						    <img class="modal-content" id="modal-image">
-						</div>
-
-						<!-- JavaScript to Show Full Image on Click -->
-						<script>
-						    // Get all elements with class "image-link"
-						    const imageLinks = document.querySelectorAll('.image-link');
-
-						    // Get the modal element
-						    const modal = document.getElementById('modal');
-
-						    // Get the image element within the modal
-						    const modalImg = document.getElementById('modal-image');
-
-						    // Loop through each image link
-						    imageLinks.forEach(link => {
-						        link.addEventListener('click', function(event) {
-						            event.preventDefault(); // Prevent default link behavior
-
-						            // Get href attribute of the clicked link (full-size image URL)
-						            const imageURL = this.getAttribute('href');
-
-						            // Display the modal
-						            modal.style.display = 'flex'; // Show the modal as flexbox for centering
-
-						            // Set the clicked image as the source of the modal image
-						            modalImg.src = imageURL;
-
-						            // Reset modal content position
-						            modal.scrollTop = 0;
-						            modal.scrollLeft = 0;
-						        });
-						    });
-
-						    // Close the modal when the close button (x) is clicked
-						    const closeBtn = document.querySelector('.close');
-						    closeBtn.addEventListener('click', function() {
-						        modal.style.display = 'none';
-						    });
-
-						    // Close the modal when clicking outside of it
-						    window.addEventListener('click', function(event) {
-						        if (event.target === modal) {
-						            modal.style.display = 'none';
-						        }
-						    });
-
-						    // Enable zoom functionality
-						    modalImg.addEventListener('click', function() {
-						        if (modalImg.classList.contains('zoomed')) {
-						            modalImg.classList.remove('zoomed');
-						        } else {
-						            modalImg.classList.add('zoomed');
-						        }
-						    });
-						</script>
+              <!-- Content -->
+                <section>
+                  <header class="main">
+                    <h1>Soil Moisture Monitoring</h1>
+                  </header>
+                        <!-- Main Image (pic11.jpg) -->
+                        <span class="image fit">
+                            <a href="images/8.jpg" class="image-link"><img src="images/8.jpg" alt="" /></a>
+                        </span>
 
 
-												<!-- Box -->
-<!-- Box -->
-										<h2>INSTRUCTION(s):</h2>
-													<div class="box">
-														<p><strong>Step 1: Assembling the System</strong><br>
+                        <!-- Modal Dialog -->
+                        <div id="modal" class="modal">
+                            <span class="close">&times;</span>
+                            <img class="modal-content" id="modal-image">
+                        </div>
+
+                        <!-- JavaScript to Show Full Image on Click -->
+                        <script>
+                            // Get all elements with class "image-link"
+                            const imageLinks = document.querySelectorAll('.image-link');
+
+                            // Get the modal element
+                            const modal = document.getElementById('modal');
+
+                            // Get the image element within the modal
+                            const modalImg = document.getElementById('modal-image');
+
+                            // Loop through each image link
+                            imageLinks.forEach(link => {
+                                link.addEventListener('click', function(event) {
+                                    event.preventDefault(); // Prevent default link behavior
+
+                                    // Get href attribute of the clicked link (full-size image URL)
+                                    const imageURL = this.getAttribute('href');
+
+                                    // Display the modal
+                                    modal.style.display = 'flex'; // Show the modal as flexbox for centering
+
+                                    // Set the clicked image as the source of the modal image
+                                    modalImg.src = imageURL;
+
+                                    // Reset modal content position
+                                    modal.scrollTop = 0;
+                                    modal.scrollLeft = 0;
+                                });
+                            });
+
+                            // Close the modal when the close button (x) is clicked
+                            const closeBtn = document.querySelector('.close');
+                            closeBtn.addEventListener('click', function() {
+                                modal.style.display = 'none';
+                            });
+
+                            // Close the modal when clicking outside of it
+                            window.addEventListener('click', function(event) {
+                                if (event.target === modal) {
+                                    modal.style.display = 'none';
+                                }
+                            });
+
+                            // Enable zoom functionality
+                            modalImg.addEventListener('click', function() {
+                                if (modalImg.classList.contains('zoomed')) {
+                                    modalImg.classList.remove('zoomed');
+                                } else {
+                                    modalImg.classList.add('zoomed');
+                                }
+                            });
+                        </script>
+                  <!-- Content -->
+                    <h2 id="content">HOW IT WORKS?</h2>
+                    <p>Soil moisture is used in determination of the amount of water existing in the soil and this is important for checking proper growth conditions for plant and water conservation programme. It is an underground sensor placed at root level or may be of resistive, capacitive or time domain reflectometry type. Such device determines the soil moisture through three electrical properties: Resistive sensors measure the resistance between two electrodes, the higher the moisture levels the lower resistance while the lower moisture levels, the higher the resistance. Once the sensor acquires moisture data, it forward such data to a microcontroller or monitoring system, using wired links or cables or through wireless communication. The microcontroller analyses the data and perhaps calculates there from the degree of moisture, normally converted to a format such as percentage moisture content.
+
+
+
+                      
+                    </p>
+                    <h2 id="content">PARTS NEEDED:</h2>
+                    <p>• Main Board Module<br>
+                      • Smart Agriculture Module<br>
+                      • Connector Cables<br></p>
+
+              <section>
+                <header class="main">
+                  <h2 id="content">SENSOR IN THE MODULE TO BE USED</h2></header>
+                  <p><strong>HL-69 Moisture Sensor</strong><br> The prongs of the HL-69 Moisture Sensor to determine the soil moisture by sending a current there through and then comparing the level of electrical resistance. In moist condition, with flow of current is easy and therefore the resistance is low while in a dry condition, the conductivity of electricity is poor, therefore the resistance is high.  <br> <br> 
+                  This data is then, passed on to a microcontroller for example an Arduino, to estimate the resistance level in order to analyze the moisture content of the soil. It can execute such actions as watering of plants when the amounts of soil moisture are too low, according to the readings.</p>
+              </section>
+
+            <!-- Image Section -->
+            <h2>THE BUILD</h2>
+
+            <!-- Main Image (pic11.jpg) -->
+            <span class="image fit">
+                <a href="images/ssoil.jpg" class="image-link"><img src="images/ssoil.jpg" alt="" /></a>
+            </span>
+
+            <!-- Modal Dialog -->
+            <div id="modal" class="modal">
+                <span class="close">&times;</span>
+                <img class="modal-content" id="modal-image">
+            </div>
+
+            <!-- JavaScript to Show Full Image on Click -->
+            <script>
+                // Get all elements with class "image-link"
+                const imageLinks = document.querySelectorAll('.image-link');
+
+                // Get the modal element
+                const modal = document.getElementById('modal');
+
+                // Get the image element within the modal
+                const modalImg = document.getElementById('modal-image');
+
+                // Loop through each image link
+                imageLinks.forEach(link => {
+                    link.addEventListener('click', function(event) {
+                        event.preventDefault(); // Prevent default link behavior
+
+                        // Get href attribute of the clicked link (full-size image URL)
+                        const imageURL = this.getAttribute('href');
+
+                        // Display the modal
+                        modal.style.display = 'flex'; // Show the modal as flexbox for centering
+
+                        // Set the clicked image as the source of the modal image
+                        modalImg.src = imageURL;
+
+                        // Reset modal content position
+                        modal.scrollTop = 0;
+                        modal.scrollLeft = 0;
+                    });
+                });
+
+                // Close the modal when the close button (x) is clicked
+                const closeBtn = document.querySelector('.close');
+                closeBtn.addEventListener('click', function() {
+                    modal.style.display = 'none';
+                });
+
+                // Close the modal when clicking outside of it
+                window.addEventListener('click', function(event) {
+                    if (event.target === modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+
+                // Enable zoom functionality
+                modalImg.addEventListener('click', function() {
+                    if (modalImg.classList.contains('zoomed')) {
+                        modalImg.classList.remove('zoomed');
+                    } else {
+                        modalImg.classList.add('zoomed');
+                    }
+                });
+            </script>
+
+
+<h2>CHOOSE WHAT PROJECT YOU WISH TO PERFORM"</h2>
+<!-- Button for Set 1 -->
+<button id="toggleSet1" class="toggle-button">Through the Internet</button>
+<!-- Section 1 -->
+<div id="set1" class="hidden">
+    <div class="section">
+        <h2>Instructions</h2>
+<p><strong>Step 1: Assembling the System</strong><br>
+<strong>Positioning the Module:</strong><br>
+1. Take the Smart Agriculture Module (enclosed in the 3D-printed box) and align it over the main board.<br>
+2. Gently press the module onto the main board's connector pins until it fits securely in place.<br>   
+3. Ensure that the module is correctly seated to avoid loose connections.<p>
+<strong>Step 2: Powering the System</strong><br>
+<strong>Connecting Power:</strong><br>
+1. Get the connecting cable and attach it into the laptop that you will use to upload the code.<br>
+2. Plug in the other end of it to the main board. The system will automatically power on.<br>
+<strong>Visual Indicator Check:</strong><br>
+Observe the LED indicators on the main board. The system should show a steady power LED to confirm it's operational.<p>
+<strong>Step 3: Connecting to the Internet and Adafruit IO:</strong><br>
+1. Copy the code in the website under "Through Internet" then change the WiFi SSID and password depending on what connection you wish to connect.
+2. Open Adafruit IO in your search engine then use "denzelgaddi5@gmail.com" as email and "Denzel92934." as password.
+3. Select Project 8 in the dashboard. <p>
+<strong>Testing the Alerts:</strong><br>
+To test the system, place you palm in front of the sensor. The alerts should activate.
+                            </p>
+
+<!-- Video Button -->
+<button id="showVideoButton">Watch Video Instruction</button>
+
+<!-- Video Modal -->
+<div id="videoModal" class="modal">
+    <span class="close" id="closeVideo">&times;</span>
+    <div class="video-container">
+        <video id="videoPlayer" controls>
+            <source src="videos/vagri.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+
+<!-- CSS for Styling -->
+<style>
+    /* Video Button */
+    #showVideoButton {
+        display: block;
+        margin: 20px auto;
+        padding: 1px 5px;
+        background-color: transparent;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 12px;
+    }
+
+    /* Video Modal */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .video-container {
+        width: 80%;
+        max-width: 600px;
+    }
+
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 2rem;
+        color: white;
+        cursor: pointer;
+    }
+
+    video {
+        width: 100%;
+        height: auto;
+        border: none;
+    }
+</style>
+
+<!-- JavaScript for Modal Functionality -->
+<script>
+    // Get the elements
+    const showVideoButton = document.getElementById("showVideoButton");
+    const videoModal = document.getElementById("videoModal");
+    const closeVideo = document.getElementById("closeVideo");
+    const videoPlayer = document.getElementById("videoPlayer");
+
+    // Show modal when button is clicked
+    showVideoButton.addEventListener("click", function() {
+        videoModal.style.display = "flex";
+        videoPlayer.play(); // Auto-play video when modal is shown
+    });
+
+    // Close modal when the close button is clicked
+    closeVideo.addEventListener("click", function() {
+        videoModal.style.display = "none";
+        videoPlayer.pause(); // Pause video when modal is closed
+        videoPlayer.currentTime = 0; // Reset video to start
+    });
+
+    // Close modal when clicking outside the video
+    window.addEventListener("click", function(event) {
+        if (event.target === videoModal) {
+            videoModal.style.display = "none";
+            videoPlayer.pause(); // Pause video when modal is closed
+            videoPlayer.currentTime = 0; // Reset video to start
+        }
+    });
+</script>
+    </div>
+    <div class="section">
+        <h2>Code</h2>
+        <pre><code>
+#include &lt;WiFi.h&gt;
+#include "AdafruitIO_WiFi.h"
+
+// Adafruit IO credentials
+#define IO_USERNAME "IoTTrainingBoard"
+#define IO_KEY "aio_lYXr89c05NCpeRgnLIeYJuSGcjby"
+
+// WiFi credentials
+#define WIFI_SSID "PLDTHOMEFIBR5e300"
+#define WIFI_PASS "SASHuke@1123"
+
+// Adafruit IO instance
+AdafruitIO_WiFi io(IO_USERNAME, IO_KEY, WIFI_SSID, WIFI_PASS);
+
+// Feeds for soil moisture monitoring
+AdafruitIO_Feed *moistureValueFeed = io.feed("moisture_value");
+AdafruitIO_Feed *soilStatusFeed = io.feed("soil_status");
+
+// GPIO pin connected to the soil moisture sensor
+#define SENSOR_PIN 32
+
+// Function to read soil moisture sensor and determine status
+void readSoilMoisture(int &sensorValue, String &soilStatus) {
+  sensorValue = analogRead(SENSOR_PIN); // Read the sensor value
+
+  // Determine the soil status
+  if (sensorValue &gt; 4000) {
+    soilStatus = "Dry Soil";
+  } else if (sensorValue &gt; 2500) {
+    soilStatus = "Moist Soil";
+  } else {
+    soilStatus = "Wet Soil";
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+
+  // Initialize the sensor pin
+  pinMode(SENSOR_PIN, INPUT);
+
+  // Connect to Adafruit IO
+  Serial.print("Connecting to Adafruit IO...");
+  io.connect();
+
+  // Wait for connection
+  while (io.status() &lt; AIO_CONNECTED) {
+    Serial.print(".");
+    delay(500);
+  }
+  Serial.println("Connected!");
+
+  // Initialize Adafruit IO feeds
+  moistureValueFeed-&gt;save(0); // Initialize soil moisture value
+  soilStatusFeed-&gt;save("Wet Soil"); // Initialize soil status
+}
+
+void loop() {
+  io.run(); // Keep Adafruit IO connection alive
+
+  int sensorValue;
+  String soilStatus;
+
+  // Read soil moisture and determine status
+  readSoilMoisture(sensorValue, soilStatus);
+
+  // Publish data to Adafruit IO
+  moistureValueFeed-&gt;save(sensorValue);
+  soilStatusFeed-&gt;save(soilStatus);
+
+  // Debugging logs
+  Serial.print("Soil Moisture Value: ");
+  Serial.print(sensorValue);
+  Serial.print(" | Status: ");
+  Serial.println(soilStatus);
+
+  delay(1000); // Update every second
+}
+
+
+
+</code></pre><button id="copyButton">Copy Code</button>
+    </div>
+    <div class="section">
+        <h2>Code Explanation</h2>        
+ <p>The code sets up a Soil Moisture Monitoring System using an ESP32, where users can monitor the soil moisture level on a web page in real-time. Let's break it down.
+                            <p><strong>Key Components and Their Roles</strong><br>
+<strong>1. Libraries Included:</strong><br>
+&emsp;&emsp;&emsp;•<strong><code>WiFi.h</code></strong>Handles Wi-Fi connectivity for the ESP32.<br>
+&emsp;&emsp;&emsp;•<strong><code>AdafruitIO_WiFi.h</code></strong>Integrates the ESP32 with Adafruit IO for data feeds and connectivity.<br>
+<strong>2. WiFi Setup:</strong><br>
+&emsp;&emsp;&emsp;• Configures the ESP32 to connect to a Wi-Fi network using SSID <code>PLDTHOMEFIBR5e300</code> and password <code>SASHuke@1123</code>.<br>
+&emsp;&emsp;&emsp;• Establishes an Adafruit IO instance using the username <code>Hanseljedd</code> and key <code>aio_lYXr89c05NCpeRgnLIeYJuSGcjby</code>.<p>
+
+<strong>3. Soil Moisture Sensor Setup:</strong><br>
+&emsp;&emsp;&emsp;• The soil moisture sensor is connected to GPIO 32 to monitor soil conditions.<br>
+&emsp;&emsp;&emsp;• Sensor values are categorized into soil statuses:<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>Dry Soil</code></strong> for values &gt; 4000.<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>Moist Soil</code></strong> for values between 2500 and 4000.<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>Wet Soil</code></strong> for values ≤ 2500.<p>
+
+<div class="button-container">
+    <!-- Button to show first image -->
+    <button id="showImageButton1" class="show-image-button">Soil Moisture Pinout</button>
+
+    <!-- Button to show second image -->
+    <button id="showImageButton2" class="show-image-button">ESP32 Pinout</button>
+</div>
+
+<!-- Hidden first image container -->
+<div id="imageContainer1" class="hidden">
+    <img src="images/soilmoisture.png" alt="Soil Moisture Sensor Image" style="max-width: 100%; height: auto;"><br>
+    Photo Credit: Circuit Digest<p>
+</div>
+
+<!-- Hidden second image container -->
+<div id="imageContainer2" class="hidden">
+    <img src="images/esp32.jpg" alt="ESP32 Image" style="max-width: 100%; height: auto;"><br>
+    Photo Credit: Random Nerd Tutorials<p>
+</div>
+
+<!-- JavaScript to handle button clicks for each image -->
+<script>
+    const showImageButton1 = document.getElementById("showImageButton1");
+    const imageContainer1 = document.getElementById("imageContainer1");
+
+    const showImageButton2 = document.getElementById("showImageButton2");
+    const imageContainer2 = document.getElementById("imageContainer2");
+
+    // Toggle first image visibility
+    showImageButton1.addEventListener("click", function() {
+        imageContainer1.classList.toggle("hidden");
+    });
+
+    // Toggle second image visibility
+    showImageButton2.addEventListener("click", function() {
+        imageContainer2.classList.toggle("hidden");
+    });
+</script>
+
+<!-- CSS for styling -->
+<style>
+    /* Center the button container */
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px; /* Space between buttons */
+        margin-top: 10px;
+    }
+
+    /* Style for buttons */
+    .show-image-button {
+        padding: 5px 10px;
+        background-color: transparent;
+        color: #7f888f !important; /* Set text color to black */
+        border: 2px solid #FF6F61; /* Match the border color in your image */
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.75rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px; /* Ensure sufficient height for vertical centering */
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Center text inside the button */
+    .show-image-button:hover {
+        background-color: rgba(255, 255, 255, 0.2); /* Slightly tinted for hover effect */
+        color: #00ab41; /* Example color on hover */
+    }
+
+    /* Hide initially */
+    .hidden {
+        display: none;
+    }
+
+    /* Margin for image containers */
+    #imageContainer1, #imageContainer2 {
+        margin-top: 10px;
+    }
+</style><p>
+
+<strong>4. Server Functions:</strong><br>
+&emsp;&emsp;&emsp;• Key server functions include:<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>readSoilMoisture()</code></strong>Reads the soil moisture value from the sensor and determines the soil status.<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>moistureValueFeed</code></strong>Publishes the raw sensor value to Adafruit IO.<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;•<strong><code>soilStatusFeed</code></strong>Publishes the soil status ("Dry Soil," "Moist Soil," or "Wet Soil") to Adafruit IO.<p>
+
+<strong>5. Data Collection and Management:</strong><br> 
+&emsp;&emsp;&emsp;• The<strong><code>readSoilMoisture()</code></strong>function captures data from the soil moisture sensor and categorizes the soil condition.<br>
+&emsp;&emsp;&emsp;• Data is sent to Adafruit IO feeds for real-time monitoring via the web interface.<p>
+
+<strong>6. Web Interface Design:</strong><br> 
+&emsp;&emsp;&emsp;• Adafruit IO serves as the web interface for displaying soil moisture levels and their corresponding statuses.<br> 
+&emsp;&emsp;&emsp;• Users can monitor real-time updates on soil conditions remotely.<p>
+
+<strong>7. JavaScript and AJAX Updates:</strong><br> 
+&emsp;&emsp;&emsp;• Adafruit IO provides real-time updates for soil moisture values and status, ensuring users can view changes dynamically.<br> 
+&emsp;&emsp;&emsp;• Users can access the data through Adafruit IO dashboards.<p>
+
+<strong>8. The Setup<code>setup()</code>and Loop<code>loop()</code>Functions:</strong><br> 
+&emsp;&emsp;&emsp;•<strong><code>setup()</code></strong>Initializes the soil moisture sensor, connects to Adafruit IO, and initializes feeds with default values.<br> 
+&emsp;&emsp;&emsp;•<strong><code>loop()</code></strong>Reads sensor data, updates Adafruit IO feeds, and prints debug information to the Serial Monitor.<p>
+    </div>
+</div>
+
+
+<!-- Button for Set 2 -->
+<button id="toggleSet2" class="toggle-button">WiFi Direct</button>
+<!-- Section 2 -->
+<div id="set2" class="hidden">
+    <div class="section">
+                            <p><strong>Step 1: Assembling the System</strong><br>
 <strong>Positioning the Module:</strong><br>
 1. Take the Smart Agriculture Module (enclosed in the 3D-printed box) and align it over the main board.<br>
 2. Gently press the module onto the main board's connector pins until it fits securely in place.<br>
@@ -146,8 +567,8 @@ Observe the LED indicators on the main board. A steady power LED confirms that t
 <strong>Testing the Alerts:</strong><br>
 To verify the system put the sensor in various moistures (dry, wet, etc.) to see that it would provide the respective alerts on the web interface.
 
-														</p>
-													</div>
+                            </p>
+
 
 <!-- Video Button -->
 <button id="showVideoButton">Watch Video Instruction</button>
@@ -157,7 +578,7 @@ To verify the system put the sensor in various moistures (dry, wet, etc.) to see
     <span class="close" id="closeVideo">&times;</span>
     <div class="video-container">
         <video id="videoPlayer" controls>
-            <source src="agri.mp4" type="video/mp4">
+            <source src="videos/agri.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
     </div>
@@ -244,23 +665,11 @@ To verify the system put the sensor in various moistures (dry, wet, etc.) to see
     });
 </script>
 
-							<!-- Preformatted Code -->
-<html>
-<head>
-    <title>ESP32 Project</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        body { font-family: Arial, sans-serif;}
-        .code-section { background-color: #f5f5f5;}
-        pre { white-space: pre-wrap; font-size: 0.9rem; color: #333;}
-        h2 { margin: 0 0 5px 0; font-size: 1.2rem; }
-    </style>
-    							<div class="code-section">
-							    <h2>CODE</h2>
-							    <pre><code> <!DOCTYPE HTML>
-</head>
-<body>#include &lt;WiFi.h&gt;
+    </div>
+    <div class="section">
+        <h2>Code</h2>
+        <pre><code>
+#include &lt;WiFi.h&gt;
 
 // Define the GPIO pin connected to the soil moisture sensor
 #define SENSOR_PIN 32
@@ -411,16 +820,12 @@ void loop() {
     Serial.println("Client disconnected");
   }
 }
-</body>
-</html>
-							</code></pre>
-							    <button id="copyButton">Copy Code</button>
-							</div>
+        </code></pre><button id="copyButton">Copy Code</button>
+    </div>
 
-<h2>CODE EXPLANATION</h2>
-													<div class="box">
-														<p>The code sets up a Soil Moisture Monitoring System using an ESP32, where users can monitor the soil moisture level on a web page in real-time. Let's break it down.
-														<p><strong>Key Components and Their Roles</strong><br>
+    <div class="section"><h2>Code Explanation</h2><p>
+ <p>The code sets up a Soil Moisture Monitoring System using an ESP32, where users can monitor the soil moisture level on a web page in real-time. Let's break it down.
+                            <p><strong>Key Components and Their Roles</strong><br>
 <strong>1. Libraries Included:</strong><br>
 &emsp;&emsp;&emsp;•<strong><code>WiFi.h</code></strong> Executes Wi-Fi related activities, thus enabling the ESP32 to configure the formation of an Access Point for use by a user.<br>
 <strong>2. WiFi Setup</strong><br>
@@ -542,109 +947,341 @@ void loop() {
 &emsp;&emsp;&emsp;• <strong><code>loop()</code></strong>  Is always on the lookout for new client requests to update the information on the said web page.<p>
 
 
-													</div>
+<script>
+    // Toggle visibility for Set 1
+    const toggleSet1 = document.getElementById('toggleSet1');
+    const set1 = document.getElementById('set1');
+    toggleSet1.addEventListener('click', () => {
+        set1.classList.toggle('hidden'); // Toggles the "hidden" class
+    });
+
+    // Toggle visibility for Set 2
+    const toggleSet2 = document.getElementById('toggleSet2');
+    const set2 = document.getElementById('set2');
+    toggleSet2.addEventListener('click', () => {
+        set2.classList.toggle('hidden'); // Toggles the "hidden" class
+    });
+</script>
+
+    </div><p>
+</div>
+
+<h2>ASSESSMENT</h2>
+<div class="box">
+In this section, students are required to accomplish the following activity.<p><p>
+<strong>Project Description</strong><br>
+In this project, you'll monitor soil moisture levels using an analog sensor connected to an ESP32. The ESP32 will serve as an Access Point (AP) and host a web page displaying the current moisture level and status (dry, moist, or wet). Additionally, a vertical bar graph will visually represent the moisture level, and the color of the bar will change as the soil status changes.<p>
+<strong>What to Expect</strong><br>
+<strong>Web Interface:</strong><br>
+&emsp;&emsp;&emsp;- The web page will display the soil moisture level as a numerical value, as well as a status message (Dry, Moist, or Wet).<p>
+<strong>Vertical Bar Graph:</strong><br>
+&emsp;&emsp;&emsp;- The bar graph will show the soil moisture level in a vertical bar format. The bar will change its color based on the soil moisture:<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;- Green for wet soil.<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;- Yellow for moist soil.<br>
+&emsp;&emsp;&emsp;&emsp;&emsp;- Red for dry soil.<p>
+<strong>Real-Time Updates:</strong><br>
+&emsp;&emsp;&emsp;- The bar graph and moisture data will update every second.<p>
+  <button id="key" class="toggle-button">Answer Key</button>
+<!-- Section 1 -->
+<div id="answerkey" class="hidden">
+
+    <div class="section">
+        <h2>Code</h2>
+        <pre><code>
+#include &lt;WiFi.h&gt;
+
+// Define the GPIO pin connected to the soil moisture sensor
+#define SENSOR_PIN 32
+
+// WiFi credentials for AP mode
+const char* ssid = "ESP32_Soil_Moisture";  // SSID of the AP
+const char* password = "12345678";         // Password for the AP
+
+WiFiServer server(80);
+
+// HTML content for the web page with a vertical bar graph
+String HTMLPage = R"rawliteral(
+  &lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Soil Moisture Level&lt;/title&gt;
+    &lt;style&gt;
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: radial-gradient(circle, white, #00ab41);
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 20px 40px 20px rgba(0, 0, 0, 0.3);
+      }
+      h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+      }
+      p {
+        font-size: 28px;
+        margin-bottom: 30px;
+      }
+      #moistureBar {
+        width: 100px;
+        height: 300px;
+        border: 1px solid #ccc;
+        margin: 20px auto;
+        position: relative;
+      }
+      #bar {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        transition: height 0.5s ease-out;
+      }
+    &lt;/style&gt;
+    &lt;script&gt;
+      function updateData() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/data", true);
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState == 4 &amp;&amp; xhr.status == 200) {
+            var response = JSON.parse(xhr.responseText);
+            document.getElementById("moistureValue").innerText = response.moistureValue;
+            document.getElementById("soilStatus").innerText = response.soilStatus;
+            
+            // Update the bar's height and color
+            var moisture = response.moistureValue;
+            var barHeight = map(moisture, 0, 4095, 0, 300); // Mapping sensor value to bar height
+            document.getElementById("bar").style.height = barHeight + "px";
+            
+            // Change the color of the bar based on moisture level
+            if (moisture &gt; 4000) {
+              document.getElementById("bar").style.backgroundColor = "red"; // Dry
+            } else if (moisture &gt; 2500) {
+              document.getElementById("bar").style.backgroundColor = "yellow"; // Moist
+            } else {
+              document.getElementById("bar").style.backgroundColor = "green"; // Wet
+            }
+          }
+        };
+        xhr.send();
+      }
+      setInterval(updateData, 1000); // Update every second
+    &lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div class="container"&gt;
+      &lt;h1&gt;Soil Moisture Level&lt;/h1&gt;
+      &lt;p&gt;Moisture Value: &lt;span id="moistureValue"&gt;Loading...&lt;/span&gt;&lt;/p&gt;
+      &lt;p&gt;Status: &lt;span id="soilStatus"&gt;Loading...&lt;/span&gt;&lt;/p&gt;
+      
+      &lt;div id="moistureBar"&gt;
+        &lt;div id="bar"&gt;&lt;/div&gt; <!-- This div will represent the moisture level in the vertical bar -->
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+  &lt;/html&gt;
+)rawliteral";
+
+// Function to return sensor data as JSON
+String getSensorData() {
+  int sensorValue = analogRead(SENSOR_PIN);  // Read the sensor value
+  String soilStatus;
+
+  if (sensorValue &gt; 4000) {
+    soilStatus = "Dry Soil";
+  } else if (sensorValue &gt; 2500) {
+    soilStatus = "Moist Soil";
+  } else {
+    soilStatus = "Wet Soil";
+  }
+
+  // Create a JSON string
+  String jsonData = "{\"moistureValue\":" + String(sensorValue) + ", \"soilStatus\":\"" + soilStatus + "\"}";
+  return jsonData;
+}
+
+void setup() {
+  // Start the Serial Monitor
+  Serial.begin(115200);
+
+  // Initialize the sensor pin
+  pinMode(SENSOR_PIN, INPUT);
+
+  // Set up ESP32 as an Access Point
+  Serial.println("Setting up Access Point...");
+  WiFi.softAP(ssid, password);  // Start AP with SSID and password
+  Serial.println("Access Point Created");
+  
+  // Display the IP address of the ESP32
+  Serial.print("AP IP address: ");
+  Serial.println(WiFi.softAPIP());
+
+  // Start the server
+  server.begin();
+}
+
+void loop() {
+  WiFiClient client = server.available();
+
+  if (client) {
+    Serial.println("New Client connected");
+    String request = "";
+    unsigned long timeout = millis();
+    while (client.connected() &amp;&amp; millis() - timeout &lt; 2000) {
+      if (client.available()) {
+        char c = client.read();
+        request += c;
+        if (c == '\n') break;  // End of HTTP request
+      }
+    }
+
+    // Handle root page request
+    if (request.indexOf("GET / ") &gt;= 0) {
+      client.println("HTTP/1.1 200 OK");
+      client.println("Content-type:text/html");
+      client.println();
+      client.print(HTMLPage);
+    } 
+    // Handle sensor data request
+    else if (request.indexOf("GET /data ") &gt;= 0) {
+      client.println("HTTP/1.1 200 OK");
+      client.println("Content-type:application/json");
+      client.println();
+      client.print(getSensorData());
+    }
+    // Handle other requests
+    else {
+      client.println("HTTP/1.1 404 Not Found");
+      client.println("Content-type:text/plain");
+      client.println();
+      client.println("404: Not Found");
+    }
+
+    // Close the connection
+    client.stop();
+    Serial.println("Client disconnected");
+  }
+}
+
+        </code></pre></div></div></div>
+<script>
+    // Toggle visibility for Answer Key
+    const key = document.getElementById('key');
+    const answerkey = document.getElementById('answerkey');
+    key.addEventListener('click', () => {
+        answerkey.classList.toggle('hidden'); // Toggles the "hidden" class
+    });
+</script>
 
 
-											</div>
-										</div>
+                      </div>
+                    </div>
 
-								</section>
+                </section>
 
 <!-- Sidebar -->
-					<div id="sidebar">
-						<div class="inner">
+          <div id="sidebar">
+            <div class="inner">
 
-							<!-- Menu -->
-								<nav id="menu">
-									<header class="major">
-										<h2>Menu</h2>
-									</header>
-									<ul>
-										<li><a href="index.html">Homepage</a></li>
-										<li><a href="generic.html">The Creation</a></li>
-										<li><a href="elements.html">Module Explainer</a></li>
-										<li>
-											<span class="opener">Introductory Projects</span>
-											<ul>
+              <!-- Menu -->
+                <nav id="menu">
+                  <header class="major">
+                    <h2>Menu</h2>
+                  </header>
+                  <ul>
+                    <li><a href="index.html">Homepage</a></li>
+                    <li><a href="generic.html">The Creation</a></li>
+                    <li><a href="elements.html">Module Explainer</a></li>
+                    <li>
+                      <span class="opener">Introductory Projects</span>
+                      <ul>
                         <li><a href="io.html">Input Output</a></li>
                         <li><a href="ai.html">Analog Inputs</a></li>
                         <li><a href="pwm.html">PWM (Analog Output)</a></li>
                         <li><a href="sws.html">Switch Web Server</a></li>
                         <li><a href="rlws.html">RGB LED Web Server</a></li>
-											</ul>
-										</li>
-										<li>
-											<span class="opener">Main Projects</span>
-											<ul>
-												<li><a href="project-1.html">Project 1</a></li>
-												<li><a href="project-2.html">Project 2</a></li>
-												<li><a href="project-3.html">Project 3</a></li>
-												<li><a href="project-4.html">Project 4</a></li>
-												<li><a href="project-5.html">Project 5</a></li>
-												<li><a href="project-6.html">Project 6</a></li>
-												<li><a href="project-7.html">Project 7</a></li>
-												<li><a href="project-8.html">Project 8</a></li>
-												<li><a href="project-9.html">Project 9</a></li>
-												<li><a href="project-10.html">Project 10</a></li>
-											</ul>
-										</li>
-									</ul>
-								</nav>
+                      </ul>
+                    </li>
+                    <li>
+                      <span class="opener">Main Projects</span>
+                      <ul>
+                        <li><a href="project-1.html">Project 1</a></li>
+                        <li><a href="project-2.html">Project 2</a></li>
+                        <li><a href="project-3.html">Project 3</a></li>
+                        <li><a href="project-4.html">Project 4</a></li>
+                        <li><a href="project-5.html">Project 5</a></li>
+                        <li><a href="project-6.html">Project 6</a></li>
+                        <li><a href="project-7.html">Project 7</a></li>
+                        <li><a href="project-8.html">Project 8</a></li>
+                        <li><a href="project-9.html">Project 9</a></li>
+                        <li><a href="project-10.html">Project 10</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </nav>
 
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>ADVANCED IOT PROJECTS</h2>
-									</header>
-									<div class="mini-posts">
-										<article>
-											<a href="https://youtu.be/RUO44kqNP24?si=QO3qiHGQLvJSXDaD" class="image"><img src="https://i.ytimg.com/vi/RUO44kqNP24/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLD_wUN6wdxf151rPD6UWSKlwhLK7Q" alt="" /></a>
-											<p>Patient Health Monitoring System Using Raspberry Pi</p>
-										</article>
-										<article>
-											<a href="https://youtu.be/FSqYyjZtH4g?si=9BeVl6KnJ2oD9eBl" class="image"><img src="https://i.ytimg.com/vi/FSqYyjZtH4g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCztyDAtqgoFMqVVEyold-aKebbbQ" alt="" /></a>
-											<p>Women Safety Device Using Internet of Things</p>
-										</article>
-										<article>
-											<a href="https://youtu.be/EamYfGG4Wvg?si=10C8m2DArmPMSOv3" class="image"><img src="https://i.ytimg.com/vi/EamYfGG4Wvg/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH0CYAC0AWKAgwIABABGGUgTShIMA8=&rs=AOn4CLBlZoYwXKvvyn9fsfvRhCCsItaQ3g" alt="" /></a>
-											<p>A Web-Based Accident Reporting and Tracking System</p>
-										</article>
-									</div>
-									<ul class="actions">
-										<li><a href="https://youtube.com/playlist?list=PL87CgTAGz2yZ0geJ-_9HAK2u8NDMhVwFH&si=cr7ljhFT1B8GZR3-" class="button">More</a></li>
-									</ul>
-								</section>
+              <!-- Section -->
+                <section>
+                  <header class="major">
+                    <h2>ADVANCED IOT PROJECTS</h2>
+                  </header>
+                  <div class="mini-posts">
+                    <article>
+                      <a href="https://youtu.be/RUO44kqNP24?si=QO3qiHGQLvJSXDaD" class="image"><img src="https://i.ytimg.com/vi/RUO44kqNP24/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLD_wUN6wdxf151rPD6UWSKlwhLK7Q" alt="" /></a>
+                      <p>Patient Health Monitoring System Using Raspberry Pi</p>
+                    </article>
+                    <article>
+                      <a href="https://youtu.be/FSqYyjZtH4g?si=9BeVl6KnJ2oD9eBl" class="image"><img src="https://i.ytimg.com/vi/FSqYyjZtH4g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCztyDAtqgoFMqVVEyold-aKebbbQ" alt="" /></a>
+                      <p>Women Safety Device Using Internet of Things</p>
+                    </article>
+                    <article>
+                      <a href="https://youtu.be/EamYfGG4Wvg?si=10C8m2DArmPMSOv3" class="image"><img src="https://i.ytimg.com/vi/EamYfGG4Wvg/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH0CYAC0AWKAgwIABABGGUgTShIMA8=&rs=AOn4CLBlZoYwXKvvyn9fsfvRhCCsItaQ3g" alt="" /></a>
+                      <p>A Web-Based Accident Reporting and Tracking System</p>
+                    </article>
+                  </div>
+                  <ul class="actions">
+                    <li><a href="https://youtube.com/playlist?list=PL87CgTAGz2yZ0geJ-_9HAK2u8NDMhVwFH&si=cr7ljhFT1B8GZR3-" class="button">More</a></li>
+                  </ul>
+                </section>
 
-							<!-- Section -->
-								<section>
-									<header class="major">
-										<h2>Get in touch</h2>
-									</header>
-									<ul class="contact">
-										<li class="icon solid fa-envelope"><a href="https://sscr.edu/Beta/">https://sscr.edu/Beta/</a></li>
-										<li class="icon solid fa-phone">(046) 431-9405</li>
-										<li class="icon solid fa-home">Manila-Cavite Road, Sta. Cruz,<br />
-										Cavite City, 4100, Philippines</li>
-									</ul>
-								</section>
+              <!-- Section -->
+                <section>
+                  <header class="major">
+                    <h2>Get in touch</h2>
+                  </header>
+                  <ul class="contact">
+                    <li class="icon solid fa-envelope"><a href="https://sscr.edu/Beta/">https://sscr.edu/Beta/</a></li>
+                    <li class="icon solid fa-phone">(046) 431-9405</li>
+                    <li class="icon solid fa-home">Manila-Cavite Road, Sta. Cruz,<br />
+                    Cavite City, 4100, Philippines</li>
+                  </ul>
+                </section>
 
-							<!-- Footer -->
-								<footer id="footer">
-									<p class="copyright">&copy; SSC-RdC IOT Development Board. <br>All rights reserved.
-								</footer>
+              <!-- Footer -->
+                <footer id="footer">
+                  <p class="copyright">&copy; SSC-RdC IOT Development Board. <br>All rights reserved.
+                </footer>
 
-						</div>
-					</div>
+            </div>
+          </div>
 
-			</div>
+      </div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script src="assets/js/copy.js"></script>
+    <!-- Scripts -->
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/browser.min.js"></script>
+      <script src="assets/js/breakpoints.min.js"></script>
+      <script src="assets/js/util.js"></script>
+      <script src="assets/js/main.js"></script>
+      <script src="assets/js/copy.js"></script>
 
-	</body>
+  </body>
 </html>
